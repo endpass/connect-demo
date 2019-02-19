@@ -55,8 +55,8 @@ class EndpassForm extends React.Component {
       classes,
       form,
       onSign,
-      onRecover,
-      onPresonalSign,
+      onPersonalRecover,
+      onPersonalSign,
       onSignOut,
       onRequestAccount,
     } = this.props;
@@ -143,7 +143,7 @@ class EndpassForm extends React.Component {
                 className={classes.row}
                 variant="contained"
                 disabled={!form.from || !form.message}
-                onClick={onPresonalSign}
+                onClick={onPersonalSign}
               >
                 web3.eth.personal.sign
               </Button>
@@ -153,7 +153,7 @@ class EndpassForm extends React.Component {
                 className={classes.row}
                 variant="contained"
                 disabled={!form.signature}
-                onClick={onRecover}
+                onClick={onPersonalRecover}
               >
                 web3.eth.personal.ecRecover
               </Button>
