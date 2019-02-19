@@ -1,0 +1,38 @@
+{
+  "name": "@endpass/connect-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel -p 4000 ./public/index.html",
+    "build": "parcel build ./public/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "parcel-bundler": "^1.11.0",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@endpass/connect": "0.13.1-beta",
+    "@material-ui/core": "^3.9.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "web3": "1.0.0-beta.37"
+  }
+}
