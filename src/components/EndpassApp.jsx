@@ -31,7 +31,7 @@ class EndpassApp extends React.Component {
     this.sign = this.sign.bind(this);
     this.signTypedData = this.signTypedData.bind(this);
     this.personalSign = this.personalSign.bind(this);
-    this.recover = this.recover.bind(this);
+    this.personalRecover = this.personalRecover.bind(this);
     this.requestAccount = this.requestAccount.bind(this);
     this.onClickSignInButton = this.onClickSignInButton.bind(this);
     this.onClickSignOutButton = this.onClickSignOutButton.bind(this);
@@ -53,16 +53,15 @@ class EndpassApp extends React.Component {
   async getAccountDataAndUpdateProviderSettings() {
     try {
       const { activeAccount, activeNet } = await this.connect.getAccountData();
-      const connectProvider = this.connect.extendProvider(
-        web3.providers.HttpProvider,
-      );
-
-      web3.setProvider(connectProvider);
+      
+      const connectProvider = this.connect.getProvider();
 
       this.connect.setProviderSettings({
         activeAccount,
         activeNet,
       });
+
+      web3.setProvider(connectProvider);
 
       this.setState({
         ...this.state,
@@ -73,7 +72,7 @@ class EndpassApp extends React.Component {
           from: activeAccount,
         },
       });
-    } catch (err) {
+    } catch (err) {     
       this.setState({
         ...this.state,
         authorized: false,
@@ -110,7 +109,7 @@ class EndpassApp extends React.Component {
     );
   }
 
-  recover() {
+  personalRecover() {
     const { message, signature } = this.state.form;
 
     window.web3.eth.personal.ecRecover(message, signature, (err, res) => {
@@ -133,10 +132,13 @@ class EndpassApp extends React.Component {
         console.error(err);
         return;
       }
-
+      
       this.setState(state => ({
         ...state,
-        signature: res,
+        form: {
+          ...state.form,
+          signature: res,
+        },
       }));
     });
   }
@@ -292,8 +294,8 @@ class EndpassApp extends React.Component {
             accounts={accounts}
             onSign={this.sign}
             onSignTypedData={this.signTypedData}
-            onRecover={this.recover}
-            onPresonalSign={this.personalSign}
+            onPersonalRecover={this.personalRecover}
+            onPersonalSign={this.personalSign}
             onRequestAccount={this.requestAccount}
             onSignOut={this.onClickSignOutButton}
             onChange={this.onChangeEndpassForm}
