@@ -700,12 +700,13 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@endpass/connect@0.13.1-beta":
-  version "0.13.1-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.13.1-beta.tgz#0e5f00015a85d8d4efc98e75aa8dca10c22823e5"
-  integrity sha512-wcew7vfRmYg1ig9S4RN4ngpRuJeg+EoYdtpzljCnL+omKnfHJLf7eI9F94mXlymGxxk0zgUIKFHHCjz8Ypj0yg==
+"@endpass/connect@0.14.0-beta":
+  version "0.14.0-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.14.0-beta.tgz#b6a8731d9701e7c15ca2bcc34813a5550a6e5d40"
+  integrity sha512-m0z5kE4TVUw1e9mrEgeqmxfplbjZ9i1w2cN7zwEbz7GX8LY/1r1IY8YZR2vxb11EP9a8/1+KgF19R1XrtLFkQQ==
   dependencies:
     lodash "^4.17.11"
+    web3-providers-http "1.0.0-beta.37"
 
 "@iarna/toml@^2.2.0":
   version "2.2.1"
