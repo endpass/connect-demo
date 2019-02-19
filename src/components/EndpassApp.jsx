@@ -44,7 +44,7 @@ class EndpassApp extends React.Component {
 
   initConnect() {
     this.connect = new Connect({
-      authUrl: 'http://localhost:5000'
+      authUrl: 'https://auth-dev.endpass.com'
     });
 
     window.web3 = web3;
