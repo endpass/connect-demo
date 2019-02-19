@@ -28,7 +28,7 @@
     "prettier": "^1.16.4"
   },
   "dependencies": {
-    "@endpass/connect": "0.13.1-beta",
+    "@endpass/connect": "0.14.0-beta",
     "@material-ui/core": "^3.9.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
