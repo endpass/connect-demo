@@ -28,7 +28,6 @@
     "prettier": "^1.16.4"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
     "@endpass/connect": "0.13.1-beta",
     "@material-ui/core": "^3.9.1",
     "react": "^16.7.0",
