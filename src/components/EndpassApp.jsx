@@ -43,8 +43,13 @@ class EndpassApp extends React.Component {
   }
 
   initConnect() {
+    const authUrl =
+      process.env.NODE_ENV === 'production'
+        ? 'https://auth.endpass.com'
+        : 'https://auth-dev.endpass.com';
+
     this.connect = new Connect({
-      authUrl: 'https://auth-dev.endpass.com'
+      authUrl,
     });
 
     window.web3 = web3;
@@ -53,7 +58,7 @@ class EndpassApp extends React.Component {
   async getAccountDataAndUpdateProviderSettings() {
     try {
       const { activeAccount, activeNet } = await this.connect.getAccountData();
-      
+
       const connectProvider = this.connect.getProvider();
 
       this.connect.setProviderSettings({
@@ -72,7 +77,7 @@ class EndpassApp extends React.Component {
           from: activeAccount,
         },
       });
-    } catch (err) {     
+    } catch (err) {
       this.setState({
         ...this.state,
         authorized: false,
