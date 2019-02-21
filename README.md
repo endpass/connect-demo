@@ -1,2 +1,2 @@
 # connect-demo
-Demo dApp for Endpass Connect
+[Demo dApp](https://endpass.github.io/connect-demo) for Endpass Connect
