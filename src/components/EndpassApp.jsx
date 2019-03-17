@@ -35,6 +35,7 @@ class EndpassApp extends React.Component {
     this.requestAccount = this.requestAccount.bind(this);
     this.onClickSignInButton = this.onClickSignInButton.bind(this);
     this.onClickSignOutButton = this.onClickSignOutButton.bind(this);
+    this.onOpenAccount = this.onOpenAccount.bind(this);
     this.onChangeEndpassForm = this.onChangeEndpassForm.bind(this);
   }
 
@@ -255,6 +256,10 @@ class EndpassApp extends React.Component {
     }
   }
 
+  async onOpenAccount() {
+    const data = await this.connect.openAccount();
+  }
+
   async onClickSignOutButton() {
     try {
       await this.connect.logout();
@@ -303,6 +308,7 @@ class EndpassApp extends React.Component {
             onPersonalSign={this.personalSign}
             onRequestAccount={this.requestAccount}
             onSignOut={this.onClickSignOutButton}
+            onOpenAccont={this.onOpenAccount}
             onChange={this.onChangeEndpassForm}
           />
         ) : (

@@ -59,6 +59,7 @@ class EndpassForm extends React.Component {
       onPersonalSign,
       onSignOut,
       onRequestAccount,
+      onOpenAccont,
     } = this.props;
 
     return (
@@ -96,6 +97,15 @@ class EndpassForm extends React.Component {
               onClick={onRequestAccount}
             >
               web3.eth.getAccounts
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              className={classes.row}
+              variant="contained"
+              onClick={onOpenAccont}
+            >
+              Open Accont
             </Button>
           </Grid>
         </Grid>
