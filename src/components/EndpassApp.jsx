@@ -255,6 +255,9 @@ class EndpassApp extends React.Component {
 
   async onOpenAccount() {
     const data = await this.connect.openAccount();
+    if (data.type === 'update') {
+      await this.getAccountDataAndUpdateProviderSettings();
+    }
   }
 
   async onClickSignOutButton() {
