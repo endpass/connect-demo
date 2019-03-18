@@ -3,6 +3,7 @@ node_modules
 .cache
 dist
 report.*
+.env.development.local
 
 # Log files
 npm-debug.log*

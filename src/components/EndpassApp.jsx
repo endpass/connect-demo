@@ -44,10 +44,7 @@ class EndpassApp extends React.Component {
   }
 
   initConnect() {
-    const authUrl =
-      process.env.NODE_ENV === 'production'
-        ? 'https://auth.endpass.com'
-        : 'https://auth-dev.endpass.com';
+    const authUrl = process.env.AUTH_URL || 'https://auth.endpass.com';
 
     this.connect = new Connect({
       authUrl,
