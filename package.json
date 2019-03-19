@@ -11,12 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@endpass/class": "^0.8.1",
-    "@endpass/connect": "0.15.8-beta",
+    "@endpass/class": "^0.9.4",
+    "@endpass/connect": "0.16.0-beta",
     "@material-ui/core": "^3.9.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "utility-types": "^3.4.1",
     "web3": "1.0.0-beta.37"
   },
   "devDependencies": {
