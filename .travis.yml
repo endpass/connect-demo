@@ -8,8 +8,10 @@ install: yarn install --frozen-lockfile
 script:
 - yarn build
 deploy:
-  provider: script
-  script: node scripts/deploy.js
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local-dir: dist
   on:
     branch: master
 notifications:
