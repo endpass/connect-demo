@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@endpass/class": "^0.9.4",
-    "@endpass/connect": "0.16.0-beta",
+    "@endpass/connect": "^0.16.1-beta",
     "@material-ui/core": "^3.9.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
