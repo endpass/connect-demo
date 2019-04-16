@@ -828,12 +828,12 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@endpass/class@^0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.9.4.tgz#bd321f8518ebd4ae0fd535908bfab59d54c179c4"
-  integrity sha512-ReQ1ObeoSzRjt2c52Qlyd3CNBgbh/7zzwTFi3SKCqWJJAUFEqFFe7yWUyW3NGV92do/IdgjSSSngqZzmNjurrA==
+"@endpass/class@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.10.3.tgz#d92c4d3d37dc1249ecfe815a1d657a7b1162e095"
+  integrity sha512-auJYa340yqY9g8nUPKEIvZ+fySda6R7rO7R4RNkqeSNDHrXEhCoLpjQHnvLhtEnvgQqwOllqIMSWWam95oSISQ==
   dependencies:
-    "@endpass/utils" "^1.2.1"
+    "@endpass/utils" "^1.2.3"
     "@ledgerhq/hw-app-eth" "^4.24.0"
     "@ledgerhq/hw-transport-u2f" "^4.24.0"
     bignumber.js "^7.2.1"
@@ -850,20 +850,20 @@
     web3-providers-ws "1.0.0-beta.33"
     web3-utils "1.0.0-beta.33"
 
-"@endpass/connect@^0.16.1-beta":
-  version "0.16.1-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.16.1-beta.tgz#06213f0a8c5bbbf950e6ab66fe4de6546036bdae"
-  integrity sha512-p+cy9DjFuBFmXR+TRyJgLJglloz/gOmJdITb5v1mo2NSUW0t+QmvQB5yBH+aqxRt43C6W1AJbm8Mw0yjuuVkGQ==
+"@endpass/connect@^0.17.6-beta":
+  version "0.17.6-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.17.6-beta.tgz#739c606c5454a301d5dc6a3bd9b48a219e8d4098"
+  integrity sha512-liU98zxnlW+wEd4kFLwAobTz6c17aHdEKoAKoB8hjDMnooTow4zw6Gn/1ABTVKjWmTM1yCPJhlb9zqO07JIQ9g==
   dependencies:
-    "@endpass/class" "^0.9.4"
+    "@endpass/class" "^0.10.3"
     lodash.get "^4.4.2"
     utility-types "^3.4.1"
     web3-providers-http "1.0.0-beta.33"
 
-"@endpass/utils@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@endpass/utils/-/utils-1.2.1.tgz#3f25df77fad9967b8bfdcbd185cdb1ebdaa78ddb"
-  integrity sha512-RbLONPn+2yfT4O3Y9ilNRbFyxHL1bD3NX5zuiSOYFgaffzJwVU7zDWq4vrvw0hXQG6GP4fNRlaEBOQ+ZGQAX1A==
+"@endpass/utils@^1.2.3":
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/@endpass/utils/-/utils-1.3.4.tgz#f83cb2cd434f1c878e3c91f68ae4b90a47710416"
+  integrity sha512-EdHncOJKu0Ulufz9Fy9BtzT+ShOODOTb0l/dnIusuzM1IRLwugewNQlUtzIKEk/i+xnZ3elfHkGrt4Gwckvt3w==
   dependencies:
     bs58check "^2.1.2"
     dayjs "^1.7.8"
