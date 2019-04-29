@@ -56,7 +56,6 @@ class EndpassApp extends React.Component {
   async getAccountDataAndUpdateProviderSettings() {
     try {
       const { activeAccount, activeNet } = await this.connect.getAccountData();
-
       const connectProvider = this.connect.getProvider();
 
       this.connect.setProviderSettings({
