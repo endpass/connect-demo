@@ -872,10 +872,10 @@
     web3-providers-ws "1.0.0-beta.33"
     web3-utils "1.0.0-beta.33"
 
-"@endpass/connect@^0.19.0-beta":
-  version "0.19.0-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.19.0-beta.tgz#57c515c49e1a31eed2df9b1cf1be8ef78a7b32af"
-  integrity sha512-7vdmXZZabhjiwwLTanK0MPgPqVE/NMXgJVmIzXjw5ymtsE+4cKXxq8OeLvSAXOyV9mvMXPgfG56Y7WLdOazcGQ==
+"@endpass/connect@^0.19.3-beta":
+  version "0.19.3-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.19.3-beta.tgz#0c31499620332599acc79996f706b7f1168a222c"
+  integrity sha512-VmGOOZ2OI+2bEqCnsGFZJZUvPo5rT5sBENguUGTCloMj63hEwOQ7k50f7UGne/QlacW4vViIRbVwtjOiDJNbsg==
   dependencies:
     "@endpass/class" "^0.12.1"
     lodash.get "^4.4.2"
