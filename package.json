@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel -p 8080 ./public/index.html",
+    "dev": "parcel -p 4000 ./public/index.html",
     "build": "parcel build --public-url ./ ./public/index.html"
   },
   "keywords": [],
@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@endpass/class": "^0.10.4",
-    "@endpass/connect": "^0.19.0-beta",
+    "@endpass/connect": "^0.19.3-beta",
     "@material-ui/core": "^3.9.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
