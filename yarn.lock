@@ -1111,10 +1111,10 @@
     web3-providers-ws "1.0.0-beta.33"
     web3-utils "1.0.0-beta.33"
 
-"@endpass/connect@^0.21.2-beta":
-  version "0.21.2-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.21.2-beta.tgz#7979c5e9269ccc4244cea0fef9288534b538a0c2"
-  integrity sha512-p/qjsQC1B/zrdB5EXyhnA1wWRhdWP7hfjNpS/n753cjUgTJ2mee2ENtomC9OQ/P08IIZgwioreffyaR6VbMCIw==
+"@endpass/connect@^0.21.3-beta":
+  version "0.21.3-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.21.3-beta.tgz#b4e6c92114d460e93ec8991b3780a11cd76ef069"
+  integrity sha512-hDnK2ysNJBO73s2ywGqLfeCidvI50nxq4hXdsK5f2n1JCUT2+CbOaVENtZUVSmCWdkuesaDU9lepDs323C6yNA==
   dependencies:
     "@endpass/class" "^0.13.3"
     "@endpass/utils" "^1.3.5"
