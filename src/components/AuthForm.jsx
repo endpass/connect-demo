@@ -6,7 +6,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import styles from '../styles'
 
-const AuthForm = ({ classes, onSignIn, onOauth, onGetData }) => {
+const AuthForm = ({ classes, onSignIn, onOauth }) => {
   return (
     <List>
       <ListItem>
@@ -14,13 +14,8 @@ const AuthForm = ({ classes, onSignIn, onOauth, onGetData }) => {
           Sign in with Endpass
         </Button>        
       </ListItem>
-      <ListItem>        
-        <Button variant="contained" className={classes.fluid} onClick={onOauth}>
-          Oauth sign in
-        </Button>
-      </ListItem>
       <ListItem>
-        <Button variant="contained" className={classes.fluid} onClick={onGetData}>
+        <Button variant="contained" className={classes.fluid} onClick={onOauth}>
           Get accounts from OAuth
         </Button>        
       </ListItem>
