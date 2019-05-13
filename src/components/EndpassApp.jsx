@@ -7,9 +7,17 @@ import Typography from '@material-ui/core/Typography';
 
 import web3 from '../utils/web3';
 
-import AuthForm from './AuthForm.jsx';
-import EndpassForm from './EndpassForm.jsx';
+import AuthForm from './AuthForm';
+import EndpassForm from './EndpassForm';
+import OauthForm from './OauthForm';
 import styles from '../styles';
+
+const FORM_VIEW = {
+  LOADING: 'LOADING',
+  LOGIN: 'LOGIN',
+  AUTH: 'AUTH',
+  OAUTH: 'OAUTH',
+};
 
 class EndpassApp extends React.Component {
   constructor(props) {
@@ -25,11 +33,9 @@ class EndpassApp extends React.Component {
       accounts: [],
       currentId: 1,
       authorized: null,
+      formView: FORM_VIEW.LOADING,
       error: null,
     };
-
-    this.onWidgetLogout = this.onWidgetLogout.bind(this)
-    this.onWidgetUpdate = this.onWidgetUpdate.bind(this)
   }
 
   async componentDidMount() {
@@ -69,7 +75,7 @@ class EndpassApp extends React.Component {
       web3.setProvider(connectProvider);
 
       this.setState({
-        authorized: true,
+        formView: FORM_VIEW.AUTH,
         accounts: [activeAccount],
         form: {
           ...this.state.form,
@@ -78,7 +84,7 @@ class EndpassApp extends React.Component {
       });
     } catch (err) {
       this.setState({
-        authorized: false,
+        formView: FORM_VIEW.LOGIN,
         accounts: [],
         accountData: null,
       });
@@ -130,7 +136,7 @@ class EndpassApp extends React.Component {
         console.error(err);
         return;
       }
-      
+
       this.setState(state => ({
         form: {
           ...state.form,
@@ -216,20 +222,20 @@ class EndpassApp extends React.Component {
     });
   };
 
-  onWidgetLogout() {
+  onWidgetLogout = () => {
     window.location.reload()
-  }
+  };
 
-  onWidgetUpdate({ detail }) {
+  onWidgetUpdate = ({ detail }) => {
     this.setState(state => ({
       ...state,
       accounts: [detail.activeAccount],
       form: {
         ...state.form,
-        from: [detail.activeAccount], 
+        from: [detail.activeAccount],
       }
     }))
-  }
+  };
 
   onChangeEndpassForm = (data) => {
     this.setState({
@@ -246,6 +252,8 @@ class EndpassApp extends React.Component {
       scopes: ['wallet:accounts:read'],
       oauthServer: process.env.OAUTH_SERVER,
     });
+
+    await this.onClickGetData();
   };
 
   onClickGetData = async () => {
@@ -253,8 +261,24 @@ class EndpassApp extends React.Component {
       method: 'GET',
       url: 'https://api-dev.endpass.com/v1/accounts',
     });
-    alert(data);
-    console.log(data);
+    this.setState({
+      accounts: data,
+      formView: FORM_VIEW.OAUTH,
+    });
+  };
+
+  onClickSignOutOauthButton = async () => {
+    await this.connect.logoutFromOauth();
+
+    this.setState({
+      formView: FORM_VIEW.LOGIN,
+    });
+  };
+
+  onBackToLogin = () => {
+    this.setState({
+      formView: FORM_VIEW.LOGIN,
+    })
   };
 
   onClickSignInButton = async () => {
@@ -290,6 +314,7 @@ class EndpassApp extends React.Component {
           signature: '',
         },
         authorized: false,
+        formView: FORM_VIEW.LOGIN,
         accountData: null,
       });
     } catch (err) {
@@ -300,10 +325,10 @@ class EndpassApp extends React.Component {
   };
 
   renderContent() {
-    const { authorized, form, message, signature, accounts } = this.state;
+    const { formView, authorized, form, message, signature, accounts } = this.state;
     const { classes } = this.props;
 
-    if (authorized === null) {
+    if (formView === FORM_VIEW.LOADING) {
       return (
         <div className={classes.loader}>
           <CircularProgress />
@@ -313,28 +338,32 @@ class EndpassApp extends React.Component {
 
     return (
       <div>
-        {authorized ? (
-          <EndpassForm
-            form={form}
-            message={message}
-            signature={signature}
-            accounts={accounts}
-            onSign={this.sign}
-            onSignTypedData={this.signTypedData}
-            onPersonalRecover={this.personalRecover}
-            onPersonalSign={this.personalSign}
-            onRequestAccount={this.requestAccount}
-            onSignOut={this.onClickSignOutButton}
-            onOpenAccont={this.onOpenAccount}
-            onChange={this.onChangeEndpassForm}
-          />
-        ) : (
-          <AuthForm
-            onSignIn={this.onClickSignInButton}
-            onOauth={this.onClickOauthButton}
-            onGetData={this.onClickGetData}
-          />
-        )}
+        {(formView === FORM_VIEW.AUTH) && <EndpassForm
+          form={form}
+          message={message}
+          signature={signature}
+          accounts={accounts}
+          onSign={this.sign}
+          onSignTypedData={this.signTypedData}
+          onPersonalRecover={this.personalRecover}
+          onPersonalSign={this.personalSign}
+          onRequestAccount={this.requestAccount}
+          onSignOut={this.onClickSignOutButton}
+          onOpenAccont={this.onOpenAccount}
+          onChange={this.onChangeEndpassForm}
+        />}
+
+        {(formView === FORM_VIEW.LOGIN) && <AuthForm
+          onSignIn={this.onClickSignInButton}
+          onOauth={this.onClickOauthButton}
+        />}
+
+        {(formView === FORM_VIEW.OAUTH) && <OauthForm
+          accounts={accounts}
+          onSignOut={this.onClickSignOutOauthButton}
+          onBack={this.onBackToLogin}
+        />}
+
       </div>
     );
   }
