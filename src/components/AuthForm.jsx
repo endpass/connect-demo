@@ -14,7 +14,7 @@ const AuthForm = ({ classes, onSignIn, onOauth, onGetData }) => {
         Oauth sign in
       </Button>
       <Button variant="contained" className={classes.fluid} onClick={onGetData}>
-        Get accounts from Auth
+        Get accounts from OAuth
       </Button>
     </Fragment>
   )
