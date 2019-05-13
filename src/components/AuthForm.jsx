@@ -2,21 +2,29 @@ import React, { Fragment } from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 import styles from '../styles'
 
 const AuthForm = ({ classes, onSignIn, onOauth, onGetData }) => {
   return (
-    <Fragment>
-      <Button variant="contained" className={classes.fluid} onClick={onSignIn}>
-        Sign in with Endpass
-      </Button>
-      <Button variant="contained" className={classes.fluid} onClick={onOauth}>
-        Oauth sign in
-      </Button>
-      <Button variant="contained" className={classes.fluid} onClick={onGetData}>
-        Get accounts from OAuth
-      </Button>
-    </Fragment>
+    <List>
+      <ListItem>
+        <Button variant="contained" className={classes.fluid} onClick={onSignIn}>
+          Sign in with Endpass
+        </Button>        
+      </ListItem>
+      <ListItem>        
+        <Button variant="contained" className={classes.fluid} onClick={onOauth}>
+          Oauth sign in
+        </Button>
+      </ListItem>
+      <ListItem>
+        <Button variant="contained" className={classes.fluid} onClick={onGetData}>
+          Get accounts from OAuth
+        </Button>        
+      </ListItem>
+    </List>
   )
 }
 

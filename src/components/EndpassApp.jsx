@@ -27,6 +27,9 @@ class EndpassApp extends React.Component {
       authorized: null,
       error: null,
     };
+
+    this.onWidgetLogout = this.onWidgetLogout.bind(this)
+    this.onWidgetUpdate = this.onWidgetUpdate.bind(this)
   }
 
   async componentDidMount() {
@@ -41,6 +44,16 @@ class EndpassApp extends React.Component {
     });
 
     window.web3 = web3;
+
+    this.subscribeOnWidgetEvents()
+  }
+
+  subscribeOnWidgetEvents() {
+    this.connect.getWidgetNode()
+      .then(node => {
+        node.addEventListener('logout', this.onWidgetLogout)
+        node.addEventListener('update', this.onWidgetUpdate)
+      })
   }
 
   async getAccountDataAndUpdateProviderSettings() {
@@ -202,6 +215,21 @@ class EndpassApp extends React.Component {
       }));
     });
   };
+
+  onWidgetLogout() {
+    window.location.reload()
+  }
+
+  onWidgetUpdate({ detail }) {
+    this.setState(state => ({
+      ...state,
+      accounts: [detail.activeAccount],
+      form: {
+        ...state.form,
+        from: [detail.activeAccount], 
+      }
+    }))
+  }
 
   onChangeEndpassForm = (data) => {
     this.setState({
