@@ -27,16 +27,6 @@ class EndpassApp extends React.Component {
       authorized: null,
       error: null,
     };
-    this.errorNotification = this.errorNotification.bind(this);
-    this.sign = this.sign.bind(this);
-    this.signTypedData = this.signTypedData.bind(this);
-    this.personalSign = this.personalSign.bind(this);
-    this.personalRecover = this.personalRecover.bind(this);
-    this.requestAccount = this.requestAccount.bind(this);
-    this.onClickSignInButton = this.onClickSignInButton.bind(this);
-    this.onClickSignOutButton = this.onClickSignOutButton.bind(this);
-    this.onOpenAccount = this.onOpenAccount.bind(this);
-    this.onChangeEndpassForm = this.onChangeEndpassForm.bind(this);
   }
 
   async componentDidMount() {
@@ -66,7 +56,6 @@ class EndpassApp extends React.Component {
       web3.setProvider(connectProvider);
 
       this.setState({
-        ...this.state,
         authorized: true,
         accounts: [activeAccount],
         form: {
@@ -76,7 +65,6 @@ class EndpassApp extends React.Component {
       });
     } catch (err) {
       this.setState({
-        ...this.state,
         authorized: false,
         accounts: [],
         accountData: null,
@@ -85,18 +73,13 @@ class EndpassApp extends React.Component {
   }
 
   /* eslint-disable-next-line */
-  isNewWeb3() {
-    return !Array.isArray(window.web3.accounts);
-  }
-
-  /* eslint-disable-next-line */
-  errorNotification() {
+  errorNotification = () => {
     /* eslint-disable */
     new Notification('Action denied', {
       body: 'An error occured, see console for more details',
     });
     /* eslint-enable */
-  }
+  };
 
   makeRequest(method, params, callback) {
     const { currentId } = this.state;
@@ -111,7 +94,7 @@ class EndpassApp extends React.Component {
     );
   }
 
-  personalRecover() {
+  personalRecover = () => {
     const { message, signature } = this.state.form;
 
     window.web3.eth.personal.ecRecover(message, signature, (err, res) => {
@@ -123,9 +106,9 @@ class EndpassApp extends React.Component {
 
       alert(`Address verified. Recovered address: ${res}`);
     });
-  }
+  };
 
-  sign() {
+  sign = () => {
     const { from, message } = this.state.form;
 
     window.web3.eth.sign(message, from, (err, res) => {
@@ -136,17 +119,16 @@ class EndpassApp extends React.Component {
       }
       
       this.setState(state => ({
-        ...state,
         form: {
           ...state.form,
           signature: res,
         },
       }));
     });
-  }
+  };
 
   // legacy EIP
-  signTypedData() {
+  signTypedData = () => {
     const { from } = this.state;
     const typedData = [
       {
@@ -162,7 +144,6 @@ class EndpassApp extends React.Component {
     ];
 
     this.setState({
-      ...this.state,
       form: {
         ...this.state.form,
         message: JSON.stringify(typedData, null, 2),
@@ -177,16 +158,15 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
-        ...state,
         form: {
           ...state.form,
           signature: res.result,
         },
       }));
     });
-  }
+  };
 
-  personalSign() {
+  personalSign = () => {
     const { form } = this.state;
 
     window.web3.eth.personal.sign(form.message, form.from, '', (err, res) => {
@@ -197,16 +177,15 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
-        ...state,
         form: {
           ...state.form,
           signature: res,
         },
       }));
     });
-  }
+  };
 
-  requestAccount() {
+  requestAccount = () => {
     window.web3.eth.getAccounts((err, res) => {
       if (err) {
         this.errorNotification();
@@ -215,7 +194,6 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
-        ...state,
         accounts: res,
         form: {
           ...state.form,
@@ -223,48 +201,61 @@ class EndpassApp extends React.Component {
         },
       }));
     });
-  }
+  };
 
-  onChangeEndpassForm(data) {
+  onChangeEndpassForm = (data) => {
     this.setState({
-      ...this.state,
       form: {
         ...this.state.form,
         ...data,
       },
     });
-  }
+  };
 
-  async onClickSignInButton() {
+  onClickOauthButton = async () => {
+    await this.connect.loginWithOauth({
+      clientId: process.env.OAUTH_CLIENT_ID,
+      scopes: ['wallet:accounts:read'],
+      oauthServer: process.env.OAUTH_SERVER,
+    });
+  };
+
+  onClickGetData = async () => {
+    const { data } = await this.connect.request({
+      method: 'GET',
+      url: 'https://api-dev.endpass.com/v1/accounts',
+    });
+    alert(data);
+    console.log(data);
+  };
+
+  onClickSignInButton = async () => {
     try {
       await this.connect.auth();
       await this.getAccountDataAndUpdateProviderSettings();
 
       this.setState({
-        ...this.state,
         error: null,
       });
     } catch (err) {
       this.setState({
-        ...this.state,
         error: err.toString(),
       });
     }
-  }
+  };
 
-  async onOpenAccount() {
+  onOpenAccount = async () => {
     const data = await this.connect.openAccount();
     if (data.type === 'update') {
       await this.getAccountDataAndUpdateProviderSettings();
     }
-  }
+  };
 
-  async onClickSignOutButton() {
+  onClickSignOutButton = async () => {
     try {
       await this.connect.logout();
 
       this.setState({
-        ...this.state,
         form: {
           from: '',
           message: '',
@@ -275,11 +266,10 @@ class EndpassApp extends React.Component {
       });
     } catch (err) {
       this.setState({
-        ...this.state,
         error: err.toString(),
       });
     }
-  }
+  };
 
   renderContent() {
     const { authorized, form, message, signature, accounts } = this.state;
@@ -311,7 +301,11 @@ class EndpassApp extends React.Component {
             onChange={this.onChangeEndpassForm}
           />
         ) : (
-          <AuthForm onSignIn={this.onClickSignInButton} />
+          <AuthForm
+            onSignIn={this.onClickSignInButton}
+            onOauth={this.onClickOauthButton}
+            onGetData={this.onClickGetData}
+          />
         )}
       </div>
     );
