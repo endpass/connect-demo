@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "rimraf ./cache && parcel -p 4000 ./public/index.html",
+    "dev": "rimraf ./.cache && parcel -p 4000 ./public/index.html",
     "build": "parcel build --public-url ./ ./public/index.html"
   },
   "keywords": [],
