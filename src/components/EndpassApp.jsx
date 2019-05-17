@@ -44,9 +44,11 @@ class EndpassApp extends React.Component {
 
   initConnect() {
     const authUrl = process.env.AUTH_URL || 'https://auth.endpass.com';
+    const oauthClientId = process.env.OAUTH_CLIENT_ID;
 
     this.connect = new Connect({
       authUrl,
+      oauthClientId
     });
 
     window.web3 = web3;
@@ -248,7 +250,6 @@ class EndpassApp extends React.Component {
 
   onClickOauthButton = async () => {
     await this.connect.loginWithOauth({
-      clientId: process.env.OAUTH_CLIENT_ID,
       scopes: ['wallet:accounts:read'],
       oauthServer: process.env.OAUTH_SERVER,
     });
