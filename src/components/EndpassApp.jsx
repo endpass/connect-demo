@@ -234,7 +234,7 @@ class EndpassApp extends React.Component {
       accounts: [detail.activeAccount],
       form: {
         ...state.form,
-        from: [detail.activeAccount],
+        from: detail.activeAccount,
       }
     }))
   };
