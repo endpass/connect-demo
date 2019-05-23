@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "rimraf ./.cache && parcel -p 4000 ./public/index.html",
+    "setup-e2e": "rimraf ./.cache && NODE_ENV=module parcel -p 4004 ./public/index.html",
     "build": "parcel build --public-url ./ ./public/index.html"
   },
   "keywords": [],
