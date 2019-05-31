@@ -1,7 +1,7 @@
 const styles = theme => ({
   loader: {
     textAlign: 'center',
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   appWrapper: {
     display: 'flex',
@@ -9,7 +9,7 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   row: {
-    marginBottom: theme.spacing.unit * 1.5,
+    marginBottom: theme.spacing(1.5),
     width: '100%',
   },
   field: {
@@ -17,10 +17,10 @@ const styles = theme => ({
     width: '100%',
     marginRight: 0,
     marginLeft: 0,
-    marginBottom: theme.spacing.unit * 1.5,
+    marginBottom: theme.spacing(1.5),
   },
   card: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     maxWidth: 480,
     margin: `${theme.spacing.unit}px auto`,
   },
@@ -32,8 +32,15 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
   },
   title: {
-    marginBottom: theme.spacing.unit * 3,
+    marginBottom: theme.spacing(3),
   },
-})
+  tabsPanel: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  contentWrapper: {
+    marginTop: theme.spacing(2),
+  },
+});
 
-export default styles
+export default styles;
