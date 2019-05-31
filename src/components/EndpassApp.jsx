@@ -9,21 +9,18 @@ import web3 from '../utils/web3';
 
 import AuthForm from './AuthForm';
 import EndpassForm from './EndpassForm';
-import OauthForm from './OauthForm';
 import styles from '../styles';
 
 const FORM_VIEW = {
   LOADING: 'LOADING',
   LOGIN: 'LOGIN',
   AUTH: 'AUTH',
-  OAUTH: 'OAUTH',
 };
 
 class EndpassApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initConnect();
     this.state = {
       form: {
         from: '',
@@ -39,42 +36,23 @@ class EndpassApp extends React.Component {
   }
 
   async componentDidMount() {
+    this.subscribeOnWidgetEvents();
     await this.getAccountDataAndUpdateProviderSettings();
   }
 
-  initConnect() {
-    const authUrl = process.env.AUTH_URL || 'https://auth.endpass.com';
-    const oauthClientId = process.env.OAUTH_CLIENT_ID;
-
-    this.connect = new Connect({
-      authUrl,
-      oauthClientId
-    });
-
-    window.web3 = web3;
-
-    this.subscribeOnWidgetEvents()
-  }
-
   subscribeOnWidgetEvents() {
-    this.connect.getWidgetNode()
-      .then(node => {
-        node.addEventListener('logout', this.onWidgetLogout)
-        node.addEventListener('update', this.onWidgetUpdate)
-      })
+    this.props.connect.getWidgetNode().then(node => {
+      node.addEventListener('logout', this.onWidgetLogout);
+      node.addEventListener('update', this.onWidgetUpdate);
+    });
   }
 
   async getAccountDataAndUpdateProviderSettings() {
     try {
-      const { activeAccount, activeNet } = await this.connect.getAccountData();
-      const connectProvider = this.connect.getProvider();
-
-      this.connect.setProviderSettings({
+      const {
         activeAccount,
         activeNet,
-      });
-
-      web3.setProvider(connectProvider);
+      } = await this.props.connect.getAccountData();
 
       this.setState({
         formView: FORM_VIEW.AUTH,
@@ -225,7 +203,7 @@ class EndpassApp extends React.Component {
   };
 
   onWidgetLogout = () => {
-    window.location.reload()
+    window.location.reload();
   };
 
   onWidgetUpdate = ({ detail }) => {
@@ -235,11 +213,11 @@ class EndpassApp extends React.Component {
       form: {
         ...state.form,
         from: detail.activeAccount,
-      }
-    }))
+      },
+    }));
   };
 
-  onChangeEndpassForm = (data) => {
+  onChangeEndpassForm = data => {
     this.setState({
       form: {
         ...this.state.form,
@@ -248,43 +226,15 @@ class EndpassApp extends React.Component {
     });
   };
 
-  onClickOauthButton = async () => {
-    await this.connect.loginWithOauth({
-      scopes: ['wallet:accounts:read'],
-      oauthServer: process.env.OAUTH_SERVER,
-    });
-
-    await this.onClickGetData();
-  };
-
-  onClickGetData = async () => {
-    const { data } = await this.connect.request({
-      method: 'GET',
-      url: 'https://api-dev.endpass.com/v1/accounts',
-    });
-    this.setState({
-      accounts: data,
-      formView: FORM_VIEW.OAUTH,
-    });
-  };
-
-  onClickSignOutOauthButton = async () => {
-    await this.connect.logoutFromOauth();
-
-    this.setState({
-      formView: FORM_VIEW.LOGIN,
-    });
-  };
-
   onBackToLogin = () => {
     this.setState({
       formView: FORM_VIEW.LOGIN,
-    })
+    });
   };
 
   onClickSignInButton = async () => {
     try {
-      await this.connect.auth();
+      await this.props.connect.auth();
       await this.getAccountDataAndUpdateProviderSettings();
 
       this.setState({
@@ -298,7 +248,7 @@ class EndpassApp extends React.Component {
   };
 
   onOpenAccount = async () => {
-    const data = await this.connect.openAccount();
+    const data = await this.props.connect.openAccount();
     if (data.type === 'update') {
       await this.getAccountDataAndUpdateProviderSettings();
     }
@@ -306,7 +256,7 @@ class EndpassApp extends React.Component {
 
   onClickSignOutButton = async () => {
     try {
-      await this.connect.logout();
+      await this.props.connect.logout();
 
       this.setState({
         form: {
@@ -326,7 +276,14 @@ class EndpassApp extends React.Component {
   };
 
   renderContent() {
-    const { formView, authorized, form, message, signature, accounts } = this.state;
+    const {
+      formView,
+      authorized,
+      form,
+      message,
+      signature,
+      accounts,
+    } = this.state;
     const { classes } = this.props;
 
     if (formView === FORM_VIEW.LOADING) {
@@ -339,32 +296,32 @@ class EndpassApp extends React.Component {
 
     return (
       <div>
-        {(formView === FORM_VIEW.AUTH) && <EndpassForm
-          form={form}
-          message={message}
-          signature={signature}
-          accounts={accounts}
-          onSign={this.sign}
-          onSignTypedData={this.signTypedData}
-          onPersonalRecover={this.personalRecover}
-          onPersonalSign={this.personalSign}
-          onRequestAccount={this.requestAccount}
-          onSignOut={this.onClickSignOutButton}
-          onOpenAccont={this.onOpenAccount}
-          onChange={this.onChangeEndpassForm}
-        />}
+        {formView === FORM_VIEW.AUTH && (
+          <EndpassForm
+            form={form}
+            message={message}
+            signature={signature}
+            accounts={accounts}
+            onSign={this.sign}
+            onSignTypedData={this.signTypedData}
+            onPersonalRecover={this.personalRecover}
+            onPersonalSign={this.personalSign}
+            onRequestAccount={this.requestAccount}
+            onSignOut={this.onClickSignOutButton}
+            onOpenAccont={this.onOpenAccount}
+            onChange={this.onChangeEndpassForm}
+          />
+        )}
 
-        {(formView === FORM_VIEW.LOGIN) && <AuthForm
-          onSignIn={this.onClickSignInButton}
-          onOauth={this.onClickOauthButton}
-        />}
-
-        {(formView === FORM_VIEW.OAUTH) && <OauthForm
-          accounts={accounts}
-          onSignOut={this.onClickSignOutOauthButton}
-          onBack={this.onBackToLogin}
-        />}
-
+        {formView === FORM_VIEW.LOGIN && (
+          <Button
+            variant="contained"
+            className={classes.fluid}
+            onClick={this.onClickSignInButton}
+          >
+            Sign in with Endpass
+          </Button>
+        )}
       </div>
     );
   }
