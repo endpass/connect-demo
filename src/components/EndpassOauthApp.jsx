@@ -55,7 +55,6 @@ class EndpassOauthApp extends React.Component {
         formView: FORM_VIEW.AUTHORIZED,
       }));
     } catch (err) {
-      console.log(err);
       this.setState(state => ({
         ...state,
         formView: FORM_VIEW.LOGIN,
