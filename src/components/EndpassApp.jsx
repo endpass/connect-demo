@@ -4,6 +4,7 @@ import Connect from '@endpass/connect';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import web3 from '../utils/web3';
 
@@ -14,7 +15,7 @@ import styles from '../styles';
 const FORM_VIEW = {
   LOADING: 'LOADING',
   LOGIN: 'LOGIN',
-  AUTH: 'AUTH',
+  AUTHORIZED: 'AUTHORIZED',
 };
 
 class EndpassApp extends React.Component {
@@ -54,20 +55,22 @@ class EndpassApp extends React.Component {
         activeNet,
       } = await this.props.connect.getAccountData();
 
-      this.setState({
-        formView: FORM_VIEW.AUTH,
+      this.setState(state => ({
+        ...state,
+        formView: FORM_VIEW.AUTHORIZED,
         accounts: [activeAccount],
         form: {
           ...this.state.form,
           from: activeAccount,
         },
-      });
+      }));
     } catch (err) {
-      this.setState({
+      this.setState(state => ({
+        ...state,
         formView: FORM_VIEW.LOGIN,
         accounts: [],
         accountData: null,
-      });
+      }));
     }
   }
 
@@ -118,6 +121,7 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
+        ...state,
         form: {
           ...state.form,
           signature: res,
@@ -142,12 +146,13 @@ class EndpassApp extends React.Component {
       },
     ];
 
-    this.setState({
+    this.setState(state => ({
+      ...state,
       form: {
         ...this.state.form,
         message: JSON.stringify(typedData, null, 2),
       },
-    });
+    }));
 
     this.makeRequest('eth_signTypedData', [typedData, from], (err, res) => {
       if (err) {
@@ -157,6 +162,7 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
+        ...state,
         form: {
           ...state.form,
           signature: res.result,
@@ -176,6 +182,7 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
+        ...state,
         form: {
           ...state.form,
           signature: res,
@@ -193,6 +200,7 @@ class EndpassApp extends React.Component {
       }
 
       this.setState(state => ({
+        ...state,
         accounts: res,
         form: {
           ...state.form,
@@ -218,18 +226,20 @@ class EndpassApp extends React.Component {
   };
 
   onChangeEndpassForm = data => {
-    this.setState({
+    this.setState(state => ({
+      ...state,
       form: {
         ...this.state.form,
         ...data,
       },
-    });
+    }));
   };
 
   onBackToLogin = () => {
-    this.setState({
+    this.setState(state => ({
+      ...state,
       formView: FORM_VIEW.LOGIN,
-    });
+    }));
   };
 
   onClickSignInButton = async () => {
@@ -237,13 +247,15 @@ class EndpassApp extends React.Component {
       await this.props.connect.auth();
       await this.getAccountDataAndUpdateProviderSettings();
 
-      this.setState({
+      this.setState(state => ({
+        ...state,
         error: null,
-      });
+      }));
     } catch (err) {
-      this.setState({
+      this.setState(state => ({
+        ...state,
         error: err.toString(),
-      });
+      }));
     }
   };
 
@@ -258,7 +270,8 @@ class EndpassApp extends React.Component {
     try {
       await this.props.connect.logout();
 
-      this.setState({
+      this.setState(state => ({
+        ...state,
         form: {
           from: '',
           message: '',
@@ -267,11 +280,12 @@ class EndpassApp extends React.Component {
         authorized: false,
         formView: FORM_VIEW.LOGIN,
         accountData: null,
-      });
+      }));
     } catch (err) {
-      this.setState({
+      this.setState(state => ({
+        ...state,
         error: err.toString(),
-      });
+      }));
     }
   };
 
@@ -296,7 +310,7 @@ class EndpassApp extends React.Component {
 
     return (
       <div>
-        {formView === FORM_VIEW.AUTH && (
+        {formView === FORM_VIEW.AUTHORIZED && (
           <EndpassForm
             form={form}
             message={message}

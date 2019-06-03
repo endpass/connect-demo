@@ -22,14 +22,14 @@ const styles = theme => ({
   card: {
     padding: theme.spacing(2),
     maxWidth: 480,
-    margin: `${theme.spacing.unit}px auto`,
+    margin: `${theme.spacing(1)}px auto`,
   },
   fluid: {
     width: '100%',
   },
   inlineButton: {
     flex: '1 1 auto',
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
   },
   title: {
     marginBottom: theme.spacing(3),
@@ -40,6 +40,13 @@ const styles = theme => ({
   },
   contentWrapper: {
     marginTop: theme.spacing(2),
+  },
+  ellipsis: {
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    width: '100%',
+    whiteSpace: 'nowrap',
+    display: 'block',
   },
 });
 
