@@ -38,7 +38,7 @@ class EndpassApp extends React.Component {
 
   async componentDidMount() {
     this.subscribeOnWidgetEvents();
-    await this.getAccountDataAndUpdateProviderSettings();
+    await this.getAccountData();
   }
 
   subscribeOnWidgetEvents() {
@@ -48,7 +48,7 @@ class EndpassApp extends React.Component {
     });
   }
 
-  async getAccountDataAndUpdateProviderSettings() {
+  async getAccountData() {
     try {
       const {
         activeAccount,
@@ -245,7 +245,7 @@ class EndpassApp extends React.Component {
   onClickSignInButton = async () => {
     try {
       await this.props.connect.auth();
-      await this.getAccountDataAndUpdateProviderSettings();
+      await this.getAccountData();
 
       this.setState(state => ({
         ...state,
@@ -262,7 +262,7 @@ class EndpassApp extends React.Component {
   onOpenAccount = async () => {
     const data = await this.props.connect.openAccount();
     if (data.type === 'update') {
-      await this.getAccountDataAndUpdateProviderSettings();
+      await this.getAccountData();
     }
   };
 

@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import Connect from '@endpass/connect';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import Connect from '@endpass/connect';
 import EndpassApp from './components/EndpassApp.jsx';
 import EndpassOauthApp from './components/EndpassOauthApp.jsx';
 import styles from './styles';
@@ -30,18 +30,11 @@ const App = ({ classes }) => {
       authUrl,
       oauthClientId,
     });
+    const connectProvider = connect.getProvider();
 
-    connect.getAccountData().then(({ activeAccount, activeNet }) => {
-      const connectProvider = connect.getProvider();
-
-      connect.setProviderSettings({
-        activeAccount,
-        activeNet,
-      });
-      window.web3.setProvider(connectProvider);
-      setConnectInstance(connect);
-      setIsInited(true);
-    });
+    window.web3.setProvider(connectProvider);
+    setConnectInstance(connect);
+    setIsInited(true);
   });
 
   return (
