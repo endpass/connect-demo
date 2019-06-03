@@ -44,6 +44,10 @@ class EndpassOauthApp extends React.Component {
     }));
 
     try {
+      await this.connect.loginWithOauth({
+        scopes: ['wallet:accounts:read'],
+        oauthServer: process.env.OAUTH_SERVER,
+      });
       const { data } = await this.props.connect.request({
         method: 'GET',
         url: 'https://api-dev.endpass.com/v1/accounts',
