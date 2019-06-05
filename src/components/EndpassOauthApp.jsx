@@ -1,13 +1,10 @@
 import React from 'react';
 import Connect from '@endpass/connect';
-
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
 import web3 from '../utils/web3';
-
 import AuthForm from './AuthForm';
 import EndpassForm from './EndpassForm';
 import OauthForm from './OauthForm';
@@ -38,13 +35,12 @@ class EndpassOauthApp extends React.Component {
   }
 
   async getOauthData() {
-    this.setState(state => ({
-      ...state,
+    this.setState({
       formView: FORM_VIEW.LOADING,
-    }));
+    });
 
     try {
-      await this.connect.loginWithOauth({
+      await this.props.connect.loginWithOauth({
         scopes: ['wallet:accounts:read'],
         oauthServer: process.env.OAUTH_SERVER,
       });
@@ -53,16 +49,14 @@ class EndpassOauthApp extends React.Component {
         url: 'https://api-dev.endpass.com/v1/accounts',
       });
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         accounts: data,
         formView: FORM_VIEW.AUTHORIZED,
-      }));
+      });
     } catch (err) {
-      this.setState(state => ({
-        ...state,
+      this.setState({
         formView: FORM_VIEW.LOGIN,
-      }));
+      });
     }
   }
 
@@ -81,25 +75,22 @@ class EndpassOauthApp extends React.Component {
       url: 'https://api-dev.endpass.com/v1/accounts',
     });
 
-    this.setState(state => ({
-      ...state,
+    this.setState({
       accounts: data,
       formView: FORM_VIEW.OAUTH,
-    }));
+    });
   }
 
   async onOauthSignOut() {
-    this.setState(state => ({
-      ...state,
+    this.setState({
       formView: FORM_VIEW.LOADING,
-    }));
+    });
 
     await this.props.connect.logoutFromOauth();
 
-    this.setState(state => ({
-      ...state,
+    this.setState({
       formView: FORM_VIEW.LOGIN,
-    }));
+    });
   }
 
   renderContent() {
