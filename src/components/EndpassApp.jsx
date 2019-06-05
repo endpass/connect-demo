@@ -1,13 +1,10 @@
 import React from 'react';
 import Connect from '@endpass/connect';
-
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
 import web3 from '../utils/web3';
-
 import AuthForm from './AuthForm';
 import EndpassForm from './EndpassForm';
 import styles from '../styles';
@@ -55,22 +52,20 @@ class EndpassApp extends React.Component {
         activeNet,
       } = await this.props.connect.getAccountData();
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         formView: FORM_VIEW.AUTHORIZED,
         accounts: [activeAccount],
         form: {
           ...this.state.form,
           from: activeAccount,
         },
-      }));
+      });
     } catch (err) {
-      this.setState(state => ({
-        ...state,
+      this.setState({
         formView: FORM_VIEW.LOGIN,
         accounts: [],
         accountData: null,
-      }));
+      });
     }
   }
 
@@ -120,13 +115,12 @@ class EndpassApp extends React.Component {
         return;
       }
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         form: {
-          ...state.form,
+          ...this.state.form,
           signature: res,
         },
-      }));
+      });
     });
   };
 
@@ -146,13 +140,12 @@ class EndpassApp extends React.Component {
       },
     ];
 
-    this.setState(state => ({
-      ...state,
+    this.setState({
       form: {
         ...this.state.form,
         message: JSON.stringify(typedData, null, 2),
       },
-    }));
+    });
 
     this.makeRequest('eth_signTypedData', [typedData, from], (err, res) => {
       if (err) {
@@ -161,13 +154,12 @@ class EndpassApp extends React.Component {
         return;
       }
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         form: {
-          ...state.form,
+          ...this.state.form,
           signature: res.result,
         },
-      }));
+      });
     });
   };
 
@@ -181,13 +173,12 @@ class EndpassApp extends React.Component {
         return;
       }
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         form: {
-          ...state.form,
+          ...this.state.form,
           signature: res,
         },
-      }));
+      });
     });
   };
 
@@ -199,14 +190,13 @@ class EndpassApp extends React.Component {
         return;
       }
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         accounts: res,
         form: {
-          ...state.form,
+          ...this.state.form,
           from: res[0] || null,
         },
-      }));
+      });
     });
   };
 
@@ -215,31 +205,28 @@ class EndpassApp extends React.Component {
   };
 
   onWidgetUpdate = ({ detail }) => {
-    this.setState(state => ({
-      ...state,
+    this.setState({
       accounts: [detail.activeAccount],
       form: {
-        ...state.form,
+        ...this.state.form,
         from: detail.activeAccount,
       },
-    }));
+    });
   };
 
   onChangeEndpassForm = data => {
-    this.setState(state => ({
-      ...state,
+    this.setState({
       form: {
         ...this.state.form,
         ...data,
       },
-    }));
+    });
   };
 
   onBackToLogin = () => {
-    this.setState(state => ({
-      ...state,
+    this.setState({
       formView: FORM_VIEW.LOGIN,
-    }));
+    });
   };
 
   onClickSignInButton = async () => {
@@ -247,15 +234,13 @@ class EndpassApp extends React.Component {
       await this.props.connect.auth();
       await this.getAccountData();
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         error: null,
-      }));
+      });
     } catch (err) {
-      this.setState(state => ({
-        ...state,
+      this.setState({
         error: err.toString(),
-      }));
+      });
     }
   };
 
@@ -270,8 +255,7 @@ class EndpassApp extends React.Component {
     try {
       await this.props.connect.logout();
 
-      this.setState(state => ({
-        ...state,
+      this.setState({
         form: {
           from: '',
           message: '',
@@ -280,12 +264,11 @@ class EndpassApp extends React.Component {
         authorized: false,
         formView: FORM_VIEW.LOGIN,
         accountData: null,
-      }));
+      });
     } catch (err) {
-      this.setState(state => ({
-        ...state,
+      this.setState({
         error: err.toString(),
-      }));
+      });
     }
   };
 
