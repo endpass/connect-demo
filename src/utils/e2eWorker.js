@@ -1,6 +1,6 @@
 function registerE2EWorker() {
   if (navigator.serviceWorker) {
-    const workerUrl = `${process.env.E2E_BASE_URL}/e2e-sw.js`;
+    const workerUrl = `${process.env.E2E_CONNECT_BASE_URL}/e2e-sw.js`;
 
     try {
       navigator.serviceWorker.register(workerUrl);

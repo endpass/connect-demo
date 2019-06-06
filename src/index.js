@@ -4,7 +4,7 @@ import e2eWorker from './utils/e2eWorker';
 import App from './App';
 import './main.css';
 
-if (process.env.NODE_ENV === 'e2e') {
+if (process.env.NODE_ENV === 'e2e-connect') {
   e2eWorker();
 }
 

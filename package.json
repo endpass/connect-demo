@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "rimraf ./.cache && NODE_ENV=development parcel -p 4000 ./public/index.html",
-    "build": "parcel build --public-url ./ ./public/index.html",
-    "build:e2e": "NODE_ENV=e2e parcel build --public-url ./ ./public/index.html"
+    "build": "rimraf ./dist && parcel build --public-url ./ ./public/index.html",
+    "build:e2e": "rimraf ./dist && NODE_ENV=e2e-connect parcel build --public-url ./ ./public/index.html"
   },
   "keywords": [],
   "author": "",
