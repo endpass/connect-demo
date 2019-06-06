@@ -61,11 +61,6 @@ class EndpassOauthApp extends React.Component {
   }
 
   async onClickSignInButton() {
-    await this.props.connect.loginWithOauth({
-      scopes: ['wallet:accounts:read'],
-      oauthServer: process.env.OAUTH_SERVER,
-    });
-
     await this.getOauthData();
   }
 
@@ -116,8 +111,8 @@ class EndpassOauthApp extends React.Component {
             className={classes.fluid}
             onClick={this.onClickSignInButton}
           >
-            OAuth with Endpass
-          </Button>
+            Get accounts via OAuth
+  	  </Button>
         )}
       </div>
     );

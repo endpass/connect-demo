@@ -23,7 +23,7 @@ const OauthForm = ({ classes, accounts, onSignOut, onBack }) => (
         color="secondary"
         onClick={onSignOut}
       >
-        Sign out from Endpass
+        Close
       </Button>
     </ListItem>
   </List>
