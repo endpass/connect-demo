@@ -46,7 +46,7 @@ class EndpassOauthApp extends React.Component {
       });
       const { data } = await this.props.connect.request({
         method: 'GET',
-        url: 'https://api-dev.endpass.com/v1/accounts',
+        url: `${process.env.ENDPASS_API_URL}/accounts`
       });
 
       this.setState({
@@ -67,7 +67,7 @@ class EndpassOauthApp extends React.Component {
   async onClickGetData() {
     const { data } = await this.props.connect.request({
       method: 'GET',
-      url: 'https://api-dev.endpass.com/v1/accounts',
+      url: `${process.env.ENDPASS_API_URL}/accounts`
     });
 
     this.setState({
