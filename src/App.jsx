@@ -7,14 +7,13 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Connect from '@endpass/connect';
 import EndpassApp from './components/EndpassApp.jsx';
 import EndpassOauthApp from './components/EndpassOauthApp.jsx';
 import styles from './styles';
 
 import web3 from './utils/web3';
 
-const App = ({ classes }) => {
+const App = ({ classes, connect }) => {
   const [isInited, setIsInited] = useState(false);
   const [currentTab, setTab] = useState(0);
   const [connectInstance, setConnectInstance] = useState(null);
@@ -24,12 +23,6 @@ const App = ({ classes }) => {
 
     window.web3 = web3;
 
-    const authUrl = process.env.AUTH_URL || 'https://auth.endpass.com';
-    const oauthClientId = process.env.OAUTH_CLIENT_ID;
-    const connect = new Connect({
-      authUrl,
-      oauthClientId,
-    });
     const connectProvider = connect.getProvider();
 
     window.web3.setProvider(connectProvider);
