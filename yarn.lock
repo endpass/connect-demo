@@ -992,7 +992,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.3.1":
+"@babel/runtime@^7.3.1", "@babel/runtime@^7.4.5":
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
   integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
@@ -1094,7 +1094,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.7.1.tgz#9833722341379fb7d67f06a4b00ab3c37913da53"
   integrity sha512-OYpa/Sg+2GDX+jibUfpZVn1YqSVRpYmTLF2eyAfrFTIJSbwyIrc+YscayoykvaOME/wV4BV0Sa0yqdMrgse6mA==
 
-"@endpass/class@^0.14.4":
+"@endpass/class@^0.14.4", "@endpass/class@^0.14.5":
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.14.5.tgz#66b4940c8f5a9bb9063c5e51b69f32a4fdf9e6e1"
   integrity sha512-Yfr+3PMeUXiW1OYSYHalxvx5mZK0gYtsq2BzfnHnxew17FdOROmZHCVbdq/Ihkrf08XjxmjBv2Jz7BQZeCD7ww==
@@ -1129,10 +1129,19 @@
     utility-types "^3.7.0"
     web3-providers-http "1.0.0-beta.33"
 
+"@endpass/e2e-utils@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@endpass/e2e-utils/-/e2e-utils-0.2.10.tgz#c98fd787d71594d54fbd8fb73955901af6cddb6a"
+  integrity sha512-MSUYjPF7CFcxa0ErKvyT6sBqBEZrd1EXwp71TjnDE+QRL22U0VFzdhhwwpcKH2wVO4HSiANInGCCu+fY7XnrUg==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    "@endpass/class" "^0.14.5"
+    nanoid "^2.0.3"
+
 "@endpass/utils@^1.4.2":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@endpass/utils/-/utils-1.6.1.tgz#c9c6aab5886ab09c5b9d3c5e576e7208bc688450"
-  integrity sha512-DENybNiWzVVDs/rQvuwuViDkko4aZwr6Dsxw8bwtjxHO1hFtPVRD4+hTaFIl75wLISNaNhGi5B6G4dfiekpoIg==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@endpass/utils/-/utils-1.7.0.tgz#64742812109494eb5e8d51e4ab3d9b1028773be2"
+  integrity sha512-iO7mqo4UDNHM3nfUz5W25U10eRjzii67Ud3tplLInCJk0Gkn2Yb6L6n9zAY+YplzPBp+YQIbDUAP0hFsg5EvDw==
   dependencies:
     bip39 "^3.0.2"
     bs58check "^2.1.2"
@@ -5158,6 +5167,11 @@ nano-json-stream-parser@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/nano-json-stream-parser/-/nano-json-stream-parser-0.1.2.tgz#0cc8f6d0e2b622b479c40d499c46d64b755c6f5f"
   integrity sha1-DMj20OK2IrR5xA1JnEbWS3Vcb18=
+
+nanoid@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.0.3.tgz#dde999e173bc9d7bd2ee2746b89909ade98e075e"
+  integrity sha512-NbaoqdhIYmY6FXDRB4eYtDVC9Z9eCbn8TyaiC16LNKtpPv/aqa0tOPD8y6gNE4yUNnaZ7LLhYtXOev/6+cBtfw==
 
 nanomatch@^1.2.9:
   version "1.2.13"
