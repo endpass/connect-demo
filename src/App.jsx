@@ -16,17 +16,14 @@ import web3 from './utils/web3';
 const App = ({ classes, connect }) => {
   const [isInited, setIsInited] = useState(false);
   const [currentTab, setTab] = useState(0);
-  const [connectInstance, setConnectInstance] = useState(null);
 
   useEffect(() => {
     if (isInited) return;
 
-    window.web3 = web3;
-
     const connectProvider = connect.getProvider();
 
+    window.web3 = web3;
     window.web3.setProvider(connectProvider);
-    setConnectInstance(connect);
     setIsInited(true);
   });
 
@@ -44,12 +41,10 @@ const App = ({ classes, connect }) => {
         </Tabs>
         <Grid container>
           <Grid className={classes.contentWrapper} xs={12} item>
-            {connectInstance ? (
+            {connect ? (
               <Fragment>
-                {currentTab === 0 && <EndpassApp connect={connectInstance} />}
-                {currentTab === 1 && (
-                  <EndpassOauthApp connect={connectInstance} />
-                )}
+                {currentTab === 0 && <EndpassApp connect={connect} />}
+                {currentTab === 1 && <EndpassOauthApp connect={connect} />}
               </Fragment>
             ) : (
               <div className={classes.loader}>
