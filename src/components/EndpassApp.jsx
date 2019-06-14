@@ -5,7 +5,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import web3 from '../utils/web3';
-import AuthForm from './AuthForm';
 import EndpassForm from './EndpassForm';
 import styles from '../styles';
 
@@ -286,7 +285,7 @@ class EndpassApp extends React.Component {
     if (formView === FORM_VIEW.LOADING) {
       return (
         <div className={classes.loader}>
-          <CircularProgress />
+          <CircularProgress data-test="endpass-app-loader" />
         </div>
       );
     }
@@ -315,6 +314,7 @@ class EndpassApp extends React.Component {
             variant="contained"
             className={classes.fluid}
             onClick={this.onClickSignInButton}
+            data-test="endpass-sign-in-button"
           >
             Sign in with Endpass
           </Button>
@@ -328,9 +328,14 @@ class EndpassApp extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div data-test="endpass-form">
         {error && (
-          <Typography className={classes.row} color="error" variant="caption">
+          <Typography
+            className={classes.row}
+            color="error"
+            variant="caption"
+            data-test="endpass-form-error"
+          >
             {error}
           </Typography>
         )}

@@ -73,6 +73,7 @@ class EndpassForm extends React.Component {
               value={form.message}
               placeholder="Enter message to sign..."
               onChange={this.onChangeInputByName('message')}
+              data-test="endpass-form-message-input"
             />
           </Grid>
           <Grid item xs={6}>
@@ -83,6 +84,7 @@ class EndpassForm extends React.Component {
               value={form.signature}
               placeholder="Signed data..."
               onChange={this.onChangeInputByName('signature')}
+              data-test="endpass-form-signature-input"
             />
           </Grid>
         </Grid>
@@ -93,6 +95,7 @@ class EndpassForm extends React.Component {
               color="primary"
               variant="contained"
               onClick={onRequestAccount}
+              data-test="endpass-form-get-accounts"
             >
               web3.eth.getAccounts
             </Button>
@@ -102,6 +105,7 @@ class EndpassForm extends React.Component {
               className={classes.row}
               variant="contained"
               onClick={onOpenAccont}
+              data-test="endpass-form-open-account"
             >
               Open Accont
             </Button>
@@ -118,6 +122,7 @@ class EndpassForm extends React.Component {
                 variant="contained"
                 disabled={!form.from || !form.message}
                 onClick={onSign}
+                data-test="endpass-form-sign-button"
               >
                 web3.eth.sign
               </Button>
@@ -152,6 +157,7 @@ class EndpassForm extends React.Component {
                 variant="contained"
                 disabled={!form.from || !form.message}
                 onClick={onPersonalSign}
+                data-test="endpass-form-personal-sign-button"
               >
                 web3.eth.personal.sign
               </Button>
@@ -162,6 +168,7 @@ class EndpassForm extends React.Component {
                 variant="contained"
                 disabled={!form.signature}
                 onClick={onPersonalRecover}
+                data-test="endpass-form-personal-recover-button"
               >
                 web3.eth.personal.ecRecover
               </Button>
@@ -176,6 +183,7 @@ class EndpassForm extends React.Component {
                 variant="contained"
                 color="secondary"
                 onClick={onSignOut}
+                data-test="endpass-form-sign-out-button"
               >
                 Sign out from Endpass
               </Button>

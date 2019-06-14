@@ -5,7 +5,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import web3 from '../utils/web3';
-import AuthForm from './AuthForm';
 import EndpassForm from './EndpassForm';
 import OauthForm from './OauthForm';
 import styles from '../styles';
@@ -46,7 +45,7 @@ class EndpassOauthApp extends React.Component {
       });
       const { data } = await this.props.connect.request({
         method: 'GET',
-        url: `${process.env.ENDPASS_API_URL}/accounts`
+        url: `${process.env.ENDPASS_API_URL}/accounts`,
       });
 
       this.setState({
@@ -67,7 +66,7 @@ class EndpassOauthApp extends React.Component {
   async onClickGetData() {
     const { data } = await this.props.connect.request({
       method: 'GET',
-      url: `${process.env.ENDPASS_API_URL}/accounts`
+      url: `${process.env.ENDPASS_API_URL}/accounts`,
     });
 
     this.setState({
@@ -95,7 +94,7 @@ class EndpassOauthApp extends React.Component {
     if (formView === FORM_VIEW.LOADING) {
       return (
         <div className={classes.loader}>
-          <CircularProgress />
+          <CircularProgress data-test="oauth-form-loader" />
         </div>
       );
     }
@@ -110,9 +109,10 @@ class EndpassOauthApp extends React.Component {
             variant="contained"
             className={classes.fluid}
             onClick={this.onClickSignInButton}
+            data-test="oauth-form-get-accounts-button"
           >
             Get accounts via OAuth
-  	  </Button>
+          </Button>
         )}
       </div>
     );
@@ -123,9 +123,14 @@ class EndpassOauthApp extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div data-test="oauth-form">
         {error && (
-          <Typography className={classes.row} color="error" variant="caption">
+          <Typography
+            className={classes.row}
+            color="error"
+            variant="caption"
+            data-test="oauth-form-error"
+          >
             {error}
           </Typography>
         )}
