@@ -10,7 +10,7 @@ import styles from '../styles';
 const OauthForm = ({ classes, accounts, onSignOut, onBack }) => (
   <List>
     {accounts.map(account => (
-      <ListItem key={account}>
+      <ListItem key={account} data-test="oauth-form-accounts-item">
         <Typography variant="body1" className={classes.ellipsis}>
           {account}
         </Typography>
@@ -22,6 +22,7 @@ const OauthForm = ({ classes, accounts, onSignOut, onBack }) => (
         variant="contained"
         color="secondary"
         onClick={onSignOut}
+        data-test="oauth-form-close-button"
       >
         Close
       </Button>

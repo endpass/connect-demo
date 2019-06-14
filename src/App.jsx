@@ -39,8 +39,8 @@ const App = ({ classes, connect }) => {
           value={currentTab}
           onChange={(event, val) => setTab(val)}
         >
-          <Tab label="Endpass Auth" />
-          <Tab label="Endpass Oauth" />
+          <Tab label="Endpass Auth" data-test="endpass-auth-tab" />
+          <Tab label="Endpass Oauth" data-test="endpass-oauth-tab" />
         </Tabs>
         <Grid container>
           <Grid className={classes.contentWrapper} xs={12} item>
@@ -53,7 +53,7 @@ const App = ({ classes, connect }) => {
               </Fragment>
             ) : (
               <div className={classes.loader}>
-                <CircularProgress />
+                <CircularProgress data-test="root-loader" />
               </div>
             )}
           </Grid>
