@@ -107,7 +107,7 @@ class EndpassForm extends React.Component {
               onClick={onOpenAccont}
               data-test="endpass-form-open-account"
             >
-              Open Accont
+              Open Account
             </Button>
           </Grid>
         </Grid>

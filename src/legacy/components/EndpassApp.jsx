@@ -1,10 +1,8 @@
 import React from 'react';
-import Connect from '@endpass/connect';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import web3 from '../utils/web3';
 import EndpassForm from './EndpassForm';
 import styles from '../styles';
 

@@ -1,11 +1,8 @@
 import React from 'react';
-import Connect from '@endpass/connect';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import web3 from '../utils/web3';
-import EndpassForm from './EndpassForm';
 import OauthForm from './OauthForm';
 import styles from '../styles';
 
@@ -41,11 +38,11 @@ class EndpassOauthApp extends React.Component {
     try {
       await this.props.connect.loginWithOauth({
         scopes: ['wallet:accounts:read'],
-        oauthServer: process.env.OAUTH_SERVER,
+        oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       });
       const { data } = await this.props.connect.request({
         method: 'GET',
-        url: `${process.env.ENDPASS_API_URL}/accounts`,
+        url: `${ENV.VUE_APP_ENDPASS_API_URL}/accounts`,
       });
 
       this.setState({
@@ -66,7 +63,7 @@ class EndpassOauthApp extends React.Component {
   async onClickGetData() {
     const { data } = await this.props.connect.request({
       method: 'GET',
-      url: `${process.env.ENDPASS_API_URL}/accounts`,
+      url: `${ENV.VUE_APP_ENDPASS_API_URL}/accounts`,
     });
 
     this.setState({
