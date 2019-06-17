@@ -19,7 +19,7 @@
               class="button is-primary"
               @click="onLogin"
             >
-              Oauth Log in
+              Oauth Log In
             </a>
           </div>
           <div v-if="formView === FORM_VIEW.AUTHORIZED">
@@ -120,9 +120,6 @@ export default {
     },
   },
 
-  mounted() {
-    this.onLogin();
-  },
   components: {
     VSpinner,
   },
