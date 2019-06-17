@@ -6,6 +6,7 @@ const rafAsync = () =>
   });
 const awaitElement = async selector => {
   while (!document.querySelector(selector)) {
+    // eslint-disable-next-line
     await rafAsync();
   }
 

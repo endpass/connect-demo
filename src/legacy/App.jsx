@@ -11,7 +11,7 @@ import EndpassApp from './components/EndpassApp.jsx';
 import EndpassOauthApp from './components/EndpassOauthApp.jsx';
 import styles from './styles';
 
-import web3 from './utils/web3';
+import web3 from '../utils/web3';
 
 const App = ({ classes, connect }) => {
   const [isInited, setIsInited] = useState(false);
