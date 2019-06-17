@@ -87,7 +87,7 @@
       </div>
     </form-field>
 
-    <div class="columns is-hidden">
+    <div class="columns">
       <div class="column">
         <form-field label="Widget">
           <div class="columns">
