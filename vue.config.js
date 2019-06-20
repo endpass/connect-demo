@@ -96,6 +96,10 @@ module.exports = {
     });
 
     config.plugins.delete('prefetch');
+
+    if (ENV.VUE_APP_IS_E2E_CONNECT) {
+      config.resolve.symlinks(false);
+    }
   },
   devServer: {
     proxy: {
