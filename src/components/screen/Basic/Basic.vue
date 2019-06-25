@@ -59,7 +59,7 @@ export default {
   },
 
   async mounted() {
-    connectStore.initWidget();
+    connectStore.bindWidgetEvents();
 
     await this.onLogin();
   },

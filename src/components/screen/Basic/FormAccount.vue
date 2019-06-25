@@ -2,11 +2,13 @@
   <section class="content">
     <div class="columns">
       <div class="column">
-        <p class="subtitle">
-          Account
+        <p>
+          Network:
+          <span class="tag">{{ connectStore.networkNameById }}</span>
         </p>
         <p>
-          {{ connectStore.basicActiveAccount }}
+          Account:
+          <span class="tag">{{ connectStore.basicActiveAccount }}</span>
         </p>
         <div class="columns">
           <div class="column is-narrow">
@@ -36,7 +38,7 @@
         <div class="column is-one-quarter">
           <v-textarea
             v-model="fromMessage"
-            :disabled="connectStore.activeAccount"
+            :disabled="!hasActiveAccount"
             placeholder="Enter message to sign..."
             data-test="endpass-form-message-input"
           />
@@ -45,19 +47,19 @@
           <v-textarea
             v-model="signature"
             readonly
+            :disabled="!hasActiveAccount"
             placeholder="Signed data..."
             data-test="endpass-form-signature-input"
           />
         </div>
       </div>
     </form-field>
-
     <form-field label="Sign & Recover">
       <div class="columns">
         <div class="column is-narrow">
           <a
             class="button is-primary"
-            :disabled="!!connectStore.activeAccount"
+            :disabled="!canSign"
             data-test="endpass-form-sign-button"
             @click="onWeb3EthSign"
           >
@@ -67,7 +69,7 @@
         <div class="column is-narrow">
           <a
             class="button is-primary"
-            :disabled="!fromMessage"
+            :disabled="!canSign"
             data-test="endpass-form-personal-sign-button"
             @click="onWeb3PersonalSign"
           >
@@ -133,6 +135,15 @@ export default {
     };
   },
 
+  computed: {
+    hasActiveAccount() {
+      return !!connectStore.basicActiveAccount;
+    },
+    canSign() {
+      return this.hasActiveAccount && !!this.fromMessage;
+    },
+  },
+
   methods: {
     async onWeb3EthSign() {
       try {
@@ -189,10 +200,12 @@ export default {
     },
 
     onWidgetHide() {
+      connectStore.unbindWidgetEvents();
       connectStore.connectInstance.unmountWidget();
     },
     onWidgetShow() {
       connectStore.connectInstance.mountWidget();
+      connectStore.bindWidgetEvents();
     },
   },
 

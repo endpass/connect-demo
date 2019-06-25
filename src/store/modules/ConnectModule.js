@@ -1,4 +1,5 @@
 import { VuexModule, Module, Action, Mutation } from 'vuex-class-modules';
+import Network from '@endpass/class/Network';
 import Connect from '@endpass/connect';
 import web3 from '@/utils/web3';
 import e2eSetup from '@/utils/e2eSetup';
@@ -8,11 +9,11 @@ import { createErrorController } from '@/controllers';
 class ConnectModule extends VuexModule {
   isInited = false;
 
-  isWidgetInited = false;
-
   connectInstance = null;
 
   basicActiveAccount = null;
+
+  basicActiveNet = null;
 
   isBasicLoggedIn = false;
 
@@ -22,9 +23,19 @@ class ConnectModule extends VuexModule {
     window.location.reload();
   }
 
+  get networkNameById() {
+    const net = Network.DEFAULT_NETWORKS[this.basicActiveNet];
+    if (!net) {
+      return 'Not defined network';
+    }
+    return net.name;
+  }
+
   @Mutation
   onWidgetUpdate({ detail }) {
-    this.basicActiveAccount = detail.basicActiveAccount;
+    const { activeAccount, activeNet } = detail;
+    this.basicActiveAccount = activeAccount;
+    this.basicActiveNet = activeNet;
   }
 
   @Action
@@ -41,6 +52,7 @@ class ConnectModule extends VuexModule {
       await this.connectInstance.logout();
 
       this.basicActiveAccount = null;
+      this.basicActiveNet = null;
       this.isBasicLoggedIn = false;
     } catch (e) {
       this.errorNotification('Logout error', e.toString());
@@ -65,9 +77,10 @@ class ConnectModule extends VuexModule {
   @Action
   async loadAccountData() {
     const accountData = await this.connectInstance.getAccountData();
-    const { activeAccount } = accountData;
+    const { activeAccount, activeNet } = accountData;
 
     this.basicActiveAccount = activeAccount;
+    this.basicActiveNet = activeNet;
   }
 
   @Action
@@ -93,18 +106,18 @@ class ConnectModule extends VuexModule {
     this.isInited = true;
   }
 
-  @Action
-  initWidget() {
-    if (this.isWidgetInited) {
-      return;
-    }
-
+  bindWidgetEvents() {
     this.connectInstance.getWidgetNode().then(node => {
       node.addEventListener('logout', this.onWidgetLogout);
       node.addEventListener('update', this.onWidgetUpdate);
     });
+  }
 
-    this.isWidgetInited = true;
+  unbindWidgetEvents() {
+    this.connectInstance.getWidgetNode().then(node => {
+      node.removeEventListener('logout', this.onWidgetLogout);
+      node.removeEventListener('update', this.onWidgetUpdate);
+    });
   }
 }
 
