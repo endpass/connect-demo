@@ -3,7 +3,7 @@ import Network from '@endpass/class/Network';
 import Connect from '@endpass/connect';
 import web3 from '@/utils/web3';
 import e2eSetup from '@/utils/e2eSetup';
-import { createErrorController } from '@/controllers';
+import ErrorNotify from '@/class/ErrorNotify';
 
 @Module({ generateMutationSetters: true })
 class ConnectModule extends VuexModule {
@@ -17,7 +17,7 @@ class ConnectModule extends VuexModule {
 
   isBasicLoggedIn = false;
 
-  errorController = createErrorController();
+  errorNotify = new ErrorNotify();
 
   onWidgetLogout() {
     window.location.reload();
@@ -67,7 +67,7 @@ class ConnectModule extends VuexModule {
       this.isBasicLoggedIn = true;
     } catch (err) {
       this.isBasicLoggedIn = false;
-      this.errorController.showError({
+      this.errorNotify.showError({
         title: 'Auth Error',
         text: err.toString(),
       });

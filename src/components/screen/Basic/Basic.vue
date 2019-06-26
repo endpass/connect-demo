@@ -13,13 +13,13 @@
         <div class="card-content">
           <div v-if="!connectStore.isBasicLoggedIn">
             <div class="title">
-              Please log in to continue...
+              Please open web3 form to continue...
             </div>
             <v-button
               data-test="endpass-sign-in-button"
               @click="onLogin"
             >
-              Log in
+              Open web3 form
             </v-button>
           </div>
           <form-account

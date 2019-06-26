@@ -120,9 +120,9 @@
 
 <script>
 import { connectStore, web3Store } from '@/store';
-import { createErrorController } from '@/controllers';
 import FormField from '@/components/common/FormField.vue';
 import VTextarea from '@endpass/ui/components/VTextarea';
+import ErrorNotify from '@/class/ErrorNotify';
 
 export default {
   name: 'FormAccount',
@@ -131,7 +131,7 @@ export default {
       fromMessage: '',
       signature: '',
       connectStore,
-      errorController: createErrorController(),
+      errorNotify: new ErrorNotify(),
     };
   },
 
@@ -152,7 +152,7 @@ export default {
           message: this.fromMessage,
         });
       } catch (e) {
-        this.errorController.showError({
+        this.errorNotify.showError({
           title: 'Web3 ETH Sign error',
           text: e.toString(),
         });
@@ -166,7 +166,7 @@ export default {
           message: this.fromMessage,
         });
       } catch (e) {
-        this.errorController.showError({
+        this.errorNotify.showError({
           title: 'Personal Web3 ETH Sign error',
           text: e.toString(),
         });
@@ -179,12 +179,12 @@ export default {
           message: this.fromMessage,
           signature: this.signature,
         });
-        this.errorController.showWarn({
+        this.errorNotify.showWarn({
           title: 'Recovered!',
           text: recoveredText,
         });
       } catch (e) {
-        this.errorController.showError({
+        this.errorNotify.showError({
           title: 'Personal Web3 ETH Recover error',
           text: e.toString(),
         });

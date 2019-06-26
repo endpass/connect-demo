@@ -48,7 +48,7 @@
               active-class="is-active"
               class="nav-link"
             >
-              Basic
+              Web3 provider
             </router-link>
           </li>
           <li>
