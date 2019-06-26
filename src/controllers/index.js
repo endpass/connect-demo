@@ -1,7 +1,8 @@
-import ErrorController from '@/controllers/ErrorController';
+import createController from '@/controllers/createController';
+import OauthController from '@/controllers/OauthController';
 
-export const createErrorController = () => new ErrorController();
+export const createOauthController = () => createController(OauthController);
 
 export default {
-  createErrorController,
+  createOauthController,
 };
