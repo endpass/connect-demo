@@ -12,22 +12,22 @@
         </p>
         <div class="columns">
           <div class="column is-narrow">
-            <a
+            <button
               class="button is-primary"
               data-test="endpass-form-open-account"
               @click="onOpenAccount"
             >
               Open Account
-            </a>
+            </button>
           </div>
           <div class="column is-narrow">
-            <a
+            <button
               class="button is-danger"
               data-test="endpass-form-sign-out-button"
               @click="onLogout"
             >
               Sign out
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -57,34 +57,34 @@
     <form-field label="Sign & Recover">
       <div class="columns">
         <div class="column is-narrow">
-          <a
+          <button
             class="button is-primary"
             :disabled="!canSign"
             data-test="endpass-form-sign-button"
             @click="onWeb3EthSign"
           >
             web3.eth.sign
-          </a>
+          </button>
         </div>
         <div class="column is-narrow">
-          <a
+          <button
             class="button is-primary"
             :disabled="!canSign"
             data-test="endpass-form-personal-sign-button"
             @click="onWeb3PersonalSign"
           >
             web3.eth.personal.sign
-          </a>
+          </button>
         </div>
         <div class="column is-narrow">
-          <a
+          <button
             class="button is-primary"
             :disabled="!signature"
             data-test="endpass-form-personal-recover-button"
             @click="onWeb3PersonRecover"
           >
             web3.eth.personal.ecRecover
-          </a>
+          </button>
         </div>
       </div>
     </form-field>
@@ -94,22 +94,22 @@
         <form-field label="Widget">
           <div class="columns">
             <div class="column is-narrow">
-              <a
+              <button
                 class="button is-primary"
                 data-test="endpass-form-widget-hide"
                 @click="onWidgetHide"
               >
                 Hide Widget
-              </a>
+              </button>
             </div>
             <div class="column is-narrow">
-              <a
+              <button
                 class="button is-primary"
                 data-test="endpass-form-widget-show"
                 @click="onWidgetShow"
               >
                 Show Widget
-              </a>
+              </button>
             </div>
           </div>
         </form-field>

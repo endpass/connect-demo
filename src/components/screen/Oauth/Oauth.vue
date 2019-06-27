@@ -5,7 +5,10 @@
       data-test="endpass-app-loader"
       label="Please wait, basic usage is loading..."
     />
-    <div v-else class="section">
+    <div
+      v-else
+      class="section"
+    >
       <div class="card app-card main-app-card">
         <div class="card-content">
           <div v-if="formView === FORM_VIEW.LOGIN">
@@ -17,34 +20,49 @@
             </p>
 
             <form-field>
-              <a class="button is-primary" @click="onGetAccounts">
+              <button
+                class="button is-primary"
+                @click="onGetAccounts"
+              >
                 Get Accounts
-              </a>
+              </button>
             </form-field>
             <form-field>
-              <a class="button is-primary" @click="onGetEmail">
+              <button
+                class="button is-primary"
+                @click="onGetEmail"
+              >
                 Get Email
-              </a>
+              </button>
             </form-field>
           </div>
           <div v-if="formView === FORM_VIEW.EMAIL">
             <form-field label="Email:">
               {{ user.email }}
             </form-field>
-            <oauth-footer @back="onBack" @logout="onLogout" />
+            <oauth-footer
+              @back="onBack"
+              @clear="onClear"
+            />
           </div>
           <div v-if="formView === FORM_VIEW.ACCOUNTS">
             <div class="subtitle">
               Accounts:
             </div>
             <div class="content">
-              <ul v-for="account in accounts" :key="account">
+              <ul
+                v-for="account in accounts"
+                :key="account"
+              >
                 <li class="subtitle">
                   {{ account }}
                 </li>
               </ul>
             </div>
-            <oauth-footer @back="onBack" @logout="onLogout" />
+            <oauth-footer
+              @back="onBack"
+              @clear="onClear"
+            />
           </div>
         </div>
       </div>
@@ -124,7 +142,7 @@ export default {
       }
     },
 
-    async onLogout() {
+    async onClear() {
       this.formView = FORM_VIEW.LOADING;
 
       await this.oauthController.logout();

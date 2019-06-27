@@ -1,14 +1,14 @@
 <template>
   <div>
     <form-field>
-      <a class="button" @click="onBack">
+      <button class="button" @click="onBack">
         Back
-      </a>
+      </button>
     </form-field>
     <form-field>
-      <a class="button is-danger" @click="onLogout">
-        Logout
-      </a>
+      <button class="button is-danger" @click="onClear">
+        Clear Token
+      </button>
     </form-field>
   </div>
 </template>
@@ -24,8 +24,8 @@ export default {
       this.$emit('back');
     },
 
-    async onLogout() {
-      this.$emit('logout');
+    async onClear() {
+      this.$emit('clear');
     },
   },
 
