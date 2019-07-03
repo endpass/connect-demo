@@ -1,12 +1,18 @@
 <template>
   <div>
     <form-field>
-      <button class="button" @click="onBack">
+      <button
+        class="button"
+        @click="onBack"
+      >
         Back
       </button>
     </form-field>
     <form-field>
-      <button class="button is-danger" @click="onClear">
+      <button
+        class="button is-danger"
+        @click="onClear"
+      >
         Clear Token
       </button>
     </form-field>
