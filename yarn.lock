@@ -957,15 +957,16 @@
     web3-providers-ws "1.0.0-beta.33"
     web3-utils "1.0.0-beta.33"
 
-"@endpass/connect@^0.24.2-beta":
-  version "0.24.2-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.24.2-beta.tgz#f6419bb34eb535ea7c2a845e3847d5bef16505ab"
-  integrity sha512-r9JXjEExGlw0aHC1c+8gBKHgATIqiwpKIO9QTzWQbsx2j/HmoLU+vtpeYgUCIdMpnMmt7BaH6B6sScKGHssQYw==
+"@endpass/connect@^0.25.0-beta":
+  version "0.25.0-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.25.0-beta.tgz#bfc4f36ec778e1fd87885feb72d7e61518f4ffb5"
+  integrity sha512-KcnF/7ldVfo0D8oIEy158UUsgmy2zgU/1Z6Z1bFbT4o5dWSTc1tF3ybNbeIxcxEDxGCJ3NzEiPT5nIinLYIXNQ==
   dependencies:
     "@endpass/class" "^0.14.6"
     "@endpass/utils" "^1.7.0"
     axios "^0.19.0"
     axios-token-interceptor "^0.1.0"
+    lodash.debounce "^4.0.8"
     lodash.get "^4.4.2"
     utility-types "^3.7.0"
     web3-providers-http "1.0.0-beta.33"
@@ -8132,6 +8133,11 @@ lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.defaultsdeep@^4.6.0:
   version "4.6.0"
