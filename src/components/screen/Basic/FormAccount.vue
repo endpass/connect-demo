@@ -91,7 +91,10 @@
 
     <div class="columns">
       <div class="column">
-        <form-field label="Widget">
+        <div class="form-field">
+          <p class="form-field__label">
+            Widget
+          </p>
           <div class="columns">
             <div class="column is-narrow">
               <button
@@ -112,7 +115,7 @@
               </button>
             </div>
           </div>
-        </form-field>
+        </div>
       </div>
     </div>
   </section>
@@ -203,6 +206,7 @@ export default {
       connectStore.unbindWidgetEvents();
       connectStore.connectInstance.unmountWidget();
     },
+
     onWidgetShow() {
       connectStore.connectInstance.mountWidget();
       connectStore.bindWidgetEvents();
