@@ -17,6 +17,9 @@ const e2eSetup = async bus => {
   const bridgeFrame = await awaitElement('[data-endpass=frame]');
   const e2eBridge = new SWControllerDuplexBridge({
     target: bridgeFrame.contentWindow,
+    bus: bridgeFrame.contentWindow,
+    isHost: true,
+    name: 'e2e-demo',
   });
 
   Object.assign(bus, {
