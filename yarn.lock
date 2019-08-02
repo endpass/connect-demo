@@ -920,10 +920,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@endpass/class@^0.16.1":
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.16.1.tgz#74e9cd7f0ab81a4a45be301c45f5a2cef2e1209f"
-  integrity sha512-OBZGXUDmazTmA/NTkalu5XgAd6FjcfOy2ijIkLzTcmy/fmhFJWbTDT1rjGOTyFbXvW2sZ3PoObQgDAt8h4o0nQ==
+"@endpass/class@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.17.0.tgz#49f55ad21b427519b08b4f4ab6fad540a74284cc"
+  integrity sha512-U4OTmRADHLdSr8eAL8OVjrnlt9Uu1jtNoI7Yd+Buq3JiRlX+FZ+A+mThI0yD5nRmVozyhL7iw1rX9ufX9qnGUg==
   dependencies:
     "@endpass/utils" "^1.8.2"
     "@ledgerhq/hw-app-eth" "^4.24.0"
@@ -941,12 +941,12 @@
     web3-providers-ws "1.0.0-beta.33"
     web3-utils "1.0.0-beta.33"
 
-"@endpass/connect@^0.26.2-beta":
-  version "0.26.2-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.26.2-beta.tgz#9967f9ad4a09eb804d97172a8cc59cbf6040c944"
-  integrity sha512-SDemDGeuv7w+C2WLvaOoSlRXp1Yh0uk55JFTZ610/GM33uFE1Jl5bTd3D3YKYVgOmCz5SAJ3YAzdnlChCKoqSg==
+"@endpass/connect@^0.26.3-beta":
+  version "0.26.3-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.26.3-beta.tgz#54eea0cdef25af987b492bd8c429b4d785c1bfa4"
+  integrity sha512-T4A3aytVm7Gc2eMXbvSib3+YEflxr1zNzYQ5PhtNZst6CfP63q9vKMrXQIyse4hf4KLUI2pPo+ZGajbrqBMgxQ==
   dependencies:
-    "@endpass/class" "^0.16.1"
+    "@endpass/class" "^0.17.0"
     "@endpass/utils" "^1.8.2"
     axios "^0.19.0"
     axios-token-interceptor "^0.1.0"
@@ -955,13 +955,13 @@
     utility-types "^3.7.0"
     web3-providers-http "1.0.0-beta.33"
 
-"@endpass/e2e-utils@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@endpass/e2e-utils/-/e2e-utils-0.3.0.tgz#eb21cb7a0e6ad9e198f4baaf470a41d1e79e4704"
-  integrity sha512-rdRFNegm0e4HlmL4weVCnnKKHB4Mg/Bzga1ZH+PPCTuL7FewfrfKj5ezYdVObiz/KzrDBho+/ETa10OuYo8puw==
+"@endpass/e2e-utils@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@endpass/e2e-utils/-/e2e-utils-0.3.1.tgz#4ebf91424642afde33de7088bfbc27782f48344b"
+  integrity sha512-9GJuZT12RTHiuEn+dlgo7BAIdeimTKkPIs7y3FK8+8JAGfUSrSU7v31qLgfoSMadZqRuHc2uUAc1gGWeGaIczw==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@endpass/class" "^0.16.1"
+    "@endpass/class" "^0.17.0"
     nanoid "^2.0.3"
 
 "@endpass/eslint-plugin-endpass@^0.1.0":
