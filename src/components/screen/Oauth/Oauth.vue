@@ -22,6 +22,7 @@
             <form-field>
               <button
                 class="button is-primary"
+                data-test="endpass-oauth-get-accounts-button"
                 @click="onGetAccounts"
               >
                 Get Accounts
@@ -30,6 +31,7 @@
             <form-field>
               <button
                 class="button is-primary"
+                data-test="endpass-oauth-get-email-button"
                 @click="onGetEmail"
               >
                 Get Email
@@ -37,10 +39,14 @@
             </form-field>
           </div>
           <div v-if="formView === FORM_VIEW.EMAIL">
-            <form-field label="Email:">
+            <form-field
+              label="Email:"
+              data-test="endpass-oauth-user-email"
+            >
               {{ user.email }}
             </form-field>
             <oauth-footer
+              data-test="endpass-oauth-back-button"
               @back="onBack"
               @clear="onClear"
             />
@@ -53,6 +59,7 @@
               <ul
                 v-for="account in accounts"
                 :key="account"
+                data-test="endpass-oauth-accounts-list"
               >
                 <li class="subtitle">
                   {{ account }}
@@ -71,7 +78,7 @@
 </template>
 
 <script>
-import VSpinner from '@endpass/ui/src/components/VSpinner';
+import VSpinner from '@endpass/ui/components/VSpinner';
 import FormField from '@/components/common/FormField';
 import OauthFooter from '@/components/screen/Oauth/OauthFooter';
 import ErrorNotify from '@/class/ErrorNotify';

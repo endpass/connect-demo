@@ -3,6 +3,7 @@
     <form-field>
       <button
         class="button"
+        data-test="endpass-oauth-back-button"
         @click="onBack"
       >
         Back
@@ -11,6 +12,7 @@
     <form-field>
       <button
         class="button is-danger"
+        data-test="endpass-oauth-clear-token-button"
         @click="onClear"
       >
         Clear Token
