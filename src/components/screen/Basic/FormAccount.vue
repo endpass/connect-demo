@@ -4,11 +4,21 @@
       <div class="column">
         <p>
           Network:
-          <span class="tag">{{ connectStore.networkNameById }}</span>
+          <span
+            class="tag"
+            data-test="endpass-form-network-name"
+          >{{
+            connectStore.networkNameById
+          }}</span>
         </p>
         <p>
           Account:
-          <span class="tag">{{ connectStore.basicActiveAccount }}</span>
+          <span
+            class="tag"
+            data-test="endpass-form-basic-active-account"
+          >{{
+            connectStore.basicActiveAccount
+          }}</span>
         </p>
         <div class="columns">
           <div class="column is-narrow">
