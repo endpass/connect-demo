@@ -1,4 +1,4 @@
-import { SWControllerDuplexBridge } from '@endpass/e2e-utils';
+import { SWHost } from '@endpass/e2e-utils';
 
 const rafAsync = () =>
   new Promise(resolve => {
@@ -15,10 +15,8 @@ const awaitElement = async selector => {
 
 const e2eSetup = async bus => {
   const bridgeFrame = await awaitElement('[data-endpass=frame]');
-  const e2eBridge = new SWControllerDuplexBridge({
-    target: bridgeFrame.contentWindow,
-    bus: bridgeFrame.contentWindow,
-    isHost: true,
+  const e2eBridge = new SWHost({
+    mockTarget: bridgeFrame.contentWindow,
     name: 'e2e-demo',
   });
 
