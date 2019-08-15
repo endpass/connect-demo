@@ -20,6 +20,11 @@ class ConnectModule extends VuexModule {
   errorNotify = new ErrorNotify();
 
   onWidgetLogout() {
+    if (ENV.VUE_APP_IS_E2E_CONNECT) {
+      // eslint-disable-next-line no-unused-expressions
+      window.e2eLogout && window.e2eLogout();
+    }
+
     window.location.reload();
   }
 
