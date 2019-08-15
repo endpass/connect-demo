@@ -132,9 +132,9 @@
 </template>
 
 <script>
+import VTextarea from '@endpass/ui/components/VTextarea';
 import { connectStore, web3Store } from '@/store';
 import FormField from '@/components/common/FormField.vue';
-import VTextarea from '@endpass/ui/components/VTextarea';
 import ErrorNotify from '@/class/ErrorNotify';
 
 export default {
