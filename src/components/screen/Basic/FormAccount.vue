@@ -114,6 +114,7 @@ data-test="endpass-form-basic-active-account">{{
             :disabled="!isRopsten"
             label="Transaction receiver address:"
             placeholder="Enter reciever account address"
+            data-test="endpass-form-send-transaction-address"
           />
         </div>
         <div class="column">
@@ -124,6 +125,7 @@ data-test="endpass-form-basic-active-account">{{
             label="Transaction value:"
             min="0"
             step="0.1"
+            data-test="endpass-form-send-transaction-value"
           />
         </div>
       </div>
