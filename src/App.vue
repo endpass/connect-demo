@@ -1,12 +1,6 @@
 <template>
-  <v-page-loader
-    v-if="isLoading"
-    :is-loading="isLoading"
-  />
-  <app-layout
-    v-else
-    id="app"
-  />
+  <v-page-loader v-if="isLoading" :is-loading="isLoading" />
+  <app-layout v-else id="app" />
 </template>
 
 <script>

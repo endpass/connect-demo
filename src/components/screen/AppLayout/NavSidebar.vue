@@ -10,15 +10,10 @@
         <span />
         <span />
       </a>
-      <router-link
-        class="logo logo-icon"
-        to="/"
-        exact
-      >
-        <img
-          src="@/img/logo-light.png"
-          alt="Endpass Wallet"
-        >
+      <router-link class="logo logo-icon" to="/" exact>
+        <img src="@/img/logo-light.png"
+alt="Endpass Wallet"
+/>
       </router-link>
     </div>
 
@@ -33,12 +28,7 @@
       >
         <ul class="menu-list">
           <li>
-            <router-link
-              active-class="is-active"
-              class="nav-link"
-              to="/"
-              exact
-            >
+            <router-link active-class="is-active" class="nav-link" to="/" exact>
               Home
             </router-link>
           </li>
