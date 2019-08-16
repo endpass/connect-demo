@@ -1,8 +1,5 @@
 <template>
-  <div
-    :id="id"
-    class="app-container"
-  >
+  <div :id="id" class="app-container">
     <header class="app-header">
       <info-bar class="app-section" />
     </header>

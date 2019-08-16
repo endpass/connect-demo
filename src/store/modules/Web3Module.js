@@ -42,6 +42,25 @@ class Web3Module extends VuexModule {
   }
 
   @Action
+  EthSendTransaction({ to, from, value }) {
+    const trx = {
+      value: window.web3.utils.toWei(value, 'ether'),
+      to,
+      from,
+    };
+
+    return new Promise((resolve, reject) => {
+      window.web3.eth.sendTransaction(trx, (err, res) => {
+        if (err) {
+          return reject(err);
+        }
+
+        return resolve(res);
+      });
+    });
+  }
+
+  @Action
   loadAccounts() {
     return new Promise((resolve, reject) => {
       window.web3.eth.getAccounts((err, res) => {
