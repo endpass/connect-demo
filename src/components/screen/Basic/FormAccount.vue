@@ -204,7 +204,8 @@ export default {
     },
 
     isRopsten() {
-      return this.connectStore.basicActiveNet === '3';
+      /* eslint-disable-next-line */
+      return this.connectStore.basicActiveNet == 3;
     },
 
     isValidTrxReceiverAddress() {
