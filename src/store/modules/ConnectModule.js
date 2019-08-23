@@ -1,6 +1,7 @@
 import { VuexModule, Module, Action, Mutation } from 'vuex-class-modules';
 import Network from '@endpass/class/Network';
 import Connect from '@endpass/connect';
+import ConnectProvider from '@endpass/connect/provider';
 import web3 from '@/utils/web3';
 import e2eSetup from '@/utils/e2eSetup';
 import ErrorNotify from '@/class/ErrorNotify';
@@ -97,6 +98,7 @@ class ConnectModule extends VuexModule {
     const connect = new Connect({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+      plugins: [ConnectProvider],
     });
 
     if (ENV.VUE_APP_IS_E2E_CONNECT) {

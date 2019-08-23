@@ -41,10 +41,10 @@
     }
   },
   "dependencies": {
-    "@endpass/class": "^0.17.1",
-    "@endpass/connect": "^0.26.3-beta",
+    "@endpass/class": "^0.17.3",
+    "@endpass/connect": "^0.27.1-beta",
     "@endpass/e2e-utils": "^0.6.0",
-    "@endpass/ui": "^0.15.39",
+    "@endpass/ui": "^0.15.44",
     "@endpass/utils": "^1.8.2",
     "bulma": "^0.7.5",
     "vue": "^2.6.10",
@@ -63,7 +63,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
-    "@endpass/eslint-plugin-endpass": "^0.1.2",
+    "@endpass/eslint-plugin-endpass": "^0.2.2",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/git": "^7.0.16",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
