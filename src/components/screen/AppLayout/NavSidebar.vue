@@ -10,10 +10,15 @@
         <span />
         <span />
       </a>
-      <router-link class="logo logo-icon" to="/" exact>
-        <img src="@/img/logo-light.png"
-alt="Endpass Wallet"
-/>
+      <router-link
+        class="logo logo-icon"
+        to="/"
+        exact
+      >
+        <img
+          src="@/img/logo-light.png"
+          alt="Endpass Wallet"
+        >
       </router-link>
     </div>
 
@@ -28,27 +33,36 @@ alt="Endpass Wallet"
       >
         <ul class="menu-list">
           <li>
-            <router-link active-class="is-active" class="nav-link" to="/" exact>
+            <nav-link
+              to="/"
+              active-class="is-active"
+            >
               Home
-            </router-link>
+            </nav-link>
           </li>
           <li>
-            <router-link
-              :to="{ name: 'Basic' }"
+            <nav-link
+              to="/custom-element"
               active-class="is-active"
-              class="nav-link"
+            >
+              Custom element
+            </nav-link>
+          </li>
+          <li>
+            <nav-link
+              to="/basic"
+              active-class="is-active"
             >
               Web3 provider
-            </router-link>
+            </nav-link>
           </li>
           <li>
-            <router-link
-              :to="{ name: 'Oauth' }"
+            <nav-link
+              to="/oauth"
               active-class="is-active"
-              class="nav-link"
             >
               Oauth
-            </router-link>
+            </nav-link>
           </li>
         </ul>
       </div>
@@ -59,9 +73,10 @@ alt="Endpass Wallet"
 </template>
 
 <script>
+import NavLink from '@/components/screen/AppLayout/NavLink';
+
 export default {
   name: 'NavSidebar',
-
   data: () => ({
     navMenuActive: false,
   }),
@@ -74,6 +89,10 @@ export default {
     closeNavMenu() {
       this.navMenuActive = false;
     },
+  },
+
+  components: {
+    NavLink,
   },
 };
 </script>
@@ -88,6 +107,7 @@ export default {
   .nav-sidebar-item.menu {
     width: 100%;
     padding: 0;
+
     .menu-list {
       font-family: $heading-font-family;
       font-size: 1.2em;
@@ -97,6 +117,7 @@ export default {
         background-color: $purple;
       }
     }
+
     a.is-active .icon svg {
       fill: $white;
     }
@@ -126,9 +147,11 @@ export default {
       flex: 1;
     }
   }
+
   .navbar-burger {
     margin-left: 0;
     margin-right: auto;
+
     span {
       height: 3px;
     }

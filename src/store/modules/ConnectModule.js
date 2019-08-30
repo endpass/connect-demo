@@ -2,8 +2,6 @@ import { VuexModule, Module, Action, Mutation } from 'vuex-class-modules';
 import Network from '@endpass/class/Network';
 import Connect from '@endpass/connect';
 import ConnectProvider from '@endpass/connect/provider';
-import web3 from '@/utils/web3';
-import e2eSetup from '@/utils/e2eSetup';
 import ErrorNotify from '@/class/ErrorNotify';
 
 @Module({ generateMutationSetters: true })
@@ -90,20 +88,15 @@ class ConnectModule extends VuexModule {
   }
 
   @Action
-  async initConnect() {
+  async initConnect(options = {}) {
     if (this.isInited) return;
-
-    window.web3 = web3;
 
     const connect = new Connect({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
       plugins: [ConnectProvider],
+      ...options,
     });
-
-    if (ENV.VUE_APP_IS_E2E_CONNECT) {
-      await e2eSetup(window);
-    }
 
     const connectProvider = connect.getProvider();
     window.web3.setProvider(connectProvider);
@@ -120,11 +113,17 @@ class ConnectModule extends VuexModule {
     });
   }
 
-  unbindWidgetEvents() {
+  mountWidget() {
+    this.connectInstance.mountWidget();
+    this.bindWidgetEvents();
+  }
+
+  unmountWidget() {
     this.connectInstance.getWidgetNode().then(node => {
       node.removeEventListener('logout', this.onWidgetLogout);
       node.removeEventListener('update', this.onWidgetUpdate);
     });
+    this.connectInstance.unmountWidget();
   }
 }
 

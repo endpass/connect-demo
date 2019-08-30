@@ -1,23 +1,16 @@
 import createStore from '@/store/createStore';
 
-// eslint-disable-next-line
-let counter = 0;
-
-export default function(ModuleClass, params) {
+export default function(Module, params) {
   // eslint-disable-next-line
-  const { name } = ModuleClass.prototype.__proto__.constructor;
-
-  // eslint-disable-next-line
-  counter++;
-
+  const { name = 'DefaultController' } = Module.prototype.__proto__.constructor;
   const store = createStore();
-
-  const moduleInstance = new ModuleClass(
+  const moduleInstance = new Module(
     {
       store,
-      name: `${name}-${counter}`,
+      name,
     },
     params,
   );
+
   return moduleInstance;
 }
