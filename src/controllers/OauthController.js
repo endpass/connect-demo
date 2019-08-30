@@ -1,13 +1,10 @@
 import { VuexModule, Module, Action } from 'vuex-class-modules';
-
-import { connectStore as connectStoreModule } from '@/store';
+import { connectStore } from '@/store';
 
 // manage groups access control
 @Module({ generateMutationSetters: true })
 class OauthController extends VuexModule {
-  connectStore = null;
-
-  constructor(props, { connectStore = connectStoreModule } = {}) {
+  constructor(props) {
     super(props);
     this.connectStore = connectStore;
   }

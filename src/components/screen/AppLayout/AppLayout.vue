@@ -1,5 +1,8 @@
 <template>
-  <div :id="id" class="app-container">
+  <div
+    :id="id"
+    class="app-container"
+  >
     <header class="app-header">
       <info-bar class="app-section" />
     </header>
@@ -73,10 +76,7 @@ export default {
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
 
-  grid-template-areas:
-    'nav header'
-    'nav main'
-    'nav footer';
+  grid-template-areas: 'nav header' 'nav main' 'nav footer';
 
   background: $light-grey;
   overflow-x: hidden;
@@ -107,11 +107,7 @@ export default {
   .app-container {
     grid-template-columns: 100%;
     grid-template-rows: 2fr 2fr auto 1fr;
-    grid-template-areas:
-      'nav'
-      'header'
-      'main'
-      'footer';
+    grid-template-areas: 'nav' 'header' 'main' 'footer';
   }
 }
 </style>

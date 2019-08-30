@@ -4,10 +4,13 @@
       <div class="footer-links level is-mobile">
         <div class="level-left">
           <p class="level-item">
-&copy; {{ year }} Endpass, Inc
-</p>
+            &copy; {{ year }} Endpass, Inc
+          </p>
           <p class="level-item">
-            <a target="_blank" href="https://help.endpass.com">
+            <a
+              target="_blank"
+              href="https://help.endpass.com"
+            >
               Support
             </a>
           </p>

@@ -5,18 +5,32 @@
       data-test="endpass-app-loader"
       label="Please wait, basic usage is loading..."
     />
-    <div v-else class="section">
+    <div
+      v-else
+      class="section"
+    >
       <div class="card app-card main-app-card">
         <div class="card-content">
           <div v-if="!connectStore.isBasicLoggedIn">
             <div class="title">
               Please open web3 form to continue...
             </div>
-            <v-button data-test="endpass-sign-in-button" @click="onLogin">
+            <v-button
+              data-test="endpass-sign-in-button"
+              @click="onLogin"
+            >
               Open web3 form
             </v-button>
           </div>
-          <form-account v-else data-test="endpass-form" />
+          <div
+            v-else
+            data-test="endpass-form"
+          >
+            <form-info />
+            <form-sign />
+            <form-transaction />
+            <form-widget />
+          </div>
         </div>
       </div>
     </div>
@@ -27,14 +41,17 @@
 import VButton from '@endpass/ui/components/VButton';
 import VSpinner from '@endpass/ui/components/VSpinner';
 import { connectStore } from '@/store';
-import FormAccount from '@/components/screen/Basic/FormAccount';
+import FormInfo from '@/components/screen/Basic/FormInfo';
+import FormSign from '@/components/screen/Basic/FormSign';
+import FormTransaction from '@/components/screen/Basic/FormTransaction';
+import FormWidget from '@/components/screen/Basic/FormWidget';
 
 export default {
-  name: 'HomeScreen',
+  name: 'Basic',
   data() {
     return {
       connectStore,
-      isLoading: false,
+      isLoading: true,
       error: '',
     };
   },
@@ -43,18 +60,27 @@ export default {
     async onLogin() {
       this.isLoading = true;
 
-      await connectStore.login();
+      await this.connectStore.login();
 
       this.isLoading = false;
     },
   },
 
   async mounted() {
-    connectStore.bindWidgetEvents();
+    await this.connectStore.initConnect();
+
+    this.connectStore.bindWidgetEvents();
 
     await this.onLogin();
   },
 
-  components: { VSpinner, FormAccount, VButton },
+  components: {
+    FormWidget,
+    FormTransaction,
+    FormSign,
+    FormInfo,
+    VSpinner,
+    VButton,
+  },
 };
 </script>

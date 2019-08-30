@@ -5,7 +5,10 @@
       data-test="endpass-app-loader"
       label="Please wait, basic usage is loading..."
     />
-    <div v-else class="section">
+    <div
+      v-else
+      class="section"
+    >
       <div class="card app-card main-app-card">
         <div class="card-content">
           <div v-if="formView === FORM_VIEW.LOGIN">
@@ -36,7 +39,10 @@
             </form-field>
           </div>
           <div v-if="formView === FORM_VIEW.EMAIL">
-            <form-field label="Email:" data-test="endpass-oauth-user-email">
+            <form-field
+              label="Email:"
+              data-test="endpass-oauth-user-email"
+            >
               {{ user.email }}
             </form-field>
             <oauth-footer
@@ -60,7 +66,10 @@
                 </li>
               </ul>
             </div>
-            <oauth-footer @back="onBack" @clear="onClear" />
+            <oauth-footer
+              @back="onBack"
+              @clear="onClear"
+            />
           </div>
         </div>
       </div>
@@ -73,6 +82,7 @@ import VSpinner from '@endpass/ui/components/VSpinner';
 import FormField from '@/components/common/FormField';
 import OauthFooter from '@/components/screen/Oauth/OauthFooter';
 import ErrorNotify from '@/class/ErrorNotify';
+import { connectStore } from '@/store';
 import { createOauthController } from '@/controllers';
 
 const FORM_VIEW = {
@@ -147,6 +157,10 @@ export default {
 
       this.formView = FORM_VIEW.LOGIN;
     },
+  },
+
+  async mounted() {
+    await connectStore.initConnect();
   },
 
   components: {

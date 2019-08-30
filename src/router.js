@@ -6,6 +6,7 @@ import HomeScreen from '@/components/screen/Home';
 Vue.use(Router);
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -15,27 +16,26 @@ const router = new Router({
     {
       path: '/basic',
       name: 'Basic',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "basic" */ '@/components/screen/Basic'),
     },
     {
+      path: '/custom-element',
+      name: 'CustomElement',
+      component: () =>
+        import(
+          /* webpackChunkName: "custom-element" */ '@/components/screen/CustomElement'
+        ),
+    },
+    {
       path: '/oauth',
       name: 'Oauth',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "oauth" */ '@/components/screen/Oauth'),
     },
     {
       path: '/about',
       name: 'About',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ '@/components/screen/About'),
     },

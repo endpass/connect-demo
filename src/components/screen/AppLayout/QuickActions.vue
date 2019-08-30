@@ -52,6 +52,7 @@ export default {
 
     .button {
       border: none;
+
       .icon {
         margin: 0 auto;
       }
