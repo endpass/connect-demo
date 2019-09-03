@@ -98,9 +98,10 @@ module.exports = {
     config.plugins.delete('prefetch');
 
     if (ENV.VUE_APP_IS_E2E_CONNECT) {
-      config.resolve.symlinks(false);
+      config.resolve.symlinks(ENV.VUE_APP_WITH_SYMLINKS);
     }
   },
+  lintOnSave: false,
   devServer: {
     proxy: {
       '^/identity/api/v1.1': {
