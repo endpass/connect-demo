@@ -98,7 +98,7 @@ class ConnectModule extends VuexModule {
       ...options,
     });
 
-    const connectProvider = connect.getProvider();
+    const connectProvider = await connect.getProvider();
     window.web3.setProvider(connectProvider);
 
     this.connectInstance = connect;
@@ -113,8 +113,8 @@ class ConnectModule extends VuexModule {
     });
   }
 
-  mountWidget() {
-    this.connectInstance.mountWidget();
+  async mountWidget() {
+    await this.connectInstance.mountWidget();
     this.bindWidgetEvents();
   }
 
