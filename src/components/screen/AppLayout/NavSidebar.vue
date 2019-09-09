@@ -33,36 +33,37 @@
       >
         <ul class="menu-list">
           <li>
-            <nav-link
+            <router-link
               to="/"
               active-class="is-active"
+              exact
             >
               Home
-            </nav-link>
+            </router-link>
           </li>
           <li>
-            <nav-link
-              to="/custom-element"
+            <router-link
+              :to="{ name: 'CustomElement' }"
               active-class="is-active"
             >
               Custom element
-            </nav-link>
+            </router-link>
           </li>
           <li>
-            <nav-link
-              to="/basic"
+            <router-link
+              :to="{ name: 'Basic' }"
               active-class="is-active"
             >
               Web3 provider
-            </nav-link>
+            </router-link>
           </li>
           <li>
-            <nav-link
-              to="/oauth"
+            <router-link
+              :to="{ name: 'Oauth' }"
               active-class="is-active"
             >
               Oauth
-            </nav-link>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -73,8 +74,6 @@
 </template>
 
 <script>
-import NavLink from '@/components/screen/AppLayout/NavLink';
-
 export default {
   name: 'NavSidebar',
   data: () => ({
@@ -89,10 +88,6 @@ export default {
     closeNavMenu() {
       this.navMenuActive = false;
     },
-  },
-
-  components: {
-    NavLink,
   },
 };
 </script>

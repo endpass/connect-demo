@@ -6,7 +6,6 @@ import HomeScreen from '@/components/screen/Home';
 Vue.use(Router);
 
 const router = new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
@@ -42,15 +41,13 @@ const router = new Router({
   ],
 });
 
-// router.beforeEach(async (to, from, next) => {
-//   if (!authStore.isLogin && to.name !== 'Home') {
-//     await authStore.checkAuthStatus();
-//     if (authStore.isLogin) {
-//       return next();
-//     }
-//     return next({ name: 'Home' });
-//   }
-//   return next();
-// });
+router.afterEach((to, from) => {
+  if (from.name) {
+    // Hack for reload page, but have flickers after change page
+    setTimeout(() => {
+      window.location.reload();
+    }, 0);
+  }
+});
 
 export default router;
