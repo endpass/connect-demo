@@ -3,6 +3,7 @@ import Network from '@endpass/class/Network';
 import Connect from '@endpass/connect';
 import ConnectProvider from '@endpass/connect/provider';
 import ConnectOauth from '@endpass/connect/oauth';
+import LoginButtonPlugin from '@endpass/connect/loginButton';
 import ConnectDocument from '@endpass/connect/document';
 import ErrorNotify from '@/class/ErrorNotify';
 
@@ -126,6 +127,10 @@ class ConnectModule extends VuexModule {
       node.removeEventListener('update', this.onWidgetUpdate);
     });
     this.connectInstance.unmountWidget();
+  }
+
+  createLoginButton(options) {
+    return this.connectInstance.createLoginButton(options);
   }
 }
 

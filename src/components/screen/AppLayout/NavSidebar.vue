@@ -10,15 +10,8 @@
         <span />
         <span />
       </a>
-      <router-link
-        class="logo logo-icon"
-        to="/"
-        exact
-      >
-        <img
-          src="@/img/logo-light.png"
-          alt="Endpass Wallet"
-        >
+      <router-link class="logo logo-icon" to="/" exact>
+        <img src="@/img/logo-light.png" alt="Endpass Wallet" />
       </router-link>
     </div>
 
@@ -33,11 +26,7 @@
       >
         <ul class="menu-list">
           <li>
-            <router-link
-              to="/"
-              active-class="is-active"
-              exact
-            >
+            <router-link to="/" active-class="is-active" exact>
               Home
             </router-link>
           </li>
@@ -50,19 +39,18 @@
             </router-link>
           </li>
           <li>
-            <router-link
-              :to="{ name: 'Basic' }"
-              active-class="is-active"
-            >
+            <router-link :to="{ name: 'Basic' }" active-class="is-active">
               Web3 provider
             </router-link>
           </li>
           <li>
-            <router-link
-              :to="{ name: 'Oauth' }"
-              active-class="is-active"
-            >
+            <router-link :to="{ name: 'Oauth' }" active-class="is-active">
               Oauth
+            </router-link>
+          </li>
+          <li>
+            <router-link :to="{ name: 'Login' }" active-class="is-active">
+              Login
             </router-link>
           </li>
         </ul>
