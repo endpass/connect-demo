@@ -37,6 +37,15 @@
                 Get Email
               </button>
             </form-field>
+            <form-field>
+              <button
+                class="button is-primary"
+                data-test="endpass-oauth-check-documents"
+                @click="onCheckDocuments"
+              >
+                Check documents
+              </button>
+            </form-field>
           </div>
           <div v-if="formView === FORM_VIEW.EMAIL">
             <form-field
@@ -157,6 +166,15 @@ export default {
 
       this.formView = FORM_VIEW.LOGIN;
     },
+
+    async onCheckDocuments() {
+      try {
+        await this.oauthController.loginOauth(['documents:status:read', 'documents:data:read']);
+        const res = await this.oauthController.checkDocuments();
+        console.log('res', res);
+      } catch (e) {
+      }
+    }
   },
 
   async mounted() {

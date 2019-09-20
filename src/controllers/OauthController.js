@@ -39,6 +39,15 @@ class OauthController extends VuexModule {
   async logout() {
     await this.connectStore.connectInstance.logoutFromOauth();
   }
+
+  @Action
+  async checkDocuments() {
+    const res = await this.connectStore.connectInstance.request({
+      method: 'GET',
+      url: `${ENV.VUE_APP_ENDPASS_API_URL}/documents`,
+    });
+    return res;
+  }
 }
 
 export default OauthController;
