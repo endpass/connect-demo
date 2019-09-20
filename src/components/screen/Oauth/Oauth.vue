@@ -80,6 +80,26 @@
               @clear="onClear"
             />
           </div>
+          <div v-if="formView === FORM_VIEW.DOCUMENTS">
+            <div class="subtitle">
+              Documents:
+            </div>
+            <div class="content">
+              <ul
+                v-for="doc in documents"
+                :key="doc.id"
+                data-test="endpass-oauth-documents-list"
+              >
+                <li class="subtitle">
+                  {{ doc.id }}: {{ doc.documentType }}
+                </li>
+              </ul>
+            </div>
+            <oauth-footer
+              @back="onBack"
+              @clear="onClear"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -99,6 +119,7 @@ const FORM_VIEW = {
   LOGIN: 'LOGIN',
   ACCOUNTS: 'ACCOUNTS',
   EMAIL: 'EMAIL',
+  DOCUMENTS: 'DOCUMENTS',
 };
 
 export default {
@@ -108,6 +129,7 @@ export default {
       FORM_VIEW,
       formView: FORM_VIEW.LOGIN,
       accounts: [],
+      documents: [],
       user: {},
       errorNotify: new ErrorNotify(),
       oauthController: createOauthController(),
@@ -169,12 +191,24 @@ export default {
 
     async onCheckDocuments() {
       try {
-        await this.oauthController.loginOauth(['documents:status:read', 'documents:data:read']);
-        const res = await this.oauthController.checkDocuments();
-        console.log('res', res);
+        this.formView = FORM_VIEW.LOADING;
+
+        await this.oauthController.loginOauth([
+          'documents:status:read',
+          'documents:data:read',
+        ]);
+        const { data } = await this.oauthController.getDocuments();
+        this.documents = data;
+
+        this.formView = FORM_VIEW.DOCUMENTS;
       } catch (e) {
+        this.formView = FORM_VIEW.LOGIN;
+        this.errorNotify.showError({
+          title: 'Get documents error',
+          text: e.toString(),
+        });
       }
-    }
+    },
   },
 
   async mounted() {

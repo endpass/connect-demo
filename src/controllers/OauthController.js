@@ -41,7 +41,7 @@ class OauthController extends VuexModule {
   }
 
   @Action
-  async checkDocuments() {
+  async getDocuments() {
     const res = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_ENDPASS_API_URL}/documents`,
