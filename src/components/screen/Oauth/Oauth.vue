@@ -151,7 +151,6 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        await this.oauthController.loginOauth(['user:email:read']);
         this.user = await this.oauthController.getUser();
 
         this.formView = FORM_VIEW.EMAIL;
@@ -168,7 +167,6 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        await this.oauthController.loginOauth(['wallet:accounts:read']);
         this.accounts = await this.oauthController.getAccountData();
 
         this.formView = FORM_VIEW.ACCOUNTS;
@@ -193,10 +191,6 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        await this.oauthController.loginOauth([
-          'documents:status:read',
-          'documents:data:read',
-        ]);
         const { data } = await this.oauthController.getDocuments();
         this.documents = data;
 

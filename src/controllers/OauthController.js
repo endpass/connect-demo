@@ -19,6 +19,7 @@ class OauthController extends VuexModule {
 
   @Action
   async getAccountData() {
+    await this.loginOauth(['wallet:accounts:read']);
     const { data } = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_ENDPASS_API_URL}/accounts`,
@@ -28,6 +29,7 @@ class OauthController extends VuexModule {
 
   @Action
   async getUser() {
+    await this.loginOauth(['user:email:read']);
     const { data } = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_ENDPASS_API_URL}/user`,
@@ -42,6 +44,7 @@ class OauthController extends VuexModule {
 
   @Action
   async getDocuments() {
+    await this.loginOauth(['documents:status:read', 'documents:data:read']);
     const res = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_ENDPASS_API_URL}/documents`,
