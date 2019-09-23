@@ -72,8 +72,8 @@ export default {
     const self = this;
     await connectStore.initConnect();
     this.$options.loginButton = connectStore.createLoginButton({
-      rootElement: document.getElementById(this.elementId),
-      isButtonLight: this.isInvertedColors,
+      element: document.getElementById(this.elementId),
+      isLight: this.isInvertedColors,
       onLogin: (err, res) => {
         if (err) {
           self.message = err.message;
