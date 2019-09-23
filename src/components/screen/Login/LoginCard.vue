@@ -12,25 +12,25 @@
         class="button-root"
         data-test="login-element"
       />
-      <form-field>
-        <button
-          class="button"
-          :class="{ 'is-primary': !isInvertedColors }"
-          data-test="button-mount"
-          @click="toggleButton"
-        >
-          {{ mountLabel }}
-        </button>
-      </form-field>
-      <div data-test="user-email">
-        {{ userEmail }}
+      <button
+        class="button"
+        :class="{ 'is-primary': !isInvertedColors }"
+        data-test="button-mount"
+        @click="toggleButton"
+      >
+        {{ mountLabel }}
+      </button>
+      <div
+        class="user-email"
+        data-test="user-email"
+      >
+        {{ message }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import FormField from '@/components/common/FormField';
 import { connectStore } from '@/store';
 
 export default {
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       isMounted: false,
-      userEmail: null,
+      message: null,
     };
   },
   computed: {
@@ -60,25 +60,30 @@ export default {
       if (this.isMounted) {
         this.$options.loginButton.unmount();
         this.isMounted = false;
+        this.message = null;
         return;
       }
       this.$options.loginButton.mount();
       this.isMounted = true;
     },
   },
+  loginButton: null,
   async mounted() {
+    const self = this;
     await connectStore.initConnect();
     this.$options.loginButton = connectStore.createLoginButton({
       rootElement: document.getElementById(this.elementId),
       isButtonLight: this.isInvertedColors,
-      onLogin: (err, email) => {
-        console.log(err, email); // eslint-disable-line
+      onLogin: (err, res) => {
+        if (err) {
+          self.message = err.message;
+          return;
+        }
+        self.message = res.email;
       },
     });
     this.toggleButton();
   },
-  components: { FormField },
-  loginButton: null,
 };
 </script>
 
@@ -97,5 +102,9 @@ export default {
 
 .button-root {
   margin-bottom: 15px;
+}
+
+.app-card-inverted .user-email {
+  color: white;
 }
 </style>
