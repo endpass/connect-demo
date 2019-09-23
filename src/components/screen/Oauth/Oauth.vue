@@ -41,9 +41,9 @@
               <button
                 class="button is-primary"
                 data-test="endpass-oauth-check-documents"
-                @click="onCheckDocuments"
+                @click="onGetDocuments"
               >
-                Check documents
+                Get documents
               </button>
             </form-field>
           </div>
@@ -189,7 +189,7 @@ export default {
       this.formView = FORM_VIEW.LOGIN;
     },
 
-    async onCheckDocuments() {
+    async onGetDocuments() {
       try {
         this.formView = FORM_VIEW.LOADING;
 
