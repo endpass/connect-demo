@@ -3,6 +3,7 @@ import Network from '@endpass/class/Network';
 import Connect from '@endpass/connect';
 import ConnectProvider from '@endpass/connect/provider';
 import ConnectOauth from '@endpass/connect/oauth';
+import ConnectDocument from '@endpass/connect/document';
 import ErrorNotify from '@/class/ErrorNotify';
 
 @Module({ generateMutationSetters: true })
@@ -95,7 +96,7 @@ class ConnectModule extends VuexModule {
     const connect = new Connect({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
-      plugins: [ConnectProvider, ConnectOauth],
+      plugins: [ConnectProvider, ConnectOauth, ConnectDocument],
       ...options,
     });
 

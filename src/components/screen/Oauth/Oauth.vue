@@ -37,6 +37,15 @@
                 Get Email
               </button>
             </form-field>
+            <form-field>
+              <button
+                class="button is-primary"
+                data-test="endpass-oauth-check-documents"
+                @click="onGetDocuments"
+              >
+                Get documents
+              </button>
+            </form-field>
           </div>
           <div v-if="formView === FORM_VIEW.EMAIL">
             <form-field
@@ -71,6 +80,26 @@
               @clear="onClear"
             />
           </div>
+          <div v-if="formView === FORM_VIEW.DOCUMENTS">
+            <div class="subtitle">
+              Documents:
+            </div>
+            <div class="content">
+              <ul
+                v-for="doc in documents"
+                :key="doc.id"
+                data-test="endpass-oauth-documents-list"
+              >
+                <li class="subtitle">
+                  {{ doc.id }}: {{ doc.documentType }}
+                </li>
+              </ul>
+            </div>
+            <oauth-footer
+              @back="onBack"
+              @clear="onClear"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -90,6 +119,7 @@ const FORM_VIEW = {
   LOGIN: 'LOGIN',
   ACCOUNTS: 'ACCOUNTS',
   EMAIL: 'EMAIL',
+  DOCUMENTS: 'DOCUMENTS',
 };
 
 export default {
@@ -99,6 +129,7 @@ export default {
       FORM_VIEW,
       formView: FORM_VIEW.LOGIN,
       accounts: [],
+      documents: [],
       user: {},
       errorNotify: new ErrorNotify(),
       oauthController: createOauthController(),
@@ -120,7 +151,6 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        await this.oauthController.loginOauth(['user:email:read']);
         this.user = await this.oauthController.getUser();
 
         this.formView = FORM_VIEW.EMAIL;
@@ -137,7 +167,6 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        await this.oauthController.loginOauth(['wallet:accounts:read']);
         this.accounts = await this.oauthController.getAccountData();
 
         this.formView = FORM_VIEW.ACCOUNTS;
@@ -156,6 +185,23 @@ export default {
       await this.oauthController.logout();
 
       this.formView = FORM_VIEW.LOGIN;
+    },
+
+    async onGetDocuments() {
+      try {
+        this.formView = FORM_VIEW.LOADING;
+
+        const { data } = await this.oauthController.getDocuments();
+        this.documents = data;
+
+        this.formView = FORM_VIEW.DOCUMENTS;
+      } catch (e) {
+        this.formView = FORM_VIEW.LOGIN;
+        this.errorNotify.showError({
+          title: 'Get documents error',
+          text: e.toString(),
+        });
+      }
     },
   },
 
