@@ -97,7 +97,12 @@ class ConnectModule extends VuexModule {
     const connect = new Connect({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
-      plugins: [ConnectProvider, ConnectOauth, ConnectDocument],
+      plugins: [
+        ConnectProvider,
+        ConnectOauth,
+        ConnectDocument,
+        LoginButtonPlugin,
+      ],
       ...options,
     });
 
