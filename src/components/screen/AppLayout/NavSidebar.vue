@@ -65,6 +65,14 @@
               Oauth
             </router-link>
           </li>
+          <li>
+            <router-link
+              :to="{ name: 'Login' }"
+              active-class="is-active"
+            >
+              Login
+            </router-link>
+          </li>
         </ul>
       </div>
 
