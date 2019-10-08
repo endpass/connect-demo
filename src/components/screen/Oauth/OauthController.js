@@ -1,19 +1,23 @@
 import { VuexModule, Module, Action } from 'vuex-class-modules';
-import { connectStore } from '@/store';
+import { connectStore as connectStoreModule } from '@/store';
+import createController from '@/controllers/createController';
 
-// manage groups access control
 @Module({ generateMutationSetters: true })
 class OauthController extends VuexModule {
-  constructor(props) {
+  constructor(props, { connectStore = connectStoreModule }) {
     super(props);
     this.connectStore = connectStore;
+  }
+
+  @Action
+  async initConnect() {
+    await this.connectStore.initConnect();
   }
 
   @Action
   async loginOauth(scopes) {
     await this.connectStore.connectInstance.loginWithOauth({
       scopes,
-      oauthServer: ENV.VUE_APP_OAUTH_SERVER,
     });
   }
 
@@ -53,4 +57,4 @@ class OauthController extends VuexModule {
   }
 }
 
-export default OauthController;
+export default () => createController(OauthController);
