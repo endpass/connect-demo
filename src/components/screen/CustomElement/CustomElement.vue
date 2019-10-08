@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="section">
-      <div class="card app-card main-app-card">
+      <div class="card">
         <div class="card-content">
           <v-button
             data-test="endpass-sign-in-button"

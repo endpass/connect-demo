@@ -9,7 +9,7 @@
       v-else
       class="section"
     >
-      <div class="card app-card main-app-card">
+      <div class="card">
         <div class="card-content">
           <div v-if="!connectStore.isBasicLoggedIn">
             <div class="title">
@@ -29,6 +29,7 @@
             <form-info />
             <form-sign />
             <form-transaction />
+            <create-wallet />
             <form-widget />
           </div>
         </div>
@@ -43,6 +44,7 @@ import VSpinner from '@endpass/ui/components/VSpinner';
 import { connectStore } from '@/store';
 import FormInfo from '@/components/screen/Basic/FormInfo';
 import FormSign from '@/components/screen/Basic/FormSign';
+import CreateWallet from '@/components/screen/Basic/CreateWallet';
 import FormTransaction from '@/components/screen/Basic/FormTransaction';
 import FormWidget from '@/components/screen/Basic/FormWidget';
 
@@ -81,6 +83,7 @@ export default {
     FormInfo,
     VSpinner,
     VButton,
+    CreateWallet,
   },
 };
 </script>

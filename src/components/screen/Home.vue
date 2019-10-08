@@ -2,7 +2,7 @@
   <div class="home">
     <div class="section">
       <div class="has-text-centered">
-        <div class="card app-card main-app-card">
+        <div class="card">
           <div class="card-content">
             <h1 class="title">
               This is Endpass Demo!

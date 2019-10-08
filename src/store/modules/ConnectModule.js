@@ -5,6 +5,7 @@ import ConnectProvider from '@endpass/connect/provider';
 import ConnectOauth from '@endpass/connect/oauth';
 import LoginButtonPlugin from '@endpass/connect/loginButton';
 import ConnectDocument from '@endpass/connect/document';
+import WalletPlugin from '@endpass/connect/wallet';
 import ErrorNotify from '@/class/ErrorNotify';
 
 @Module({ generateMutationSetters: true })
@@ -18,6 +19,8 @@ class ConnectModule extends VuexModule {
   basicActiveNet = null;
 
   isBasicLoggedIn = false;
+
+  initialPromise = null;
 
   errorNotify = new ErrorNotify();
 
@@ -94,24 +97,41 @@ class ConnectModule extends VuexModule {
   async initConnect(options = {}) {
     if (this.isInited) return;
 
+    if (this.initialPromise) {
+      await this.initialPromise;
+      return;
+    }
+
+    let resolver;
+    this.initialPromise = new Promise(resolve => {
+      resolver = resolve;
+    });
+
     const connect = new Connect({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+      oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       plugins: [
         ConnectProvider,
         ConnectOauth,
         ConnectDocument,
         LoginButtonPlugin,
+        WalletPlugin,
       ],
       ...options,
     });
 
+    this.connectInstance = connect;
+
     const connectProvider = await connect.getProvider();
     window.web3.setProvider(connectProvider);
 
-    this.connectInstance = connect;
-
+    resolver();
     this.isInited = true;
+  }
+
+  async createWallet() {
+    await this.connectInstance.createWallet();
   }
 
   bindWidgetEvents() {

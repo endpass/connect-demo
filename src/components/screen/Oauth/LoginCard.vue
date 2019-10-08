@@ -1,17 +1,12 @@
 <template>
   <div
-    class="card app-card main-app-card app-login-card"
+    class="app-login-card"
     :class="{ 'app-card-inverted': isInvertedColors }"
   >
-    <div class="card-content">
-      <p class="title">
+    <div>
+      <p class="subtitle">
         <slot />
       </p>
-      <div
-        :id="elementId"
-        class="button-root"
-        data-test="login-element"
-      />
       <button
         class="button"
         :class="{ 'is-primary': !isInvertedColors }"
@@ -21,8 +16,13 @@
         {{ mountLabel }}
       </button>
       <div
-        class="user-email"
-        data-test="user-email"
+        :id="elementId"
+        class="button-root"
+        data-test="login-element"
+      />
+      <div
+        class="login-message"
+        data-test="login-message"
       >
         {{ message }}
       </div>
@@ -35,53 +35,61 @@ import { connectStore } from '@/store';
 
 export default {
   name: 'LoginCard',
+
   props: {
     isInvertedColors: {
       type: Boolean,
       default: false,
     },
   },
+
   data() {
     return {
-      isMounted: false,
+      loginButton: null,
       message: null,
     };
   },
+
   computed: {
     elementId() {
       return this.isInvertedColors ? 'button-root-inverted' : 'button-root';
+    },
+    isMounted() {
+      return !!this.loginButton;
     },
     mountLabel() {
       return this.isMounted ? 'Unmount' : 'Mount';
     },
   },
+
   methods: {
     toggleButton() {
-      if (this.isMounted) {
-        this.$options.loginButton.unmount();
-        this.isMounted = false;
+      if (this.loginButton) {
+        this.loginButton.unmount();
+        this.loginButton = null;
         this.message = null;
         return;
       }
-      this.$options.loginButton.mount();
-      this.isMounted = true;
+      this.loginButton = this.createButton();
+      this.loginButton.mount();
+    },
+    createButton() {
+      return connectStore.createLoginButton({
+        element: `#${this.elementId}`,
+        isLight: this.isInvertedColors,
+        onLogin: (err, res) => {
+          if (err) {
+            this.message = err.message;
+            return;
+          }
+          this.message = res.email;
+        },
+      });
     },
   },
-  loginButton: null,
+
   async mounted() {
-    const self = this;
     await connectStore.initConnect();
-    this.$options.loginButton = connectStore.createLoginButton({
-      element: document.getElementById(this.elementId),
-      isLight: this.isInvertedColors,
-      onLogin: (err, res) => {
-        if (err) {
-          self.message = err.message;
-          return;
-        }
-        self.message = res.email;
-      },
-    });
     this.toggleButton();
   },
 };
@@ -94,17 +102,19 @@ export default {
 
 .app-login-card {
   margin-bottom: 20px;
+  padding: 20px;
 }
 
-.app-card-inverted .title {
+.app-card-inverted .subtitle {
   color: white;
 }
 
 .button-root {
-  margin-bottom: 15px;
+  margin-left: 15px;
+  display: inline-block;
 }
 
-.app-card-inverted .user-email {
+.app-card-inverted .login-message {
   color: white;
 }
 </style>
