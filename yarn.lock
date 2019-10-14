@@ -1296,10 +1296,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@endpass/class@^0.18.8", "@endpass/class@^0.18.9":
-  version "0.18.9"
-  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.18.9.tgz#e708df9854dc929de89e717ec3b757008e7837a8"
-  integrity sha512-TMbxwKAIYZp06w+3rfcK6dYA7LJGfbTmXXCaOzAfaBJlJjvTp+6Rxzfkbui8HsvVRuLWjEo/5eejQzFvkWVN5A==
+"@endpass/class@^0.18.10":
+  version "0.18.10"
+  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.18.10.tgz#8d78df4150936bf874d882ea070045d0727dadc4"
+  integrity sha512-R0Dp9YRSxG266ok1xbdl6jofRaV7yHlDEMnvtHL4zeyRUh8dYek85yomi3Ry1/9WDRL3HlE6cdARgG9iBn9RlA==
   dependencies:
     "@endpass/utils" "^1.8.3"
     "@ledgerhq/hw-app-eth" "^4.24.0"
@@ -1318,12 +1318,12 @@
     web3-providers-ws "1.0.0-beta.37"
     web3-utils "1.0.0-beta.55"
 
-"@endpass/connect@^0.28.8-beta":
-  version "0.28.8-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.28.8-beta.tgz#2d2b9bdf4f319724e1bb3ef616377d8b6113e967"
-  integrity sha512-SJB5GuKotXsqqhcoizICFkiz0BMxvPQXDjWUMLq0MKsbp9p40w5r663tA2WMObc3RjGAUipwF6fzm6IfvP9XSQ==
+"@endpass/connect@^0.28.11-beta":
+  version "0.28.11-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.28.11-beta.tgz#cac2efccfc28e6c364bc2773edf7a3feeb2c894a"
+  integrity sha512-B3Pzr/zc2NI4Ip/EW25jmMqA0U4QkAQqrDsI6mC/s05jvEa5rGu2TUFIACJiLdjCwK56tD7SlpI4kqSN5cPB7Q==
   dependencies:
-    "@endpass/class" "^0.18.8"
+    "@endpass/class" "^0.18.10"
     "@endpass/utils" "^1.8.3"
     axios "^0.19.0"
     axios-token-interceptor "^0.1.0"
@@ -1361,10 +1361,10 @@
     eslint-plugin-prettier "^3.1.0"
     eslint-plugin-vue "^5.2.3"
 
-"@endpass/ui@^0.15.52":
-  version "0.15.52"
-  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.15.52.tgz#6e6748d08fb4ede6d37ad30c5caa9de658bb420a"
-  integrity sha512-UUdreIEM+pNNGSHl0MjB3jmn8tx1O3UFPTpih+/Q2odK9ihQlxFvmd0X0K/E1JxCFCwBf37npmZ4Nv18KsRb/Q==
+"@endpass/ui@^0.15.53":
+  version "0.15.53"
+  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.15.53.tgz#387a6843909a90bd05e93adda7a8529b6c2523f3"
+  integrity sha512-hWpPZ2nirnvdBtjsJpQPwBDBUMDiH2ghKMeh56OUuUbdsGOd2UXvzdz8OTbxx+xkn/8vdm9YfrMgkKCJUP8pDg==
   dependencies:
     "@endpass/utils" "^1.8.2"
     vue "^2.5.21"
@@ -13957,10 +13957,10 @@ vue@^2.5.21, vue@^2.6.10:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
-vuex-class-modules@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/vuex-class-modules/-/vuex-class-modules-1.1.1.tgz#725b7d4baae05475dd67515b14a1697402b47c35"
-  integrity sha512-WbZrLp1AlYVSyx18PfQDHO8Ictx/+eWG4V3FJ6H2ohWsmjgfrqqD4xaihJ0FwkD+bjATGB7+bbgRRcZStagvcQ==
+vuex-class-modules@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/vuex-class-modules/-/vuex-class-modules-1.1.2.tgz#22e82c2df42796608125442b40140d4b22bcf3a7"
+  integrity sha512-ZHIiirdYRev3vydWn8tK7cbTgG1zZAqKrgD1Tgm6nD8XndwqP3sfEAdjOiQMYpI6q3VDnqFTl1HSj4Nn+E37aQ==
 
 vuex@^3.1.1:
   version "3.1.1"
