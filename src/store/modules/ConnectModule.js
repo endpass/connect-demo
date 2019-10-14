@@ -130,8 +130,9 @@ class ConnectModule extends VuexModule {
     this.isInited = true;
   }
 
-  async createWallet() {
-    await this.connectInstance.createWallet();
+  async generateWallet() {
+    const data = await this.connectInstance.generateWallet();
+    return data;
   }
 
   bindWidgetEvents() {
