@@ -65,7 +65,7 @@ class ConnectModule extends VuexModule {
       this.basicActiveNet = null;
       this.isBasicLoggedIn = false;
     } catch (e) {
-      this.errorNotification('Logout error', e.toString());
+      this.errorNotification('Logout error', e);
     }
   }
 
@@ -79,7 +79,7 @@ class ConnectModule extends VuexModule {
       this.isBasicLoggedIn = false;
       this.errorNotify.showError({
         title: 'Auth Error',
-        text: err.toString(),
+        text: err,
       });
     }
   }
@@ -111,6 +111,8 @@ class ConnectModule extends VuexModule {
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
+      // widget: false,
+      oauthPopup: ENV.VUE_APP_IS_E2E_CONNECT,
       plugins: [
         ConnectProvider,
         ConnectOauth,

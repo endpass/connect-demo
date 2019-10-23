@@ -95,7 +95,7 @@ export default {
       } catch (e) {
         this.errorNotify.showError({
           title: 'Personal Web3 ETH Recover error',
-          text: e.toString(),
+          text: e,
         });
       }
     },
