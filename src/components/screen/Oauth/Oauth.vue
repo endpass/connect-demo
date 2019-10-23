@@ -149,7 +149,7 @@ export default {
         this.formView = FORM_VIEW.LOGIN;
         this.$options.errorNotify.showError({
           title: 'Get email error',
-          text: e.toString(),
+          text: e,
         });
       }
     },
@@ -165,7 +165,7 @@ export default {
         this.formView = FORM_VIEW.LOGIN;
         this.$options.errorNotify.showError({
           title: 'Get accounts error',
-          text: e.toString(),
+          text: e,
         });
       }
     },
@@ -190,7 +190,7 @@ export default {
         this.formView = FORM_VIEW.LOGIN;
         this.$options.errorNotify.showError({
           title: 'Get documents error',
-          text: e.toString(),
+          text: e,
         });
       }
     },

@@ -96,7 +96,7 @@ export default {
       } catch (e) {
         this.errorNotify.showError({
           title: 'Web3 ETH Sign error',
-          text: e.toString(),
+          text: e,
         });
       }
     },
@@ -110,7 +110,7 @@ export default {
       } catch (e) {
         this.errorNotify.showError({
           title: 'Personal Web3 ETH Sign error',
-          text: e.toString(),
+          text: e,
         });
       }
     },
@@ -128,7 +128,7 @@ export default {
       } catch (e) {
         this.errorNotify.showError({
           title: 'Personal Web3 ETH Recover error',
-          text: e.toString(),
+          text: e,
         });
       }
     },
