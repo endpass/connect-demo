@@ -112,7 +112,6 @@ class ConnectModule extends VuexModule {
       oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       // widget: false,
-      oauthPopup: ENV.VUE_APP_IS_E2E_CONNECT,
       plugins: [
         ConnectProvider,
         ConnectOauth,
