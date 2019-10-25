@@ -88,8 +88,7 @@ export default {
     },
   },
 
-  async mounted() {
-    await connectStore.initConnect();
+  mounted() {
     this.toggleButton();
   },
 };

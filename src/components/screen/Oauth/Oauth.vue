@@ -12,11 +12,29 @@
       <div class="card">
         <div class="card-content">
           <div v-if="formView === FORM_VIEW.LOGIN">
+            <form-field>
+              Popup mode:
+              <span
+                class="tag"
+                data-test="endpass-oauth-popup-mode"
+              >{{
+                getOauthPopupMode()
+              }}</span>
+            </form-field>
+            <form-field>
+              <button
+                class="button is-primary"
+                data-test="endpass-oauth-get-accounts-button"
+                @click="onSwitchOauthPopup"
+              >
+                Switch popup mode
+              </button>
+            </form-field>
             <p class="title">
-              Each request do "request token" for demonstation as example
+              Requests:
             </p>
             <p class="subtitle">
-              Please select action to continue...
+              Each request do "request token" for demonstation as example
             </p>
 
             <form-field>
@@ -40,17 +58,20 @@
             <form-field>
               <button
                 class="button is-primary"
-                data-test="endpass-oauth-check-documents"
+                data-test="endpass-oauth-get-documents"
                 @click="onGetDocuments"
               >
-                Get documents
+                Get Documents
               </button>
             </form-field>
             <div>
               <p class="title">
                 SignIn OAuth button:
               </p>
-              <div class="columns">
+              <div
+                v-if="$options.connectStore.isInited"
+                class="columns"
+              >
                 <login-card class="column">
                   default style
                 </login-card>
@@ -106,9 +127,15 @@ const FORM_VIEW = {
   DOCUMENTS: 'DOCUMENTS',
 };
 
+const POPUP_MODES = {
+  IFRAME: 'iframe',
+  POPUP: 'popup',
+};
+
 export default {
   name: 'Oauth',
 
+  connectStore,
   oauthController: createOauthController(),
   errorNotify: new ErrorNotify(),
 
@@ -136,6 +163,25 @@ export default {
   methods: {
     onBack() {
       this.formView = FORM_VIEW.LOGIN;
+    },
+
+    getOauthPopupMode() {
+      const { popupMode = POPUP_MODES.IFRAME } = this.$route.query;
+      return popupMode;
+    },
+
+    onSwitchOauthPopup() {
+      const popupMode = this.getOauthPopupMode();
+      const nextMode =
+        popupMode === POPUP_MODES.IFRAME
+          ? POPUP_MODES.POPUP
+          : POPUP_MODES.IFRAME;
+
+      this.$router.push({
+        query: {
+          popupMode: nextMode,
+        },
+      });
     },
 
     async onGetEmail() {
@@ -197,7 +243,11 @@ export default {
   },
 
   async mounted() {
-    await connectStore.initConnect();
+    const popupMode = this.getOauthPopupMode();
+
+    await this.$options.connectStore.initConnect({
+      oauthPopup: popupMode === POPUP_MODES.POPUP,
+    });
   },
 
   components: {
