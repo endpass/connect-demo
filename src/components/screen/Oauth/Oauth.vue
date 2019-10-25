@@ -18,7 +18,7 @@
                 class="tag"
                 data-test="endpass-oauth-popup-mode"
               >{{
-                getOauthPopupMode()
+                oauthPopupMode
               }}</span>
             </form-field>
             <form-field>
@@ -158,6 +158,17 @@ export default {
     isLoading() {
       return this.formView === FORM_VIEW.LOADING;
     },
+
+    oauthPopupMode() {
+      const { popupMode = POPUP_MODES.IFRAME } = this.$route.query;
+      return popupMode;
+    },
+
+    nextMode() {
+      return this.oauthPopupMode === POPUP_MODES.IFRAME
+        ? POPUP_MODES.POPUP
+        : POPUP_MODES.IFRAME;
+    },
   },
 
   methods: {
@@ -165,21 +176,10 @@ export default {
       this.formView = FORM_VIEW.LOGIN;
     },
 
-    getOauthPopupMode() {
-      const { popupMode = POPUP_MODES.IFRAME } = this.$route.query;
-      return popupMode;
-    },
-
     onSwitchOauthPopup() {
-      const popupMode = this.getOauthPopupMode();
-      const nextMode =
-        popupMode === POPUP_MODES.IFRAME
-          ? POPUP_MODES.POPUP
-          : POPUP_MODES.IFRAME;
-
       this.$router.push({
         query: {
-          popupMode: nextMode,
+          popupMode: this.nextMode,
         },
       });
     },
@@ -243,7 +243,7 @@ export default {
   },
 
   async mounted() {
-    const popupMode = this.getOauthPopupMode();
+    const popupMode = this.oauthPopupMode;
 
     await this.$options.connectStore.initConnect({
       oauthPopup: popupMode === POPUP_MODES.POPUP,
