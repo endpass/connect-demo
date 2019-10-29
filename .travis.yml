@@ -4,7 +4,10 @@ node_js:
 cache:
   directories:
   - "~/.cache"
-install: yarn install --frozen-lockfile
+install:
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+  - yarn install --frozen-lockfile
 stages:
   - name: prod
   - name: dev
