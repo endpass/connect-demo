@@ -2,26 +2,25 @@
   <div class="quick-actions">
     <div class="navbar is-fixed-bottom">
       <router-link
-        active-class="is-active"
-        class="navbar-item button"
-        to="/"
-        exact
-      >
-        <span class="caption">Home</span>
-      </router-link>
-      <router-link
-        :to="{ name: 'Basic' }"
-        active-class="is-active"
-        class="navbar-item button"
-      >
-        <span class="caption">Basic</span>
-      </router-link>
-      <router-link
         :to="{ name: 'Oauth' }"
         class="navbar-item button"
         active-class="is-active"
       >
         <span class="caption">Oauth</span>
+      </router-link>
+      <router-link
+        :to="{ name: 'Provider' }"
+        active-class="is-active"
+        class="navbar-item button"
+      >
+        <span class="caption">Provider</span>
+      </router-link>
+      <router-link
+        :to="{ name: 'CustomElement' }"
+        active-class="is-active"
+        class="navbar-item button"
+      >
+        <span class="caption">Custom Element</span>
       </router-link>
     </div>
   </div>

@@ -34,11 +34,19 @@
         <ul class="menu-list">
           <li>
             <router-link
-              to="/"
+              :to="{ name: 'Oauth' }"
               active-class="is-active"
               exact
             >
-              Home
+              Oauth
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              :to="{ name: 'Provider' }"
+              active-class="is-active"
+            >
+              Web3 provider
             </router-link>
           </li>
           <li>
@@ -47,22 +55,6 @@
               active-class="is-active"
             >
               Custom element
-            </router-link>
-          </li>
-          <li>
-            <router-link
-              :to="{ name: 'Basic' }"
-              active-class="is-active"
-            >
-              Web3 provider
-            </router-link>
-          </li>
-          <li>
-            <router-link
-              :to="{ name: 'Oauth' }"
-              active-class="is-active"
-            >
-              Oauth
             </router-link>
           </li>
         </ul>

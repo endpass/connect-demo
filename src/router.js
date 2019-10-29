@@ -1,22 +1,24 @@
 /* eslint-disable max-len */
 import Vue from 'vue';
 import Router from 'vue-router';
-import HomeScreen from '@/components/screen/Home';
 
 Vue.use(Router);
+
+const OauthComponent = () =>
+  import(/* webpackChunkName: "oauth" */ '@/components/screen/Oauth');
 
 const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: HomeScreen,
+      name: 'Oauth',
+      component: OauthComponent,
     },
     {
-      path: '/basic',
-      name: 'Basic',
+      path: '/provider',
+      name: 'Provider',
       component: () =>
-        import(/* webpackChunkName: "basic" */ '@/components/screen/Basic'),
+        import(/* webpackChunkName: "basic" */ '@/components/screen/Provider'),
     },
     {
       path: '/custom-element',
@@ -28,15 +30,8 @@ const router = new Router({
     },
     {
       path: '/oauth',
-      name: 'Oauth',
-      component: () =>
-        import(/* webpackChunkName: "oauth" */ '@/components/screen/Oauth'),
-    },
-    {
-      path: '/about',
-      name: 'About',
-      component: () =>
-        import(/* webpackChunkName: "about" */ '@/components/screen/About'),
+      name: 'OauthDeprecated',
+      component: OauthComponent,
     },
   ],
 });

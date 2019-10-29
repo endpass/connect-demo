@@ -7,14 +7,15 @@
       <p class="subtitle">
         <slot />
       </p>
-      <button
-        class="button"
-        :class="{ 'is-primary': !isInvertedColors }"
-        data-test="button-mount"
-        @click="toggleButton"
-      >
-        {{ mountLabel }}
-      </button>
+      <div class="is-inline-block">
+        <v-button
+          :class="{ 'is-primary': !isInvertedColors }"
+          data-test="button-mount"
+          @click="toggleButton"
+        >
+          {{ mountLabel }}
+        </v-button>
+      </div>
       <div
         :id="elementId"
         class="button-root"
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
@@ -90,6 +92,10 @@ export default {
 
   mounted() {
     this.toggleButton();
+  },
+
+  components: {
+    VButton,
   },
 };
 </script>
