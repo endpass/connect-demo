@@ -18,7 +18,9 @@ const router = new Router({
       path: '/provider',
       name: 'Provider',
       component: () =>
-        import(/* webpackChunkName: "basic" */ '@/components/screen/Provider'),
+        import(
+          /* webpackChunkName: "provider" */ '@/components/screen/Provider'
+        ),
     },
     {
       path: '/custom-element',

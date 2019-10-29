@@ -3,12 +3,11 @@
     <div class="section">
       <div class="card">
         <div class="card-content">
-          <v-button
-            data-test="endpass-sign-in-button"
-            @click="onOpen"
-          >
-            Open account
-          </v-button>
+          <div class="is-inline-block">
+            <v-button data-test="endpass-sign-in-button" @click="onOpen">
+              Open account
+            </v-button>
+          </div>
           <div id="endpass-form" />
         </div>
       </div>
@@ -19,7 +18,7 @@
 <script>
 /* eslint-disable no-console */
 
-import VButton from '@endpass/ui/components/VButton';
+import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {

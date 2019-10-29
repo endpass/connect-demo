@@ -3,7 +3,7 @@
     <v-spinner
       v-if="isLoading"
       data-test="endpass-app-loader"
-      label="Please wait, basic usage is loading..."
+      label="Please wait, provider usage is loading..."
     />
     <div
       v-else
