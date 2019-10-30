@@ -4,6 +4,7 @@
       <div class="card">
         <div class="card-content">
           <v-button
+            is-inline
             data-test="endpass-sign-in-button"
             @click="onOpen"
           >
@@ -19,7 +20,7 @@
 <script>
 /* eslint-disable no-console */
 
-import VButton from '@endpass/ui/components/VButton';
+import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {

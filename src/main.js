@@ -7,6 +7,7 @@ import router from './router';
 import store from './store';
 import web3Setup from '@/utils/web3Setup';
 import e2eSetup from '@/utils/e2eSetup';
+import '@endpass/ui/kit/kit.theme-default.css';
 
 Vue.use(Notifications);
 Vue.use(UIComponents);

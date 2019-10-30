@@ -1,6 +1,6 @@
 <template>
   <section class="content">
-    <form-field label="Transactions">
+    <form-field>
       <p>
         All transactions works with <strong>Ropsten TEST-ETH</strong>. Be sure
         what your account using <strong>Ropsten network</strong>. If it is not –
@@ -36,14 +36,14 @@
       </div>
       <div class="columns">
         <div class="column is-narrow">
-          <button
-            class="button is-primary"
+          <v-button
+            is-inline
             :disabled="!isRopsten || !isValidTrxReceiverAddress"
             data-test="endpass-form-send-transaction-button"
             @click="onWeb3SendTransaction"
           >
             web3.eth.sendTransaction
-          </button>
+          </v-button>
         </div>
       </div>
     </form-field>
@@ -52,7 +52,8 @@
 
 <script>
 import Network from '@endpass/class/Network';
-import VInput from '@endpass/ui/components/VInput';
+import VInput from '@endpass/ui/kit/VInput';
+import VButton from '@endpass/ui/kit/VButton';
 import { web3Store, connectStore } from '@/store';
 import FormField from '@/components/common/FormField.vue';
 import ErrorNotify from '@/class/ErrorNotify';
@@ -60,19 +61,22 @@ import ErrorNotify from '@/class/ErrorNotify';
 export default {
   name: 'FormTransaction',
 
+  errorNotify: new ErrorNotify(),
+  connectStore,
+
   data() {
     return {
       trxTo: '',
       trxValue: 0,
-      errorNotify: new ErrorNotify(),
-      connectStore,
     };
   },
 
   computed: {
     isRopsten() {
-      /* eslint-disable-next-line */
-      return this.connectStore.basicActiveNet == Network.NET_ID.ROPSTEN;
+      return (
+        /* eslint-disable-next-line */
+        this.$options.connectStore.basicActiveNet == Network.NET_ID.ROPSTEN
+      );
     },
 
     isValidTrxReceiverAddress() {
@@ -84,16 +88,16 @@ export default {
     async onWeb3SendTransaction() {
       try {
         const trxHash = await web3Store.EthSendTransaction({
-          from: this.connectStore.basicActiveAccount,
+          from: this.$options.connectStore.basicActiveAccount,
           to: this.trxTo,
           value: this.trxValue,
         });
-        this.errorNotify.showWarn({
+        this.$options.errorNotify.showWarn({
           title: 'Transaction sent!',
           text: `You can <a href="https://ropsten.etherscan.io/tx/${trxHash}" target="_blank">inspect it</a> with etherscan.`,
         });
       } catch (e) {
-        this.errorNotify.showError({
+        this.$options.errorNotify.showError({
           title: 'Personal Web3 ETH Recover error',
           text: e,
         });
@@ -103,6 +107,7 @@ export default {
 
   components: {
     VInput,
+    VButton,
     FormField,
   },
 };

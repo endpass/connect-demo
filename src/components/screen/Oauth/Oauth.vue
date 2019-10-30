@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <v-spinner
-      v-if="isLoading"
+      v-if="!$options.connectStore.isInited"
       data-test="endpass-app-loader"
-      label="Please wait, basic usage is loading..."
+      label="Please wait, oauth usage is loading..."
     />
     <div
       v-else
@@ -11,96 +11,56 @@
     >
       <div class="card">
         <div class="card-content">
-          <div v-if="formView === FORM_VIEW.LOGIN">
+          <div>
             <form-field>
-              Popup mode:
-              <span
-                class="tag"
-                data-test="endpass-oauth-popup-mode"
-              >{{
-                oauthPopupMode
-              }}</span>
-            </form-field>
-            <form-field>
-              <button
-                class="button is-primary"
-                data-test="endpass-oauth-get-accounts-button"
-                @click="onSwitchOauthPopup"
-              >
-                Switch popup mode
-              </button>
-            </form-field>
-            <p class="title">
-              Requests:
-            </p>
-            <p class="subtitle">
-              Each request do "request token" for demonstation as example
-            </p>
-
-            <form-field>
-              <button
-                class="button is-primary"
-                data-test="endpass-oauth-get-accounts-button"
-                @click="onGetAccounts"
-              >
-                Get Accounts
-              </button>
-            </form-field>
-            <form-field>
-              <button
-                class="button is-primary"
-                data-test="endpass-oauth-get-email-button"
-                @click="onGetEmail"
-              >
-                Get Email
-              </button>
-            </form-field>
-            <form-field>
-              <button
-                class="button is-primary"
-                data-test="endpass-oauth-get-documents"
-                @click="onGetDocuments"
-              >
-                Get Documents
-              </button>
-            </form-field>
-            <div>
-              <p class="title">
-                SignIn OAuth button:
-              </p>
-              <div
-                v-if="$options.connectStore.isInited"
-                class="columns"
-              >
-                <login-card class="column">
-                  default style
-                </login-card>
-                <login-card
-                  class="column"
-                  :is-inverted-colors="true"
+              <div>
+                <v-toggle
+                  v-model="openModeToggle"
+                  data-test="endpass-oauth-switch-mode"
+                  @change="onSwitchOauthPopup"
                 >
-                  inverse style
-                </login-card>
+                  <div class="tags has-addons">
+                    <span class="tag">OAuth open mode</span>
+                    <span
+                      class="tag"
+                      :class="openModeClass"
+                    >{{
+                      openModeTitle
+                    }}</span>
+                  </div>
+                </v-toggle>
               </div>
-            </div>
+            </form-field>
+            <v-tabs>
+              <v-tab
+                label="Requests"
+                data-test="endpass-oauth-requests-tab"
+              >
+                <p class="subtitle">
+                  Each button can do request to oauth server with different
+                  scopes
+                </p>
+                <requests />
+              </v-tab>
+              <v-tab
+                label="SignIn button"
+                data-test="endpass-oauth-signin-button-tab"
+              >
+                <div v-if="$options.connectStore.isInited">
+                  <p class="subtitle">
+                    This section have buttons in different styles, which can
+                    make a signIn request to Endpass service
+                  </p>
+                  <login-card>
+                    default style
+                  </login-card>
+                  <login-card :is-inverted-colors="true">
+                    inverse style
+                  </login-card>
+                </div>
+              </v-tab>
+            </v-tabs>
           </div>
-          <email
-            v-if="formView === FORM_VIEW.EMAIL"
-            :user="user"
-          />
-          <accounts
-            v-if="formView === FORM_VIEW.ACCOUNTS"
-            :accounts="accounts"
-          />
-          <documents
-            v-if="formView === FORM_VIEW.DOCUMENTS"
-            :documents="documents"
-          />
-          <oauth-footer
-            v-if="isFooterVisible"
-            @back="onBack"
-            @clear="onClear"
-          />
         </div>
       </div>
     </div>
@@ -108,26 +68,16 @@
 </template>
 
 <script>
+import VTabs from '@endpass/ui/kit/VTabs';
+import VTab from '@endpass/ui/kit/VTab';
+import VToggle from '@endpass/ui/kit/VToggle';
 import VSpinner from '@endpass/ui/components/VSpinner';
 import FormField from '@/components/common/FormField';
-import OauthFooter from './OauthFooter';
-import Accounts from './Accounts';
-import ErrorNotify from '@/class/ErrorNotify';
+import Requests from '@/components/screen/Oauth/Requests';
 import { connectStore } from '@/store';
-import createOauthController from './OauthController';
-import Documents from '@/components/screen/Oauth/Documents';
-import Email from '@/components/screen/Oauth/Email';
 import LoginCard from '@/components/screen/Oauth/LoginCard';
 
-const FORM_VIEW = {
-  LOADING: 'LOADING',
-  LOGIN: 'LOGIN',
-  ACCOUNTS: 'ACCOUNTS',
-  EMAIL: 'EMAIL',
-  DOCUMENTS: 'DOCUMENTS',
-};
-
-const POPUP_MODES = {
+const OPEN_MODES = {
   IFRAME: 'iframe',
   POPUP: 'popup',
 };
@@ -136,126 +86,62 @@ export default {
   name: 'Oauth',
 
   connectStore,
-  oauthController: createOauthController(),
-  errorNotify: new ErrorNotify(),
 
   data() {
     return {
-      FORM_VIEW,
-      formView: FORM_VIEW.LOGIN,
-      accounts: [],
-      documents: [],
-      user: {},
+      openModeToggle: false,
     };
   },
 
   computed: {
-    isFooterVisible() {
-      return (
-        this.formView !== FORM_VIEW.LOADING && this.formView !== FORM_VIEW.LOGIN
-      );
-    },
-    isLoading() {
-      return this.formView === FORM_VIEW.LOADING;
+    openModeClass() {
+      return this.isIframe ? 'is-success' : 'is-info';
     },
 
-    oauthPopupMode() {
-      const { popupMode = POPUP_MODES.IFRAME } = this.$route.query;
-      return popupMode;
+    openModeTitle() {
+      return this.isIframe
+        ? 'modal (using iframe)'
+        : 'popup (using without iframe)';
+    },
+
+    openMode() {
+      const { openMode = OPEN_MODES.IFRAME } = this.$route.query;
+      return openMode;
+    },
+
+    isIframe() {
+      return this.openMode === OPEN_MODES.IFRAME;
     },
 
     nextMode() {
-      return this.oauthPopupMode === POPUP_MODES.IFRAME
-        ? POPUP_MODES.POPUP
-        : POPUP_MODES.IFRAME;
+      return this.isIframe ? OPEN_MODES.POPUP : OPEN_MODES.IFRAME;
     },
   },
 
   methods: {
-    onBack() {
-      this.formView = FORM_VIEW.LOGIN;
-    },
-
     onSwitchOauthPopup() {
       this.$router.push({
         query: {
-          popupMode: this.nextMode,
+          openMode: this.nextMode,
         },
       });
-    },
-
-    async onGetEmail() {
-      try {
-        this.formView = FORM_VIEW.LOADING;
-
-        this.user = await this.$options.oauthController.getUser();
-
-        this.formView = FORM_VIEW.EMAIL;
-      } catch (e) {
-        this.formView = FORM_VIEW.LOGIN;
-        this.$options.errorNotify.showError({
-          title: 'Get email error',
-          text: e,
-        });
-      }
-    },
-
-    async onGetAccounts() {
-      try {
-        this.formView = FORM_VIEW.LOADING;
-
-        this.accounts = await this.$options.oauthController.getAccountData();
-
-        this.formView = FORM_VIEW.ACCOUNTS;
-      } catch (e) {
-        this.formView = FORM_VIEW.LOGIN;
-        this.$options.errorNotify.showError({
-          title: 'Get accounts error',
-          text: e,
-        });
-      }
-    },
-
-    async onClear() {
-      this.formView = FORM_VIEW.LOADING;
-
-      await this.$options.oauthController.logout();
-
-      this.formView = FORM_VIEW.LOGIN;
-    },
-
-    async onGetDocuments() {
-      try {
-        this.formView = FORM_VIEW.LOADING;
-
-        const { data } = await this.$options.oauthController.getDocuments();
-        this.documents = data;
-
-        this.formView = FORM_VIEW.DOCUMENTS;
-      } catch (e) {
-        this.formView = FORM_VIEW.LOGIN;
-        this.$options.errorNotify.showError({
-          title: 'Get documents error',
-          text: e,
-        });
-      }
     },
   },
 
   async mounted() {
-    const popupMode = this.oauthPopupMode;
+    this.openModeToggle = this.isIframe;
 
     await this.$options.connectStore.initConnect({
-      oauthPopup: popupMode === POPUP_MODES.POPUP,
+      oauthPopup: !this.isIframe,
     });
   },
 
   components: {
+    Requests,
+    VTabs,
+    VTab,
+    VToggle,
     LoginCard,
-    Email,
-    Documents,
-    Accounts,
-    OauthFooter,
     FormField,
     VSpinner,
   },
