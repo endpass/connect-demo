@@ -9,8 +9,8 @@
       </p>
       <v-button
         is-inline
-        :class="{ 'is-primary': !isInvertedColors }"
         data-test="button-mount"
+        :skin="buttonMountSkin"
         @click="toggleButton"
       >
         {{ mountLabel }}
@@ -60,6 +60,9 @@ export default {
     },
     mountLabel() {
       return this.isMounted ? 'Unmount' : 'Mount';
+    },
+    buttonMountSkin() {
+      return this.isInvertedColors ? 'tertiary' : 'primary';
     },
   },
 

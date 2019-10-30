@@ -3,7 +3,7 @@ import { connectStore as connectStoreModule } from '@/store';
 import createController from '@/controllers/createController';
 
 @Module({ generateMutationSetters: true })
-class RequestController extends VuexModule {
+class OauthRequestController extends VuexModule {
   constructor(props, { connectStore = connectStoreModule }) {
     super(props);
     this.connectStore = connectStore;
@@ -57,4 +57,4 @@ class RequestController extends VuexModule {
   }
 }
 
-export default () => createController(RequestController);
+export default () => createController(OauthRequestController);

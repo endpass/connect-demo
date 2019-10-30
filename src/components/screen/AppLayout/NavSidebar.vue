@@ -10,11 +10,7 @@
         <span />
         <span />
       </a>
-      <router-link
-        class="logo logo-icon"
-        to="/"
-        exact
-      >
+      <router-link class="logo logo-icon" to="/" exact>
         <v-logo :is-white="false" />
       </router-link>
     </div>
@@ -22,44 +18,44 @@
     <v-super-menu-section>
       <ul class="nav-sidebar-list">
         <li>
-          <v-super-menu-control
-            icon="permission"
-            :is-active="isActiveRoute('Oauth')"
+          <router-link
+            v-slot="{ isActive, href }"
+            :to="{ name: 'Oauth' }"
+            exact
           >
-            <router-link
-              :to="{ name: 'Oauth' }"
-              active-class="is-active"
-              exact
+            <v-super-menu-control
+              icon="permission"
+              :href="href"
+              :is-active="isActive"
             >
               Oauth
-            </router-link>
-          </v-super-menu-control>
+            </v-super-menu-control>
+          </router-link>
         </li>
         <li>
-          <v-super-menu-control
-            icon="action"
-            :is-active="isActiveRoute('Provider')"
-          >
-            <router-link
-              :to="{ name: 'Provider' }"
-              active-class="is-active"
+          <router-link v-slot="{ isActive, href }" :to="{ name: 'Provider' }">
+            <v-super-menu-control
+              icon="action"
+              :href="href"
+              :is-active="isActive"
             >
               Web3 provider
-            </router-link>
-          </v-super-menu-control>
+            </v-super-menu-control>
+          </router-link>
         </li>
         <li>
-          <v-super-menu-control
-            icon="apps"
-            :is-active="isActiveRoute('CustomElement')"
+          <router-link
+            v-slot="{ isActive, href }"
+            :to="{ name: 'CustomElement' }"
           >
-            <router-link
-              :to="{ name: 'CustomElement' }"
-              active-class="is-active"
+            <v-super-menu-control
+              icon="apps"
+              :href="href"
+              :is-active="isActive"
             >
               Custom element
-            </router-link>
-          </v-super-menu-control>
+            </v-super-menu-control>
+          </router-link>
         </li>
       </ul>
     </v-super-menu-section>
@@ -75,32 +71,13 @@ export default {
   name: 'NavSidebar',
 
   data: () => ({
-    activeRouteName: null,
     navMenuActive: false,
   }),
 
   methods: {
-    isActiveRoute(routeName) {
-      return this.activeRouteName === routeName;
-    },
-
     toggleNavMenu() {
       this.navMenuActive = !this.navMenuActive;
     },
-
-    closeNavMenu() {
-      this.navMenuActive = false;
-    },
-  },
-
-  mounted() {
-    /**
-     * Hack, because layout places upper than router-view component and it can't
-     * react on any changes in computed
-     */
-    this.$router.afterEach(to => {
-      this.activeRouteName = to.name;
-    });
   },
 
   components: {

@@ -18,7 +18,7 @@
             <v-button
               is-inline
               data-test="endpass-sign-in-button"
-              @click="onLogin"
+              @click="handleLogin"
             >
               Open web3 form
             </v-button>
@@ -84,7 +84,7 @@ export default {
   },
 
   methods: {
-    async onLogin() {
+    async handleLogin() {
       this.isLoading = true;
 
       await this.connectStore.login();
@@ -98,7 +98,7 @@ export default {
 
     this.connectStore.bindWidgetEvents();
 
-    await this.onLogin();
+    await this.handleLogin();
   },
 
   components: {

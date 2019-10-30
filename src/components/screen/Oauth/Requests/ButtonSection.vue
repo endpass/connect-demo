@@ -1,7 +1,7 @@
 <template>
   <div class="columns is-vcentered">
     <div class="column is-2">
-      <v-button @click="onClick">
+      <v-button v-on="$listeners">
         {{ buttonLabel }}
       </v-button>
     </div>

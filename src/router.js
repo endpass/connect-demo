@@ -4,15 +4,13 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const OauthComponent = () =>
-  import(/* webpackChunkName: "oauth" */ '@/components/screen/Oauth');
-
 const router = new Router({
   routes: [
     {
       path: '/',
       name: 'Oauth',
-      component: OauthComponent,
+      component: () =>
+        import(/* webpackChunkName: "oauth" */ '@/components/screen/Oauth'),
     },
     {
       path: '/provider',
@@ -29,11 +27,6 @@ const router = new Router({
         import(
           /* webpackChunkName: "custom-element" */ '@/components/screen/CustomElement'
         ),
-    },
-    {
-      path: '/oauth',
-      name: 'OauthDeprecated',
-      component: OauthComponent,
     },
   ],
 });

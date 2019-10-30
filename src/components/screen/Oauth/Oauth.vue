@@ -99,8 +99,7 @@ export default {
     },
 
     openModeTitle() {
-      const mode = this.openMode;
-      return mode === OPEN_MODES.IFRAME
+      return this.isIframe
         ? 'modal (using iframe)'
         : 'popup (using without iframe)';
     },
@@ -115,9 +114,7 @@ export default {
     },
 
     nextMode() {
-      return this.openMode === OPEN_MODES.IFRAME
-        ? OPEN_MODES.POPUP
-        : OPEN_MODES.IFRAME;
+      return this.isIframe ? OPEN_MODES.POPUP : OPEN_MODES.IFRAME;
     },
   },
 
@@ -135,7 +132,7 @@ export default {
     this.openModeToggle = this.isIframe;
 
     await this.$options.connectStore.initConnect({
-      oauthPopup: this.openMode === OPEN_MODES.POPUP,
+      oauthPopup: !this.isIframe,
     });
   },
 
