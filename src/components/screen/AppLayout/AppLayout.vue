@@ -1,5 +1,8 @@
 <template>
-  <div :id="id" class="app-container">
+  <div
+    :id="id"
+    class="app-container"
+  >
     <nav class="app-nav">
       <nav-sidebar />
     </nav>
