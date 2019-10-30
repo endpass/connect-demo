@@ -1,12 +1,5 @@
 <template>
-  <div
-    :id="id"
-    class="app-container"
-  >
-    <header class="app-header">
-      <info-bar class="app-section" />
-    </header>
-
+  <div :id="id" class="app-container">
     <nav class="app-nav">
       <nav-sidebar />
     </nav>
@@ -38,7 +31,6 @@
 
 <script>
 import NavSidebar from '@/components/screen/AppLayout/NavSidebar';
-import InfoBar from '@/components/screen/AppLayout/InfoBar';
 import QuickActions from '@/components/screen/AppLayout/QuickActions';
 import AppFooter from '@/components/screen/AppLayout/AppFooter';
 
@@ -54,7 +46,6 @@ export default {
 
   components: {
     NavSidebar,
-    InfoBar,
     QuickActions,
     AppFooter,
   },

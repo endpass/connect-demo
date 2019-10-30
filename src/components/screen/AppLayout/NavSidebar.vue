@@ -15,24 +15,17 @@
         to="/"
         exact
       >
-        <img
-          src="@/img/logo-light.png"
-          alt="Endpass Wallet"
-        >
+        <v-logo :is-white="false" />
       </router-link>
     </div>
 
-    <div
-      :class="{ 'is-active': navMenuActive }"
-      class="nav-sidebar-content navbar-menu"
-    >
-      <div
-        class="nav-sidebar-item menu"
-        data-test="nav-sidebar-menu"
-        @click="closeNavMenu"
-      >
-        <ul class="menu-list">
-          <li>
+    <v-super-menu-section>
+      <ul class="nav-sidebar-list">
+        <li>
+          <v-super-menu-control
+            icon="permission"
+            :is-active="isActiveRoute('Oauth')"
+          >
             <router-link
               :to="{ name: 'Oauth' }"
               active-class="is-active"
@@ -40,39 +33,57 @@
             >
               Oauth
             </router-link>
-          </li>
-          <li>
+          </v-super-menu-control>
+        </li>
+        <li>
+          <v-super-menu-control
+            icon="action"
+            :is-active="isActiveRoute('Provider')"
+          >
             <router-link
               :to="{ name: 'Provider' }"
               active-class="is-active"
             >
               Web3 provider
             </router-link>
-          </li>
-          <li>
+          </v-super-menu-control>
+        </li>
+        <li>
+          <v-super-menu-control
+            icon="apps"
+            :is-active="isActiveRoute('CustomElement')"
+          >
             <router-link
               :to="{ name: 'CustomElement' }"
               active-class="is-active"
             >
               Custom element
             </router-link>
-          </li>
-        </ul>
-      </div>
-
-      <div class="nav-sidebar-footer" />
-    </div>
+          </v-super-menu-control>
+        </li>
+      </ul>
+    </v-super-menu-section>
   </div>
 </template>
 
 <script>
+import VLogo from '@endpass/ui/kit/VLogo';
+import VSuperMenuSection from '@endpass/ui/kit/VSuperMenuSection';
+import VSuperMenuControl from '@endpass/ui/kit/VSuperMenuControl';
+
 export default {
   name: 'NavSidebar',
+
   data: () => ({
+    activeRouteName: null,
     navMenuActive: false,
   }),
 
   methods: {
+    isActiveRoute(routeName) {
+      return this.activeRouteName === routeName;
+    },
+
     toggleNavMenu() {
       this.navMenuActive = !this.navMenuActive;
     },
@@ -80,6 +91,22 @@ export default {
     closeNavMenu() {
       this.navMenuActive = false;
     },
+  },
+
+  mounted() {
+    /**
+     * Hack, because layout places upper than router-view component and it can't
+     * react on any changes in computed
+     */
+    this.$router.afterEach(to => {
+      this.activeRouteName = to.name;
+    });
+  },
+
+  components: {
+    VLogo,
+    VSuperMenuSection,
+    VSuperMenuControl,
   },
 };
 </script>
@@ -91,48 +118,12 @@ export default {
   display: grid;
   grid-template-rows: auto 1fr;
 
-  .nav-sidebar-item.menu {
-    width: 100%;
-    padding: 0;
-
-    .menu-list {
-      font-family: $heading-font-family;
-      font-size: 1.2em;
-      width: 100%;
-
-      a.is-active {
-        background-color: $purple;
-      }
-    }
-
-    a.is-active .icon svg {
-      fill: $white;
-    }
-  }
-
-  .nav-sidebar-item {
-    display: block;
-    padding: 0.5em 0.75em;
-  }
-
-  .buttons .button {
-    margin-right: 0.5em;
-  }
-
-  .menu-label {
-    padding: 0 0.75em;
-  }
-
   .nav-sidebar-header {
     display: flex;
     align-items: center;
     justify-content: space-around;
     height: 74px;
-    padding: 0.5rem;
-
-    .logo {
-      flex: 1;
-    }
+    padding: 16px;
   }
 
   .navbar-burger {
@@ -143,15 +134,17 @@ export default {
       height: 3px;
     }
   }
+}
 
-  .nav-sidebar-content {
-    flex-direction: column;
-    align-items: center;
-  }
+.nav-sidebar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 78px;
+}
 
-  .network-options {
-    //background-color: $dark-blue;
-    //color: $white;
-  }
+.nav-sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 </style>
