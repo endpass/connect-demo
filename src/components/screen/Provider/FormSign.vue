@@ -1,5 +1,8 @@
 <template>
   <section class="content">
+    <p class="subtitle">
+      Check sign and recover messages by web3 account
+    </p>
     <form-field label="Data">
       <div class="columns">
         <div class="column is-one-quarter">
@@ -24,34 +27,31 @@
     <form-field label="Sign & Recover">
       <div class="columns">
         <div class="column is-narrow">
-          <button
-            class="button is-primary"
+          <v-button
             :disabled="!canSign"
             data-test="endpass-form-sign-button"
             @click="onWeb3EthSign"
           >
             web3.eth.sign
-          </button>
+          </v-button>
         </div>
         <div class="column is-narrow">
-          <button
-            class="button is-primary"
+          <v-button
             :disabled="!canSign"
             data-test="endpass-form-personal-sign-button"
             @click="onWeb3PersonalSign"
           >
             web3.eth.personal.sign
-          </button>
+          </v-button>
         </div>
         <div class="column is-narrow">
-          <button
-            class="button is-primary"
+          <v-button
             :disabled="!signature"
             data-test="endpass-form-personal-recover-button"
             @click="onWeb3PersonRecover"
           >
             web3.eth.personal.ecRecover
-          </button>
+          </v-button>
         </div>
       </div>
     </form-field>
@@ -59,26 +59,28 @@
 </template>
 
 <script>
-import VTextarea from '@endpass/ui/components/VTextarea';
+import VButton from '@endpass/ui/kit/VButton';
+import VTextarea from '@endpass/ui/kit/VTextarea';
 import { web3Store, connectStore } from '@/store';
-import FormField from '@/components/common/FormField.vue';
+import FormField from '@/components/common/FormField';
 import ErrorNotify from '@/class/ErrorNotify';
 
 export default {
   name: 'FormSign',
 
+  errorNotify: new ErrorNotify(),
+  connectStore,
+
   data() {
     return {
       fromMessage: '',
       signature: '',
-      errorNotify: new ErrorNotify(),
-      connectStore,
     };
   },
 
   computed: {
     hasActiveAccount() {
-      return !!this.connectStore.basicActiveAccount;
+      return !!this.$options.connectStore.basicActiveAccount;
     },
 
     canSign() {
@@ -90,11 +92,11 @@ export default {
     async onWeb3EthSign() {
       try {
         this.signature = await web3Store.EthSign({
-          from: this.connectStore.basicActiveAccount,
+          from: this.$options.connectStore.basicActiveAccount,
           message: this.fromMessage,
         });
       } catch (e) {
-        this.errorNotify.showError({
+        this.$options.errorNotify.showError({
           title: 'Web3 ETH Sign error',
           text: e,
         });
@@ -104,11 +106,11 @@ export default {
     async onWeb3PersonalSign() {
       try {
         this.signature = await web3Store.EthPersonalSign({
-          from: this.connectStore.basicActiveAccount,
+          from: this.$options.connectStore.basicActiveAccount,
           message: this.fromMessage,
         });
       } catch (e) {
-        this.errorNotify.showError({
+        this.$options.errorNotify.showError({
           title: 'Personal Web3 ETH Sign error',
           text: e,
         });
@@ -121,12 +123,12 @@ export default {
           message: this.fromMessage,
           signature: this.signature,
         });
-        this.errorNotify.showWarn({
+        this.$options.errorNotify.showWarn({
           title: 'Recovered!',
           text: recoveredText,
         });
       } catch (e) {
-        this.errorNotify.showError({
+        this.$options.errorNotify.showError({
           title: 'Personal Web3 ETH Recover error',
           text: e,
         });
@@ -135,6 +137,7 @@ export default {
   },
 
   components: {
+    VButton,
     VTextarea,
     FormField,
   },

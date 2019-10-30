@@ -3,11 +3,13 @@
     <div class="section">
       <div class="card">
         <div class="card-content">
-          <div class="is-inline-block">
-            <v-button data-test="endpass-sign-in-button" @click="onOpen">
-              Open account
-            </v-button>
-          </div>
+          <v-button
+            is-inline
+            data-test="endpass-sign-in-button"
+            @click="onOpen"
+          >
+            Open account
+          </v-button>
           <div id="endpass-form" />
         </div>
       </div>

@@ -1,51 +1,64 @@
 <template>
   <section class="content">
-    <form-field label="Generate wallet">
-      <div class="columns">
-        <div class="column is-narrow">
-          <button
-            class="button is-primary"
-            data-test="generate-wallet-button"
-            @click="onGenerate"
-          >
-            Generate wallet account
-          </button>
-        </div>
-        <div class="column">
-          <v-textarea
-            v-model="walletData"
-            readonly
-            placeholder="generated wallet data..."
-          />
-        </div>
+    <p class="subtitle">
+      Just generate new wallet account
+    </p>
+    <div class="columns">
+      <div class="column is-narrow">
+        <v-button
+          is-inline
+          data-test="generate-wallet-button"
+          @click="onGenerate"
+        >
+          Generate
+        </v-button>
       </div>
-    </form-field>
+      <div class="column">
+        <v-textarea
+          v-model="walletData"
+          readonly
+          placeholder="generated wallet data..."
+        />
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
+import VButton from '@endpass/ui/kit/VButton';
+import VTextarea from '@endpass/ui/kit/VTextarea';
 import { connectStore } from '@/store';
-import FormField from '@/components/common/FormField.vue';
+import ErrorNotify from '@/class/ErrorNotify';
 
 export default {
   name: 'CreateWallet',
 
+  errorNotify: new ErrorNotify(),
+  connectStore,
+
   data() {
     return {
-      connectStore,
       walletData: '',
     };
   },
 
   methods: {
     async onGenerate() {
-      const data = await this.connectStore.generateWallet();
-      this.walletData = JSON.stringify(data);
+      try {
+        const data = await this.$options.connectStore.generateWallet();
+        this.walletData = JSON.stringify(data);
+      } catch (e) {
+        this.$options.errorNotify.showError({
+          title: 'Wallet generate error',
+          text: e,
+        });
+      }
     },
   },
 
   components: {
-    FormField,
+    VButton,
+    VTextarea,
   },
 };
 </script>

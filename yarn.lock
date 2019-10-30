@@ -1335,14 +1335,15 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@endpass/class@^0.18.11":
-  version "0.18.11"
-  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.18.11.tgz#b7c6e596ba8972c5e223ceea0c9c1ad45c310ddc"
-  integrity sha512-wiVzfB08BJ7gUkfUo/eSwDFfWO4JZdz3rgRtR/5hXbwMnLWciMD4neq/mUmBmq2z9Ix5SfOQn1UVEjuJmuiWhA==
+"@endpass/class@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.19.0.tgz#9500a5649cac1ccef118e8a19684ce8d9a6c0c65"
+  integrity sha512-gb/QoDi8fon8kv5g3eZNpasfbHONl5uVA4qvTsHPaBeKVbsCaiMTvsfmWrWlCvHtuN3mbSKLmkkcVriA317uEw==
   dependencies:
     "@endpass/utils" "^1.8.3"
     "@ledgerhq/hw-app-eth" "^4.24.0"
     "@ledgerhq/hw-transport-u2f" "^4.24.0"
+    axios "^0.19.0"
     bignumber.js "^7.2.1"
     dexie "^2.0.4"
     eth-ens-namehash "^2.0.8"
@@ -1357,35 +1358,13 @@
     web3-providers-ws "1.0.0-beta.37"
     web3-utils "1.0.0-beta.55"
 
-"@endpass/class@^0.18.14":
-  version "0.18.14"
-  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.18.14.tgz#4c27f69809cf6cfb911e1232ce369105ea5b3f29"
-  integrity sha512-1tjw9Tx4mREiFw8EMNoZephYp/D+Lq6WGPLSWk94Z4GGi08JDHtRF4+TQyhZGcVp0upo1bCbnkejjN6zMa1b1A==
+"@endpass/connect@^0.29.0-beta":
+  version "0.29.0-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.29.0-beta.tgz#2bef2b62cd8557f8e8dfc8fc92fd37c1cb6ab20a"
+  integrity sha512-wgyrNk8a0XhtUyVj6PbSQK7McKemMRFtxrylm2jLG29E8GQr/OmVmTY66hCtbeLahSsW+ztBccDp2Xb3UIDqLQ==
   dependencies:
-    "@endpass/utils" "^1.8.3"
-    "@ledgerhq/hw-app-eth" "^4.24.0"
-    "@ledgerhq/hw-transport-u2f" "^4.24.0"
-    bignumber.js "^7.2.1"
-    dexie "^2.0.4"
-    eth-ens-namehash "^2.0.8"
-    eth-lib "^0.2.8"
-    ethereumjs-tx "^1.3.4"
-    ethereumjs-wallet "^0.6.0"
-    lodash "^4.17.15"
-    path-to-regexp "^2.4.0"
-    trezor-connect "^6.0.0"
-    web3-providers-http "1.0.0-beta.37"
-    web3-providers-ipc "1.0.0-beta.37"
-    web3-providers-ws "1.0.0-beta.37"
-    web3-utils "1.0.0-beta.55"
-
-"@endpass/connect@^0.28.14-beta":
-  version "0.28.14-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.28.14-beta.tgz#fb728522521fb4d34b8cf1d6d17832afbb9fdd6a"
-  integrity sha512-gZgpczamgOQBwiGFE0JQ2KW63gEE4aXbtEIocf9u6/4TR1LqFvbMefSLTL+CCuGwjIinqoAzsmPYFn04h7Q81g==
-  dependencies:
-    "@endpass/class" "^0.18.11"
-    "@endpass/utils" "^1.8.3"
+    "@endpass/class" "^0.19.0"
+    "@endpass/utils" "^1.8.6"
     axios "^0.19.0"
     axios-token-interceptor "^0.1.0"
     callbag-basics "^3.1.0"
@@ -1398,7 +1377,7 @@
     callbag-tap "^1.3.0"
     lodash.debounce "^4.0.8"
     lodash.get "^4.4.2"
-    utility-types "^3.8.0"
+    utility-types "^3.9.0"
     web3-providers-http "1.0.0-beta.33"
 
 "@endpass/e2e-utils@^0.6.0":
@@ -1422,10 +1401,10 @@
     eslint-plugin-prettier "^3.1.1"
     eslint-plugin-vue "^5.2.3"
 
-"@endpass/ui@^0.15.59":
-  version "0.15.59"
-  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.15.59.tgz#03d6c9de15dba2b49e865c90bd185e9dd5669865"
-  integrity sha512-OIt7o/bYYVZ5rTB0EnHkGv7sc4ipNq8Gab3fHIvmfzlpZwIaNLo4LrVStJ9PfjgiQIYo49APWR9itJoqCPUR+A==
+"@endpass/ui@^0.15.60":
+  version "0.15.60"
+  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.15.60.tgz#6ad473f7eda60a606705a54ef014a3a1701c3470"
+  integrity sha512-Qk+O5b2YskMtNC3OCcFKt9cB1tngHC80AV1NpuQLIiN5WyikzpKc/L4hh41fUFMd/rGO3+92iHCKN99HrW5FCA==
   dependencies:
     "@endpass/utils" "^1.8.2"
     vue "^2.5.21"
@@ -13903,11 +13882,6 @@ utila@^0.4.0, utila@~0.4:
   resolved "https://registry.yarnpkg.com/utila/-/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
 
-utility-types@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.8.0.tgz#eaae1c2520c206b5623a4f07af38e3aa31dc2f06"
-  integrity sha512-UoKivAmVw5TL6AHuILieOJjIK9ajS0l5gyN5LbJglPuVwzfYBniDhe+3A5+ZBtS0TAHQs5qUxTwj9jXurINrcw==
-
 utility-types@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.9.0.tgz#c322d974e7062ec967077384c3b75077a955d83b"
@@ -14069,15 +14043,15 @@ vue-loader@^15.7.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-notification@^1.3.16:
-  version "1.3.16"
-  resolved "https://registry.yarnpkg.com/vue-notification/-/vue-notification-1.3.16.tgz#b2eca3416a94a46e35aa2516710a0fcd2c8515ea"
-  integrity sha512-ZL57GcyeAnJK5ItWWkZ3+wcf3OlLFs9WIukxXwJBSIzIXUlXXxXzeVkZrhUf3Q/FkbWWAYRmzKXXP742ZiyxOw==
+vue-notification@^1.3.19:
+  version "1.3.19"
+  resolved "https://registry.yarnpkg.com/vue-notification/-/vue-notification-1.3.19.tgz#0588eb56d6564e5becdc9b520a9e5743ff887348"
+  integrity sha512-iksi/PyJRVkCNu4p+iMWI/dDlfGKcQJG+7jAimm420dBilrG+XPKf7GhDsNK36lxZ0whQGxydmhINUhF1Ans3w==
 
-vue-router@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
-  integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
+vue-router@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.3.tgz#e6b14fabc0c0ee9fda0e2cbbda74b350e28e412b"
+  integrity sha512-8iSa4mGNXBjyuSZFCCO4fiKfvzqk+mhL0lnKuGcQtO1eoj8nq3CmbEG8FwK5QqoqwDgsjsf1GDuisDX4cdb/aQ==
 
 vue-style-loader@^4.1.0:
   version "4.1.2"

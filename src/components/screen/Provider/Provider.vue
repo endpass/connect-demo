@@ -16,6 +16,7 @@
               Please open web3 form to continue...
             </div>
             <v-button
+              is-inline
               data-test="endpass-sign-in-button"
               @click="onLogin"
             >
@@ -27,10 +28,32 @@
             data-test="endpass-form"
           >
             <form-info />
-            <form-sign />
-            <form-transaction />
-            <generate-wallet />
-            <form-widget />
+            <v-tabs>
+              <v-tab
+                data-test="endpass-provider-sign-tab"
+                label="Sign"
+              >
+                <form-sign />
+              </v-tab>
+              <v-tab
+                data-test="endpass-provider-transactions-tab"
+                label="Transactions"
+              >
+                <form-transaction />
+              </v-tab>
+              <v-tab
+                data-test="endpass-provider-wallet-tab"
+                label="Wallet"
+              >
+                <generate-wallet />
+              </v-tab>
+              <v-tab
+                data-test="endpass-provider-widget-tab"
+                label="Widget"
+              >
+                <form-widget />
+              </v-tab>
+            </v-tabs>
           </div>
         </div>
       </div>
@@ -39,7 +62,9 @@
 </template>
 
 <script>
-import VButton from '@endpass/ui/components/VButton';
+import VTabs from '@endpass/ui/kit/VTabs';
+import VTab from '@endpass/ui/kit/VTab';
+import VButton from '@endpass/ui/kit/VButton';
 import VSpinner from '@endpass/ui/components/VSpinner';
 import { connectStore } from '@/store';
 import FormInfo from '@/components/screen/Provider/FormInfo';
@@ -49,7 +74,7 @@ import FormTransaction from '@/components/screen/Provider/FormTransaction';
 import FormWidget from '@/components/screen/Provider/FormWidget';
 
 export default {
-  name: 'Basic',
+  name: 'Provider',
   data() {
     return {
       connectStore,
@@ -77,6 +102,8 @@ export default {
   },
 
   components: {
+    VTabs,
+    VTab,
     FormWidget,
     FormTransaction,
     FormSign,

@@ -7,15 +7,14 @@
       <p class="subtitle">
         <slot />
       </p>
-      <div class="is-inline-block">
-        <v-button
-          :class="{ 'is-primary': !isInvertedColors }"
-          data-test="button-mount"
-          @click="toggleButton"
-        >
-          {{ mountLabel }}
-        </v-button>
-      </div>
+      <v-button
+        is-inline
+        :class="{ 'is-primary': !isInvertedColors }"
+        data-test="button-mount"
+        @click="toggleButton"
+      >
+        {{ mountLabel }}
+      </v-button>
       <div
         :id="elementId"
         class="button-root"

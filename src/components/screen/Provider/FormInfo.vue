@@ -22,22 +22,23 @@
         </p>
         <div class="columns">
           <div class="column is-narrow">
-            <button
-              class="button is-primary"
+            <v-button
+              is-inline
               data-test="endpass-form-open-account"
               @click="onOpenAccount"
             >
               Open Account
-            </button>
+            </v-button>
           </div>
           <div class="column is-narrow">
-            <button
-              class="button is-danger"
+            <v-button
+              is-inline
+              skin="error"
               data-test="endpass-form-sign-out-button"
               @click="onLogout"
             >
               Sign out
-            </button>
+            </v-button>
           </div>
         </div>
       </div>
@@ -46,6 +47,7 @@
 </template>
 
 <script>
+import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
@@ -63,8 +65,18 @@ export default {
     },
 
     async onLogout() {
+      // eslint-disable-next-line no-alert
+      const res = window.confirm('Are you sure want to logout?');
+      if (!res) {
+        return;
+      }
+
       await this.connectStore.logout();
     },
+  },
+
+  components: {
+    VButton,
   },
 };
 </script>

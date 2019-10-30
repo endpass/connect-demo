@@ -48,7 +48,7 @@
 import VSpinner from '@endpass/ui/components/VSpinner';
 import ErrorNotify from '@/class/ErrorNotify';
 import { connectStore } from '@/store';
-import createOauthController from './RequestController';
+import createRequestController from './RequestController';
 import OauthFooter from '@/components/screen/Oauth/Requests/OauthFooter';
 import Accounts from '@/components/screen/Oauth/Requests/Accounts';
 import Documents from '@/components/screen/Oauth/Requests/Documents';
@@ -67,7 +67,7 @@ export default {
   name: 'Requests',
 
   connectStore,
-  oauthController: createOauthController(),
+  requestController: createRequestController(),
   errorNotify: new ErrorNotify(),
 
   data() {
@@ -106,7 +106,7 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        this.user = await this.$options.oauthController.getUser();
+        this.user = await this.$options.requestController.getUser();
 
         this.formView = FORM_VIEW.EMAIL;
       } catch (e) {
@@ -122,7 +122,7 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        this.accounts = await this.$options.oauthController.getAccountData();
+        this.accounts = await this.$options.requestController.getAccountData();
 
         this.formView = FORM_VIEW.ACCOUNTS;
       } catch (e) {
@@ -137,7 +137,7 @@ export default {
     async onClear() {
       this.formView = FORM_VIEW.LOADING;
 
-      await this.$options.oauthController.logout();
+      await this.$options.requestController.logout();
 
       this.formView = FORM_VIEW.LOGIN;
     },
@@ -146,7 +146,7 @@ export default {
       try {
         this.formView = FORM_VIEW.LOADING;
 
-        const { data } = await this.$options.oauthController.getDocuments();
+        const { data } = await this.$options.requestController.getDocuments();
         this.documents = data;
 
         this.formView = FORM_VIEW.DOCUMENTS;

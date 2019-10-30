@@ -33,7 +33,7 @@
             </form-field>
             <v-tabs>
               <v-tab
-                label="Requests examples"
+                label="Requests"
                 data-test="endpass-oauth-requests-tab"
               >
                 <p class="subtitle">
