@@ -28,6 +28,14 @@ const router = new Router({
           /* webpackChunkName: "custom-element" */ '@/components/screen/CustomElement'
         ),
     },
+    {
+      path: '/examples',
+      name: 'Examples',
+      component: () =>
+        import(
+          /* webpackChunkName: "examples" */ '@/components/screen/Examples'
+        ),
+    },
   ],
 });
 
