@@ -45,6 +45,10 @@ export default {
   margin-right: 20px;
 }
 
+.code-example > *:first-child {
+  overflow-x: auto;
+}
+
 .code-example-source code {
   white-space: pre;
   padding: 0;

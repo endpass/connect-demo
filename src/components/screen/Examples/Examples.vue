@@ -18,11 +18,17 @@ import Oauth from './Oauth.vue';
 // eslint-disable-next-line
 import RawOauth from '!!raw-loader!./Oauth.vue';
 
+const applyEnvToSources = source =>
+  Object.keys(ENV).reduce(
+    (acc, key) => acc.replace(new RegExp(`ENV.${key}`, 'im'), `'${ENV[key]}'`),
+    source,
+  );
+
 export default {
   data: () => ({
     examples: {
       RawOauth: {
-        source: RawOauth,
+        source: applyEnvToSources(RawOauth),
         component: Oauth,
       },
     },
