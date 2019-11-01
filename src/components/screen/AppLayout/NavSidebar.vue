@@ -10,7 +10,11 @@
         <span />
         <span />
       </a>
-      <router-link class="logo logo-icon" to="/" exact>
+      <router-link
+        class="logo logo-icon"
+        to="/"
+        exact
+      >
         <v-logo :is-white="false" />
       </router-link>
     </div>
@@ -33,7 +37,10 @@
           </router-link>
         </li>
         <li>
-          <router-link v-slot="{ isActive, href }" :to="{ name: 'Provider' }">
+          <router-link
+            v-slot="{ isActive, href }"
+            :to="{ name: 'Provider' }"
+          >
             <v-super-menu-control
               icon="action"
               :href="href"
@@ -54,6 +61,20 @@
               :is-active="isActive"
             >
               Custom element
+            </v-super-menu-control>
+          </router-link>
+        </li>
+        <li>
+          <router-link
+            v-slot="{ isActive, href }"
+            :to="{ name: 'Examples' }"
+          >
+            <v-super-menu-control
+              icon="menu"
+              :href="href"
+              :is-active="isActive"
+            >
+              Examples
             </v-super-menu-control>
           </router-link>
         </li>
