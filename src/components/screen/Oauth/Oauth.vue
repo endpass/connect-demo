@@ -5,10 +5,7 @@
       data-test="endpass-app-loader"
       label="Please wait, oauth usage is loading..."
     />
-    <div
-      v-if="isInited"
-      class="section"
-    >
+    <div v-if="isInited" class="section">
       <div class="card">
         <div class="card-content">
           <div>
@@ -21,10 +18,7 @@
                 >
                   <div class="tags has-addons">
                     <span class="tag">OAuth open mode</span>
-                    <span
-                      class="tag"
-                      :class="openModeClass"
-                    >{{
+                    <span class="tag" :class="openModeClass">{{
                       openModeTitle
                     }}</span>
                   </div>
@@ -32,15 +26,12 @@
               </div>
             </form-field>
             <v-tabs>
-              <v-tab
-                label="Requests"
-                data-test="endpass-oauth-requests-tab"
-              >
+              <v-tab label="Requests" data-test="endpass-oauth-requests-tab">
                 <p class="subtitle">
                   Each button can do request to oauth server with different
                   scopes
                 </p>
-                <requests @loading="onLoadingRequest" />
+                <requests :is-loading.sync="isLoadingRequest" />
               </v-tab>
               <v-tab
                 label="SignIn button"

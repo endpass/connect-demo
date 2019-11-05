@@ -7,7 +7,7 @@
       @documents="onGetDocuments"
     />
     <oauth-footer
-      v-if="!!currentForm"
+      v-else
       @back="onBack"
       @clear="onClear"
     />
@@ -42,7 +42,6 @@ export default {
       currentForm: null,
       currentData: null,
       openModeToggle: false,
-      isLoading: false,
     };
   },
 
@@ -60,15 +59,18 @@ export default {
       });
     },
 
-    handleLoading(state) {
-      this.isLoading = state;
-      this.$emit('loading', state);
+    startLoading() {
+      this.$emit('update:is-loading', true);
+      this.currentForm = null;
+    },
+
+    stopLoading() {
+      this.$emit('update:is-loading', false);
     },
 
     async onGetEmail() {
       try {
-        this.handleLoading(true);
-        this.currentForm = null;
+        this.startLoading();
         this.currentData = await this.$options.oauthRequestController.getUser();
         this.currentForm = Email;
       } catch (e) {
@@ -77,13 +79,13 @@ export default {
           text: e,
         });
       } finally {
-        this.handleLoading(false);
+        this.stopLoading();
       }
     },
 
     async onGetAccounts() {
       try {
-        this.handleLoading(true);
+        this.startLoading();
         this.currentForm = null;
         this.currentData = await this.$options.oauthRequestController.getAccountData();
         this.currentForm = Accounts;
@@ -93,23 +95,23 @@ export default {
           text: e,
         });
       } finally {
-        this.handleLoading(false);
+        this.stopLoading();
       }
     },
 
     async onClear() {
       this.currentForm = null;
       this.currentData = null;
-      this.handleLoading(true);
+      this.startLoading();
 
       await this.$options.oauthRequestController.logout();
 
-      this.handleLoading(false);
+      this.stopLoading();
     },
 
     async onGetDocuments() {
       try {
-        this.handleLoading(true);
+        this.startLoading();
         this.currentForm = null;
 
         const {
@@ -123,7 +125,7 @@ export default {
           text: e,
         });
       } finally {
-        this.handleLoading(false);
+        this.stopLoading();
       }
     },
   },
