@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@endpass/class": "^0.19.0",
-    "@endpass/connect": "^0.29.0-beta",
+    "@endpass/connect": "^0.29.1-beta",
     "@endpass/e2e-utils": "^0.6.0",
     "@endpass/ui": "^0.15.60",
     "@endpass/utils": "^1.8.6",

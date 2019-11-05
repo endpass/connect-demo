@@ -1358,13 +1358,36 @@
     web3-providers-ws "1.0.0-beta.37"
     web3-utils "1.0.0-beta.55"
 
-"@endpass/connect@^0.29.0-beta":
-  version "0.29.0-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.29.0-beta.tgz#2bef2b62cd8557f8e8dfc8fc92fd37c1cb6ab20a"
-  integrity sha512-wgyrNk8a0XhtUyVj6PbSQK7McKemMRFtxrylm2jLG29E8GQr/OmVmTY66hCtbeLahSsW+ztBccDp2Xb3UIDqLQ==
+"@endpass/class@^0.19.2":
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.19.2.tgz#852fbe7207b7a08cf8af0f50a709c2f611a36837"
+  integrity sha512-/MNXx8+vVysfpYUIyXuvj/7Z89zkgqzBSggHLEGH7Tw5s9bTxqh2nLX/cPIXXOx2F3/7ek0fnqheTaTEwo+L6Q==
   dependencies:
-    "@endpass/class" "^0.19.0"
-    "@endpass/utils" "^1.8.6"
+    "@endpass/utils" "^1.8.3"
+    "@ledgerhq/hw-app-eth" "^4.24.0"
+    "@ledgerhq/hw-transport-u2f" "^4.24.0"
+    axios "^0.19.0"
+    bignumber.js "^7.2.1"
+    dexie "^2.0.4"
+    eth-ens-namehash "^2.0.8"
+    eth-lib "^0.2.8"
+    ethereumjs-tx "^1.3.4"
+    ethereumjs-wallet "^0.6.0"
+    lodash "^4.17.15"
+    path-to-regexp "^2.4.0"
+    trezor-connect "^6.0.0"
+    web3-providers-http "1.0.0-beta.37"
+    web3-providers-ipc "1.0.0-beta.37"
+    web3-providers-ws "1.0.0-beta.37"
+    web3-utils "1.0.0-beta.55"
+
+"@endpass/connect@^0.29.1-beta":
+  version "0.29.1-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.29.1-beta.tgz#c293bd66942c605343447e3217afa0de2881c106"
+  integrity sha512-6rp/Ze21rGYFBM1XIrTFkD4NhKmegf9iDGVIlZCRIxKmXIpMgch6emU7N1fnb9Fe616qQlCeoGjN1K67b5gPtw==
+  dependencies:
+    "@endpass/class" "^0.19.2"
+    "@endpass/utils" "^1.8.7"
     axios "^0.19.0"
     axios-token-interceptor "^0.1.0"
     callbag-basics "^3.1.0"
@@ -1445,6 +1468,22 @@
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/@endpass/utils/-/utils-1.8.6.tgz#ebf6e0f5f111749649db5c7beedce165bc40c3b2"
   integrity sha512-hA13wGMIMU8Z/OeE/ZNMpNRXXGChUcR0wxB8Aj8tNiAjwGqv7UcqqtI/xaI53gEcWPa9tshmFnqOXJUuNSDIkA==
+  dependencies:
+    bip39 "^3.0.2"
+    bs58check "^2.1.2"
+    dayjs "^1.8.16"
+    eth-ecies "^1.0.3"
+    ethereumjs-wallet "^0.6.3"
+    export-files "^2.1.1"
+    keythereum "^1.0.4"
+    lodash "^4.17.15"
+    node-notifier "^5.4.3"
+    secp256k1 "^3.7.1"
+
+"@endpass/utils@^1.8.7":
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/@endpass/utils/-/utils-1.8.7.tgz#c8ff41d9e7d778391b79ab3ab09cb7eee92fc48b"
+  integrity sha512-xm57jcEQVtvqabkkxYivrihSEG4xHezTtz841sgmOen+8A2UjZW6r00u1bnijdDx1m1Ua9aLePNGvn2DzPDjpQ==
   dependencies:
     bip39 "^3.0.2"
     bs58check "^2.1.2"
