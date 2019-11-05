@@ -61,6 +61,7 @@ export default {
 
     startLoading() {
       this.$emit('update:is-loading', true);
+      this.currentData = null;
       this.currentForm = null;
     },
 
@@ -86,7 +87,6 @@ export default {
     async onGetAccounts() {
       try {
         this.startLoading();
-        this.currentForm = null;
         this.currentData = await this.$options.oauthRequestController.getAccountData();
         this.currentForm = Accounts;
       } catch (e) {
@@ -100,8 +100,6 @@ export default {
     },
 
     async onClear() {
-      this.currentForm = null;
-      this.currentData = null;
       this.startLoading();
 
       await this.$options.oauthRequestController.logout();
@@ -112,8 +110,6 @@ export default {
     async onGetDocuments() {
       try {
         this.startLoading();
-        this.currentForm = null;
-
         const {
           data,
         } = await this.$options.oauthRequestController.getDocuments();
