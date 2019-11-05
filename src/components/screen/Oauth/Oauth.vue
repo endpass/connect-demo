@@ -1,14 +1,11 @@
 <template>
   <div class="home">
     <v-spinner
-      v-if="!$options.connectStore.isInited"
+      v-if="isLoading"
       data-test="endpass-app-loader"
       label="Please wait, oauth usage is loading..."
     />
-    <div
-      v-else
-      class="section"
-    >
+    <div v-if="isInited" class="section">
       <div class="card">
         <div class="card-content">
           <div>
@@ -21,10 +18,7 @@
                 >
                   <div class="tags has-addons">
                     <span class="tag">OAuth open mode</span>
-                    <span
-                      class="tag"
-                      :class="openModeClass"
-                    >{{
+                    <span class="tag" :class="openModeClass">{{
                       openModeTitle
                     }}</span>
                   </div>
@@ -32,15 +26,12 @@
               </div>
             </form-field>
             <v-tabs>
-              <v-tab
-                label="Requests"
-                data-test="endpass-oauth-requests-tab"
-              >
+              <v-tab label="Requests" data-test="endpass-oauth-requests-tab">
                 <p class="subtitle">
                   Each button can do request to oauth server with different
                   scopes
                 </p>
-                <requests />
+                <requests @loading="onLoadingRequest" />
               </v-tab>
               <v-tab
                 label="SignIn button"
@@ -89,11 +80,20 @@ export default {
 
   data() {
     return {
+      isLoadingRequest: false,
       openModeToggle: false,
     };
   },
 
   computed: {
+    isInited() {
+      return this.$options.connectStore.isInited;
+    },
+
+    isLoading() {
+      return !this.isInited || this.isLoadingRequest;
+    },
+
     openModeClass() {
       return this.isIframe ? 'is-success' : 'is-info';
     },
@@ -119,6 +119,10 @@ export default {
   },
 
   methods: {
+    onLoadingRequest(state) {
+      this.isLoadingRequest = state;
+    },
+
     onSwitchOauthPopup() {
       this.$router.push({
         query: {
@@ -130,7 +134,6 @@ export default {
 
   async mounted() {
     this.openModeToggle = this.isIframe;
-
     await this.$options.connectStore.initConnect({
       oauthPopup: !this.isIframe,
     });

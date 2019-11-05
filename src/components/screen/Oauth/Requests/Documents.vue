@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <ul
-        v-for="doc in documents"
+        v-for="doc in data"
         :key="doc.id"
         data-test="endpass-oauth-documents-list"
       >
@@ -22,7 +22,7 @@ export default {
   name: 'Documents',
 
   props: {
-    documents: {
+    data: {
       type: Array,
       default: () => [],
     },
