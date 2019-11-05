@@ -25,7 +25,7 @@ export default {
     async onClickRequestButton() {
       const { data } = await connect.request({
         method: 'GET',
-        url: `${ENV.VUE_APP_ENDPASS_API_URL}/user`,
+        url: `${ENV.VUE_APP_OAUTH_SERVER}/user`,
         scopes: ['user:email:read'],
       });
       this.email = data.email;

@@ -1,10 +1,10 @@
 <template>
   <div class="code-example">
     <div class="code-example-source">
-      <code v-html="renderedSource"></code>
+      <code v-html="renderedSource" />
     </div>
     <div class="code-example-preview">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

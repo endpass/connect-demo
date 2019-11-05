@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <v-spinner
-      v-if="!$options.connectStore.isInited"
+      v-if="isLoading"
       data-test="endpass-app-loader"
       label="Please wait, oauth usage is loading..."
     />
     <div
-      v-else
+      v-if="isInited"
       class="section"
     >
       <div class="card">
@@ -40,7 +40,7 @@
                   Each button can do request to oauth server with different
                   scopes
                 </p>
-                <requests />
+                <requests :is-loading.sync="isLoadingRequest" />
               </v-tab>
               <v-tab
                 label="SignIn button"
@@ -89,11 +89,20 @@ export default {
 
   data() {
     return {
+      isLoadingRequest: false,
       openModeToggle: false,
     };
   },
 
   computed: {
+    isInited() {
+      return this.$options.connectStore.isInited;
+    },
+
+    isLoading() {
+      return !this.isInited || this.isLoadingRequest;
+    },
+
     openModeClass() {
       return this.isIframe ? 'is-success' : 'is-info';
     },
@@ -130,7 +139,6 @@ export default {
 
   async mounted() {
     this.openModeToggle = this.isIframe;
-
     await this.$options.connectStore.initConnect({
       oauthPopup: !this.isIframe,
     });

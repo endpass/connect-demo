@@ -1,45 +1,19 @@
 <template>
   <div>
-    <v-spinner
-      v-if="formView === FORM_VIEW.LOADING"
-      data-test="endpass-request-loader"
+    <buttons-list
+      v-if="!currentForm"
+      @accounts="onGetAccounts"
+      @email="onGetEmail"
+      @documents="onGetDocuments"
     />
     <oauth-footer
-      v-else-if="isFooterVisible"
+      v-else
       @back="onBack"
       @clear="onClear"
     />
-    <div v-if="formView === FORM_VIEW.LOGIN">
-      <button-section
-        button-label="Get Accounts"
-        :scope-labels="['wallet:accounts:read']"
-        data-test="endpass-oauth-get-accounts-button"
-        @click="onGetAccounts"
-      />
-      <button-section
-        button-label="Get Email"
-        :scope-labels="['user:email:read']"
-        data-test="endpass-oauth-get-email-button"
-        @click="onGetEmail"
-      />
-      <button-section
-        button-label="Get Documents"
-        :scope-labels="['documents:status:read', 'documents:data:read']"
-        data-test="endpass-oauth-get-documents"
-        @click="onGetDocuments"
-      />
-    </div>
-    <email
-      v-else-if="formView === FORM_VIEW.EMAIL"
-      :user="user"
-    />
-    <accounts
-      v-else-if="formView === FORM_VIEW.ACCOUNTS"
-      :accounts="accounts"
-    />
-    <documents
-      v-else-if="formView === FORM_VIEW.DOCUMENTS"
-      :documents="documents"
+    <component
+      :is="currentForm"
+      :data="currentData"
     />
   </div>
 </template>
@@ -53,15 +27,8 @@ import OauthFooter from '@/components/screen/Oauth/Requests/OauthFooter';
 import Accounts from '@/components/screen/Oauth/Requests/Accounts';
 import Documents from '@/components/screen/Oauth/Requests/Documents';
 import Email from '@/components/screen/Oauth/Requests/Email';
-import ButtonSection from '@/components/screen/Oauth/Requests/ButtonSection';
-
-const FORM_VIEW = {
-  LOADING: 'LOADING',
-  LOGIN: 'LOGIN',
-  ACCOUNTS: 'ACCOUNTS',
-  EMAIL: 'EMAIL',
-  DOCUMENTS: 'DOCUMENTS',
-};
+import ButtonSection from '@/components/screen/Oauth/Requests/ButtonList/ButtonSection';
+import ButtonsList from '@/components/screen/Oauth/Requests/ButtonList/ButtonsList';
 
 export default {
   name: 'Requests',
@@ -72,26 +39,16 @@ export default {
 
   data() {
     return {
-      FORM_VIEW,
-      formView: FORM_VIEW.LOGIN,
-      accounts: [],
-      documents: [],
-      user: {},
+      currentForm: null,
+      currentData: null,
       openModeToggle: false,
     };
   },
 
-  computed: {
-    isFooterVisible() {
-      return (
-        this.formView !== FORM_VIEW.LOADING && this.formView !== FORM_VIEW.LOGIN
-      );
-    },
-  },
-
   methods: {
     onBack() {
-      this.formView = FORM_VIEW.LOGIN;
+      this.currentForm = null;
+      this.currentData = null;
     },
 
     onSwitchOauthPopup() {
@@ -102,67 +59,75 @@ export default {
       });
     },
 
+    startLoading() {
+      this.$emit('update:is-loading', true);
+      this.currentData = null;
+      this.currentForm = null;
+    },
+
+    stopLoading() {
+      this.$emit('update:is-loading', false);
+    },
+
     async onGetEmail() {
       try {
-        this.formView = FORM_VIEW.LOADING;
-
-        this.user = await this.$options.oauthRequestController.getUser();
-
-        this.formView = FORM_VIEW.EMAIL;
+        this.startLoading();
+        this.currentData = await this.$options.oauthRequestController.getUser();
+        this.currentForm = Email;
       } catch (e) {
-        this.formView = FORM_VIEW.LOGIN;
         this.$options.errorNotify.showError({
           title: 'Get email error',
           text: e,
         });
+      } finally {
+        this.stopLoading();
       }
     },
 
     async onGetAccounts() {
       try {
-        this.formView = FORM_VIEW.LOADING;
-
-        this.accounts = await this.$options.oauthRequestController.getAccountData();
-
-        this.formView = FORM_VIEW.ACCOUNTS;
+        this.startLoading();
+        this.currentData = await this.$options.oauthRequestController.getAccountData();
+        this.currentForm = Accounts;
       } catch (e) {
-        this.formView = FORM_VIEW.LOGIN;
         this.$options.errorNotify.showError({
           title: 'Get accounts error',
           text: e,
         });
+      } finally {
+        this.stopLoading();
       }
     },
 
     async onClear() {
-      this.formView = FORM_VIEW.LOADING;
+      this.startLoading();
 
       await this.$options.oauthRequestController.logout();
 
-      this.formView = FORM_VIEW.LOGIN;
+      this.stopLoading();
     },
 
     async onGetDocuments() {
       try {
-        this.formView = FORM_VIEW.LOADING;
-
+        this.startLoading();
         const {
           data,
         } = await this.$options.oauthRequestController.getDocuments();
-        this.documents = data;
-
-        this.formView = FORM_VIEW.DOCUMENTS;
+        this.currentData = data;
+        this.currentForm = Documents;
       } catch (e) {
-        this.formView = FORM_VIEW.LOGIN;
         this.$options.errorNotify.showError({
           title: 'Get documents error',
           text: e,
         });
+      } finally {
+        this.stopLoading();
       }
     },
   },
 
   components: {
+    ButtonsList,
     VSpinner,
     ButtonSection,
     Email,
