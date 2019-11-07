@@ -1,11 +1,6 @@
 <template>
-  <div class="code-example">
-    <div class="code-example-source">
-      <code v-html="renderedSource" />
-    </div>
-    <div class="code-example-preview">
-      <slot />
-    </div>
+  <div class="code">
+    <code v-html="renderedSource" />
   </div>
 </template>
 
@@ -13,7 +8,7 @@
 import Prism from 'prismjs';
 
 export default {
-  name: 'CodeExample',
+  name: 'Code',
 
   props: {
     source: {
@@ -35,21 +30,12 @@ export default {
 </script>
 
 <style lang="scss">
-.code-example {
-  display: flex;
-  align-items: flex-start;
-}
-
-.code-example > * {
-  width: 50%;
-  margin-right: 20px;
-}
-
-.code-example > *:first-child {
+.code {
+  width: 100%;
   overflow-x: auto;
 }
 
-.code-example-source code {
+.code code {
   white-space: pre;
   padding: 0;
   background: none;

@@ -14,6 +14,7 @@ import EndpassOauthPlugin from '@endpass/connect/oauth';
 const connect = new EndpassOauthPlugin({
   oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
   oauthServer: ENV.VUE_APP_OAUTH_SERVER,
+  authUrl: ENV.VUE_APP_AUTH_URL,
 });
 
 export default {
@@ -25,7 +26,7 @@ export default {
     async onClickRequestButton() {
       const { data } = await connect.request({
         method: 'GET',
-        url: `${ENV.VUE_APP_OAUTH_SERVER}/user`,
+        url: ENV.VUE_APP_OAUTH_SERVER + '/user',
         scopes: ['user:email:read'],
       });
       this.email = data.email;

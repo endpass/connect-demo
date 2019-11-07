@@ -1,43 +1,79 @@
 <template>
   <section class="section">
-    <v-card class="card-content">
-      <h2 class="v-h3">
-        Basic usage with email requesting
-      </h2>
-      <code-example :source="examples.RawOauth.source">
-        <component :is="examples.RawOauth.component" />
-      </code-example>
+    <v-card class="card-content examples-showcase">
+      <section>
+        <v-tabs>
+          <v-tab label="Vanilla JS">
+            <v-code :source="VanillaSources" />
+          </v-tab>
+          <v-tab label="Vue.js">
+            <v-code :source="VueSources" />
+          </v-tab>
+          <v-tab label="React.js">
+            <v-code :source="ReactSources" />
+          </v-tab>
+        </v-tabs>
+      </section>
+      <section>
+        <example-component />
+      </section>
     </v-card>
   </section>
 </template>
 
 <script>
 import VCard from '@endpass/ui/kit/VCard';
-import CodeExample from '@/components/common/CodeExample';
-import Oauth from './Oauth.vue';
-// eslint-disable-next-line
-import RawOauth from '!!raw-loader!./Oauth.vue';
+import VTabs from '@endpass/ui/kit/VTabs';
+import VTab from '@endpass/ui/kit/VTab';
+import VCode from '@/components/common/VCode';
+
+import ExampleApp from './VueSources.vue';
+import ExampleComponent from './ExampleComponent.vue'
+/* eslint-disable */
+import VueSources from '!!raw-loader!./VueSources.vue';
+import ReactSources from '!!raw-loader!./ReactSources.jsx';
+import VanillaSources from '!!raw-loader!./VanillaSources.html';
+/* eslint-enable */
 
 const applyEnvToSources = source =>
   Object.keys(ENV).reduce(
-    (acc, key) => acc.replace(new RegExp(`ENV.${key}`, 'im'), `'${ENV[key]}'`),
+    (acc, key) => acc.replace(new RegExp(`ENV.${key}`, 'img'), `'${ENV[key]}'`),
     source,
   );
 
 export default {
   data: () => ({
-    examples: {
-      RawOauth: {
-        source: applyEnvToSources(RawOauth),
-        component: Oauth,
-      },
-    },
+    VueSources: applyEnvToSources(VueSources),
+    ReactSources: applyEnvToSources(ReactSources),
+    VanillaSources: applyEnvToSources(VanillaSources),
   }),
 
   components: {
     VCard,
-    CodeExample,
-    Oauth,
+    VCode,
+    VTabs,
+    VTab,
+    ExampleComponent,
   },
 };
 </script>
+
+<style lang="scss">
+.examples-showcase {
+  display: flex;
+  align-items: flex-start;
+}
+
+.examples-showcase > section {
+  flex: 0 0 auto;
+  width: calc(50% - 10px);
+}
+
+.examples-showcase > section:first-child {
+  margin-right: 20px;
+}
+
+.examples-showcase > section:nth-child(2) {
+  padding-top: 92px;
+}
+</style>
