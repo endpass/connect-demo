@@ -1,0 +1,34 @@
+<html>
+  <head></head>
+  <body>
+    <div>
+      <h1>Press button to request email</h1>
+      <h2>Result:</h2>
+      <button>Request email</button>
+    </div>
+    <script src="https://unpkg.com/@endpass/connect@0.29.0-beta/oauth.umd.js"></script>
+    <script>
+      window.onload = () => {
+        const emailButton = document.querySelector('button');
+        const emailOutput = document.querySelector('h2');
+        const EndpassOauthPlugin =
+          window['@endpass/connect'].EndpassOauthPlugin;
+        const connect = new EndpassOauthPlugin({
+          oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+        });
+
+        emailButton.onclick = () => {
+          connect
+            .request({
+              method: 'GET',
+              url: ENV.VUE_APP_OAUTH_SERVER + '/user',
+              scopes: ['user:email:read'],
+            })
+            .then(({ data }) => {
+              emailOutput.textContent = `Result: ${data.email}`;
+            });
+        };
+      };
+    </script>
+  </body>
+</html>
