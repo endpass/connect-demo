@@ -1571,10 +1571,10 @@
     web3-providers-ws "1.0.0-beta.37"
     web3-utils "1.0.0-beta.55"
 
-"@endpass/connect@^0.29.6-beta":
-  version "0.29.6-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.29.6-beta.tgz#e0a28d85f3aa12db31003006831cb855dc5e2075"
-  integrity sha512-DPDrr2OMDUGt5vT7vEqDbpOFBzqWRp8JqJ14QDfm40Pzp80r1AT3AC07x6zjoAVSAfBRNSLdfWhQpnJORP4MZw==
+"@endpass/connect@^0.30.0-beta":
+  version "0.30.0-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.30.0-beta.tgz#4ce0def822ae942727e9f771408d0f2f22617769"
+  integrity sha512-K/jRvGypjMPrZ7TKXomM9OHgEZVC0kBYr5WFQfjLqPWAAsDAaNc41E+0waUxmoSu7wWIMIoNHNcjUi83HfJZYQ==
   dependencies:
     "@endpass/class" "^0.19.3"
     "@endpass/utils" "^1.9.1"
