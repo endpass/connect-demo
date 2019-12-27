@@ -27,12 +27,11 @@ import VTabs from '@endpass/ui/kit/VTabs';
 import VTab from '@endpass/ui/kit/VTab';
 import VCode from '@/components/common/VCode';
 
-import ExampleApp from './VueSources.vue';
-import ExampleComponent from './ExampleComponent.vue'
+import ExampleComponent from './ExampleComponent.vue';
 /* eslint-disable */
-import VueSources from '!!raw-loader!./VueSources.vue';
-import ReactSources from '!!raw-loader!./ReactSources.jsx';
-import VanillaSources from '!!raw-loader!./VanillaSources.html';
+import VueSources from '!!raw-loader!./raws/VueSources.vue';
+import ReactSources from '!!raw-loader!./raws/ReactSources.jsx';
+import VanillaSources from '!!raw-loader!./raws/VanillaSources.html';
 /* eslint-enable */
 
 const applyEnvToSources = source =>
