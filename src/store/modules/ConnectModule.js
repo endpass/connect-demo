@@ -1,11 +1,11 @@
 import { VuexModule, Module, Action, Mutation } from 'vuex-class-modules';
 import Network from '@endpass/class/Network';
-import Connect from '@endpass/connect';
+import ConnectCompose from '@endpass/connect/compose';
 import ConnectProvider from '@endpass/connect/provider';
 import ConnectOauth from '@endpass/connect/oauth';
-import LoginButtonPlugin from '@endpass/connect/loginButton';
+import ConnectLoginButton from '@endpass/connect/login-button';
 import ConnectDocument from '@endpass/connect/document';
-import WalletPlugin from '@endpass/connect/wallet';
+import ConnectWallet from '@endpass/connect/wallet';
 import ErrorNotify from '@/class/ErrorNotify';
 
 @Module({ generateMutationSetters: true })
@@ -107,17 +107,17 @@ class ConnectModule extends VuexModule {
       resolver = resolve;
     });
 
-    const connect = new Connect({
+    const connect = new ConnectCompose({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
-      oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+      clientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       // widget: false,
       plugins: [
         ConnectProvider,
         ConnectOauth,
         ConnectDocument,
-        LoginButtonPlugin,
-        WalletPlugin,
+        ConnectLoginButton,
+        ConnectWallet,
       ],
       ...options,
     });
