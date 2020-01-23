@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import EndpassOauthPlugin from '@endpass/connect/oauth';
+import EndpassOauth from '@endpass/connect/oauth';
 
 export default () => {
   const [email, changeEmail] = useState(null);
-  const connect = new EndpassOauthPlugin({
-    oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+  const connect = new EndpassOauth({
+    clientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
   });
   const onClickRequestButton = async () => {
     const { data } = await connect.request({

@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import EndpassOauthPlugin from '@endpass/connect/oauth';
+import EndpassOauth from '@endpass/connect/oauth';
 
-const connect = new EndpassOauthPlugin({
-  oauthClientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+const connect = new EndpassOauth({
+  clientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
 });
 
 export default {

@@ -21,13 +21,11 @@
   "lint-staged": {
     "*.{js,json}": [
       "vue-cli-service lint --fix --quiet",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.vue": [
       "prettier --write",
-      "vue-cli-service lint --fix --quiet",
-      "git add"
+      "vue-cli-service lint --fix --quiet"
     ]
   },
   "husky": {
@@ -42,8 +40,8 @@
     }
   },
   "dependencies": {
-    "@endpass/class": "^0.19.4",
-    "@endpass/connect": "^0.30.1-beta",
+    "@endpass/class": "^0.19.6",
+    "@endpass/connect": "^0.31.1-beta",
     "@endpass/e2e-utils": "^0.6.0",
     "@endpass/ui": "^0.15.91",
     "@endpass/utils": "^1.9.2",
@@ -57,13 +55,13 @@
     "web3": "1.0.0-beta.37"
   },
   "devDependencies": {
-    "@babel/core": "7.7.7",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-proposal-decorators": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.7.7",
-    "@babel/preset-typescript": "^7.7.7",
-    "@commitlint/cli": "^8.3.4",
+    "@babel/core": "7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@endpass/eslint-plugin-endpass": "^0.2.10",
     "@semantic-release/changelog": "^3.0.6",
@@ -77,10 +75,10 @@
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.8.0",
-    "gh-pages": "^2.1.1",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.5.0",
-    "node-sass": "^4.13.0",
+    "gh-pages": "^2.2.0",
+    "husky": "^4.2.0",
+    "lint-staged": "^10.0.2",
+    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "raw-loader": "^3.1.0",
     "rimraf": "^3.0.0",
