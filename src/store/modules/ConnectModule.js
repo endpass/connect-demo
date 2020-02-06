@@ -3,7 +3,7 @@ import Network from '@endpass/class/Network';
 import ConnectCompose from '@endpass/connect/compose';
 import ConnectProvider from '@endpass/connect/provider';
 import ConnectOauth from '@endpass/connect/oauth';
-import ConnectLoginButton from '@endpass/connect/login-button';
+import ConnectLoginButton from '@endpass/connect/loginButton';
 import ConnectDocument from '@endpass/connect/document';
 import ConnectWallet from '@endpass/connect/wallet';
 import ErrorNotify from '@/class/ErrorNotify';
