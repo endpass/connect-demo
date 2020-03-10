@@ -51,7 +51,16 @@ class OauthRequestController extends VuexModule {
     const res = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_OAUTH_SERVER}/documents`,
-      scopes: ['documents:status:read', 'documents:data:read'],
+      scopes: [
+        'documents:id_card:data:read',
+        'documents:id_card:status:read',
+        'documents:passport:data:read',
+        'documents:passport:status:read',
+        'documents:proof_address:data:read',
+        'documents:proof_address:status:read',
+        'documents:driver_license:data:read',
+        'documents:driver_license:status:read',
+      ],
     });
     return res;
   }
