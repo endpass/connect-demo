@@ -9,6 +9,7 @@
     <v-button
       is-inline
       :disabled="disabled"
+      :is-loading="isLoading"
       skin="ghost"
       @click="onSet"
     >
@@ -31,6 +32,7 @@ export default {
   data() {
     return {
       clientId: this.$options.connectStore.clientId,
+      isLoading: false,
     };
   },
 
@@ -41,9 +43,9 @@ export default {
   },
 
   methods: {
-    onSet() {
-      this.$options.connectStore.setClientId(this.clientId);
-      window.location.reload();
+    async onSet() {
+      this.isLoading = true;
+      await this.$options.connectStore.setClientId(this.clientId);
     },
   },
 
@@ -60,6 +62,6 @@ export default {
 }
 
 .v-client-id-input {
-  min-width: 290px;
+  min-width: 310px;
 }
 </style>

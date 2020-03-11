@@ -50,9 +50,10 @@ class ConnectModule extends VuexModule {
     return net.name;
   }
 
-  @Mutation
-  setClientId(clientId) {
+  @Action
+  async setClientId(clientId) {
     LocalStorage.save(CLIENT_ID_KEY, clientId);
+    window.location.reload();
   }
 
   @Mutation
