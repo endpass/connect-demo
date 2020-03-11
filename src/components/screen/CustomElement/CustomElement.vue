@@ -1,19 +1,19 @@
 <template>
   <div class="home">
-    <div class="section">
-      <div class="card">
-        <div class="card-content">
-          <v-button
-            is-inline
-            data-test="endpass-sign-in-button"
-            @click="onOpen"
-          >
-            Open account
-          </v-button>
-          <div id="endpass-form" />
-        </div>
-      </div>
-    </div>
+    <v-content>
+      <form-field>
+        <v-client-id />
+      </form-field>
+
+      <v-button
+        is-inline
+        data-test="endpass-sign-in-button"
+        @click="onOpen"
+      >
+        Open account
+      </v-button>
+      <div id="endpass-form" />
+    </v-content>
   </div>
 </template>
 
@@ -22,6 +22,9 @@
 
 import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
+import VContent from '@/components/common/VContent';
+import VClientId from '@/components/common/VClientId';
+import FormField from '@/components/common/FormField';
 
 export default {
   name: 'CustomElement',
@@ -49,6 +52,6 @@ export default {
     });
   },
 
-  components: { VButton },
+  components: { FormField, VClientId, VContent, VButton },
 };
 </script>
