@@ -1,3 +1,4 @@
+import LocalStorage from '@endpass/class/LocalStorage';
 import { VuexModule, Module, Action, Mutation } from 'vuex-class-modules';
 import Network from '@endpass/class/Network';
 import ConnectCompose from '@endpass/connect/compose';
@@ -7,6 +8,8 @@ import ConnectLoginButton from '@endpass/connect/loginButton';
 import ConnectDocument from '@endpass/connect/document';
 import ConnectWallet from '@endpass/connect/wallet';
 import ErrorNotify from '@/class/ErrorNotify';
+
+const CLIENT_ID_KEY = 'client-id';
 
 @Module({ generateMutationSetters: true })
 class ConnectModule extends VuexModule {
@@ -24,6 +27,12 @@ class ConnectModule extends VuexModule {
 
   errorNotify = new ErrorNotify();
 
+  get clientId() {
+    const clientId =
+      LocalStorage.load(CLIENT_ID_KEY) || ENV.VUE_APP_OAUTH_CLIENT_ID;
+    return clientId;
+  }
+
   onWidgetLogout() {
     if (ENV.VUE_APP_IS_E2E_CONNECT) {
       // eslint-disable-next-line no-unused-expressions
@@ -39,6 +48,11 @@ class ConnectModule extends VuexModule {
       return 'Not defined network';
     }
     return net.name;
+  }
+
+  @Mutation
+  setClientId(clientId) {
+    LocalStorage.save(CLIENT_ID_KEY, clientId);
   }
 
   @Mutation
@@ -109,7 +123,7 @@ class ConnectModule extends VuexModule {
 
     const connect = new ConnectCompose({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
-      clientId: ENV.VUE_APP_OAUTH_CLIENT_ID,
+      clientId: this.clientId,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       // widget: false,
       plugins: [
