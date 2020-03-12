@@ -13,14 +13,6 @@ const router = new Router({
         import(/* webpackChunkName: "oauth" */ '@/components/screen/Oauth'),
     },
     {
-      path: '/provider',
-      name: 'Provider',
-      component: () =>
-        import(
-          /* webpackChunkName: "provider" */ '@/components/screen/Provider'
-        ),
-    },
-    {
       path: '/custom-element',
       name: 'CustomElement',
       component: () =>

@@ -1,39 +1,56 @@
 <template>
   <div>
     <button-section
-      button-label="Get Accounts"
-      :scope-labels="['wallet:accounts:read']"
+      button-label="Get Addresses"
       data-test="endpass-oauth-get-accounts-button"
-      @click="onGetAccounts"
-    />
+      @click="onGetAddress"
+    >
+      GET
+      <v-tag skin="green">
+        {{ `${serverUrl}/user/address` }}
+      </v-tag>
+    </button-section>
     <button-section
       button-label="Get Email"
-      :scope-labels="['user:email:read']"
       data-test="endpass-oauth-get-email-button"
       @click="onGetEmail"
-    />
+    >
+      GET
+      <v-tag skin="green">
+        {{ `${serverUrl}/user` }}
+      </v-tag>
+    </button-section>
     <button-section
       button-label="Get Documents"
-      :scope-labels="['documents:status:read', 'documents:data:read']"
       data-test="endpass-oauth-get-documents"
       @click="onGetDocuments"
-    />
+    >
+      GET
+      <v-tag skin="green">
+        {{ `${serverUrl}/documents` }}
+      </v-tag>
+    </button-section>
   </div>
 </template>
 
 <script>
-import ButtonSection from '@/components/screen/Oauth/Requests/ButtonList/ButtonSection';
+import VTag from '@endpass/ui/kit/VTag';
+import ButtonSection from './ButtonSection';
 
 export default {
   name: 'ButtonsList',
+
+  data: () => ({
+    serverUrl: ENV.VUE_APP_OAUTH_SERVER,
+  }),
 
   methods: {
     async onGetEmail() {
       this.$emit('email');
     },
 
-    async onGetAccounts() {
-      this.$emit('accounts');
+    async onGetAddress() {
+      this.$emit('address');
     },
 
     async onGetDocuments() {
@@ -43,6 +60,7 @@ export default {
 
   components: {
     ButtonSection,
+    VTag,
   },
 };
 </script>

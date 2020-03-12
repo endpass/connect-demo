@@ -2,7 +2,6 @@
 import createStoreModule from '@/store/createStoreModule';
 import createStore from '@/store/createStore';
 
-import Web3Module from '@/store/modules/Web3Module';
 import ConnectModule from '@/store/modules/ConnectModule';
 
 const store = createStore();
@@ -17,7 +16,6 @@ const store = createStore();
  */
 const createModule = (Module, name) => createStoreModule(store, Module, name);
 
-export const web3Store = createModule(Web3Module, 'web3');
 export const connectStore = createModule(ConnectModule, 'connect');
 
 export default store;

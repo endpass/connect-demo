@@ -8,20 +8,13 @@
       >
         <span class="caption">Oauth</span>
       </router-link>
-      <router-link
-        :to="{ name: 'Provider' }"
-        active-class="is-active"
-        class="navbar-item button"
-      >
-        <span class="caption">Provider</span>
-      </router-link>
-      <router-link
-        :to="{ name: 'CustomElement' }"
-        active-class="is-active"
-        class="navbar-item button"
-      >
-        <span class="caption">Custom Element</span>
-      </router-link>
+      <!--      <router-link-->
+      <!--        :to="{ name: 'CustomElement' }"-->
+      <!--        active-class="is-active"-->
+      <!--        class="navbar-item button"-->
+      <!--      >-->
+      <!--        <span class="caption">Custom Element</span>-->
+      <!--      </router-link>-->
     </div>
   </div>
 </template>
