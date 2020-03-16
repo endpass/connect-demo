@@ -7,14 +7,6 @@
       <p class="subtitle">
         <slot />
       </p>
-      <v-button
-        is-inline
-        data-test="button-mount"
-        :skin="buttonMountSkin"
-        @click="toggleButton"
-      >
-        {{ mountLabel }}
-      </v-button>
       <div
         :id="elementId"
         class="button-root"
@@ -31,7 +23,6 @@
 </template>
 
 <script>
-import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
@@ -55,15 +46,6 @@ export default {
     elementId() {
       return this.isInvertedColors ? 'button-root-inverted' : 'button-root';
     },
-    isMounted() {
-      return !!this.loginButton;
-    },
-    mountLabel() {
-      return this.isMounted ? 'Unmount' : 'Mount';
-    },
-    buttonMountSkin() {
-      return this.isInvertedColors ? 'tertiary' : 'primary';
-    },
   },
 
   methods: {
@@ -77,6 +59,7 @@ export default {
       this.loginButton = this.createButton();
       this.loginButton.mount();
     },
+
     createButton() {
       return connectStore.createLoginButton({
         element: `#${this.elementId}`,
@@ -94,10 +77,6 @@ export default {
 
   mounted() {
     this.toggleButton();
-  },
-
-  components: {
-    VButton,
   },
 };
 </script>
