@@ -55,12 +55,3 @@ export default {
   components: { FormField, VClientId, VContent, VButton },
 };
 </script>
-
-<style lang="scss">
-.custom-element-endpass-container {
-  min-width: 700px;
-}
-.custom-element-container {
-  display: flex;
-}
-</style>
