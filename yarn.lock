@@ -1765,10 +1765,10 @@
     eslint-plugin-prettier "^3.1.1"
     eslint-plugin-vue "^5.2.3"
 
-"@endpass/ui@^0.18.3":
-  version "0.18.3"
-  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.3.tgz#6e5c9dde7b01c39c5fbeddb93f96a3f753ebbb77"
-  integrity sha512-fpICiRqZO1jMmIsjkrVzxS3BR049V13Ooy1KYX3Xs3Z081zV/iXrkvAvDLQah9MTc+qet1TFWCa1f8jeS1Vm6w==
+"@endpass/ui@^0.18.5":
+  version "0.18.5"
+  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.5.tgz#c42832f1ac91ce43c4b51d24c2eb0539de3e8780"
+  integrity sha512-NmBVQrv4XR+D6XhN7pL05QCNqghTiJXdFjwktFdgxhkisuIXtrd444LoXtM1G4qk3VebVX9DN9USWlhIc6QdYw==
   dependencies:
     dayjs "^1.8.18"
     lodash.chunk "^4.2.0"
@@ -13763,10 +13763,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
-  integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
+typescript@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 u2f-api@0.2.7:
   version "0.2.7"
