@@ -8,9 +8,9 @@
       <v-button
         is-inline
         data-test="endpass-sign-in-button"
-        @click="onOpen"
+        @click="onClick"
       >
-        Open account
+        Login again
       </v-button>
       <div id="endpass-form" />
     </v-content>
@@ -30,8 +30,8 @@ export default {
   name: 'CustomElement',
 
   methods: {
-    async onOpen() {
-      await connectStore.openAccount();
+    async onClick() {
+      await connectStore.customAction();
     },
   },
 
@@ -44,11 +44,11 @@ export default {
 
     const node = document.querySelector(elementSelector);
     node.addEventListener('open', () => {
-      console.log('dialog is open');
+      console.log('open');
     });
 
     node.addEventListener('close', () => {
-      console.log('dialog is close');
+      console.log('close');
     });
   },
 

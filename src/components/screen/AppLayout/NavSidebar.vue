@@ -36,34 +36,20 @@
             </v-super-menu-control>
           </router-link>
         </li>
-        <li>
-          <router-link
-            v-slot="{ isActive, href }"
-            :to="{ name: 'Provider' }"
-          >
-            <v-super-menu-control
-              icon="action"
-              :href="href"
-              :is-active="isActive"
-            >
-              Web3 provider
-            </v-super-menu-control>
-          </router-link>
-        </li>
-        <li>
-          <router-link
-            v-slot="{ isActive, href }"
-            :to="{ name: 'CustomElement' }"
-          >
-            <v-super-menu-control
-              icon="apps"
-              :href="href"
-              :is-active="isActive"
-            >
-              Custom element
-            </v-super-menu-control>
-          </router-link>
-        </li>
+        <!--        <li>-->
+        <!--          <router-link-->
+        <!--            v-slot="{ isActive, href }"-->
+        <!--            :to="{ name: 'CustomElement' }"-->
+        <!--          >-->
+        <!--            <v-super-menu-control-->
+        <!--              icon="apps"-->
+        <!--              :href="href"-->
+        <!--              :is-active="isActive"-->
+        <!--            >-->
+        <!--              Custom element-->
+        <!--            </v-super-menu-control>-->
+        <!--          </router-link>-->
+        <!--        </li>-->
         <li>
           <router-link
             v-slot="{ isActive, href }"

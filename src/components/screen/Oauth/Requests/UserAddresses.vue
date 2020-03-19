@@ -1,17 +1,15 @@
 <template>
   <div>
     <div class="subtitle">
-      Accounts:
+      Addresses:
     </div>
     <div class="content">
       <ul
-        v-for="account in data"
-        :key="account"
-        data-test="endpass-oauth-accounts-list"
+        v-for="address in data"
+        :key="address.id"
+        data-test="endpass-oauth-user-address"
       >
-        <li class="subtitle">
-          {{ account }}
-        </li>
+        <pre>{{ address }}</pre>
       </ul>
     </div>
   </div>
@@ -19,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Accounts',
+  name: 'UserAddresses',
 
   props: {
     data: {

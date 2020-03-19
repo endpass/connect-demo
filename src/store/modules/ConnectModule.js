@@ -1,12 +1,9 @@
 import LocalStorage from '@endpass/class/LocalStorage';
-import { VuexModule, Module, Action, Mutation } from 'vuex-class-modules';
-import Network from '@endpass/class/Network';
+import { VuexModule, Module, Action } from 'vuex-class-modules';
 import ConnectCompose from '@endpass/connect/compose';
-import ConnectProvider from '@endpass/connect/provider';
 import ConnectOauth from '@endpass/connect/oauth';
 import ConnectLoginButton from '@endpass/connect/loginButton';
 import ConnectDocument from '@endpass/connect/document';
-import ConnectWallet from '@endpass/connect/wallet';
 import ErrorNotify from '@/class/ErrorNotify';
 
 const CLIENT_ID_KEY = 'client-id';
@@ -16,12 +13,6 @@ class ConnectModule extends VuexModule {
   isInited = false;
 
   connectInstance = null;
-
-  basicActiveAccount = null;
-
-  basicActiveNet = null;
-
-  isBasicLoggedIn = false;
 
   initialPromise = null;
 
@@ -33,52 +24,24 @@ class ConnectModule extends VuexModule {
     return clientId;
   }
 
-  onWidgetLogout() {
-    if (ENV.VUE_APP_IS_E2E_CONNECT) {
-      // eslint-disable-next-line no-unused-expressions
-      window.e2eLogout && window.e2eLogout();
-    }
-
-    window.location.reload();
-  }
-
-  get networkNameById() {
-    const net = Network.DEFAULT_NETWORKS[this.basicActiveNet];
-    if (!net) {
-      return 'Not defined network';
-    }
-    return net.name;
-  }
-
   @Action
   async setClientId(clientId) {
     LocalStorage.save(CLIENT_ID_KEY, clientId);
     window.location.reload();
   }
 
-  @Mutation
-  onWidgetUpdate({ detail }) {
-    const { activeAccount, activeNet } = detail;
-    this.basicActiveAccount = activeAccount;
-    this.basicActiveNet = activeNet;
-  }
-
   @Action
-  async openAccount() {
-    const data = await this.connectInstance.openAccount();
-    if (data.type === 'update') {
-      await this.loadAccountData();
-    }
+  async customAction() {
+    try {
+      await this.connectInstance.logout();
+    } catch (e) {}
+    await this.connectInstance.auth();
   }
 
   @Action
   async logout() {
     try {
       await this.connectInstance.logout();
-
-      this.basicActiveAccount = null;
-      this.basicActiveNet = null;
-      this.isBasicLoggedIn = false;
     } catch (e) {
       this.errorNotification('Logout error', e);
     }
@@ -88,24 +51,12 @@ class ConnectModule extends VuexModule {
   async login() {
     try {
       await this.connectInstance.auth();
-      await this.loadAccountData();
-      this.isBasicLoggedIn = true;
     } catch (err) {
-      this.isBasicLoggedIn = false;
       this.errorNotify.showError({
         title: 'Auth Error',
         text: err,
       });
     }
-  }
-
-  @Action
-  async loadAccountData() {
-    const accountData = await this.connectInstance.getAccountData();
-    const { activeAccount, activeNet } = accountData;
-
-    this.basicActiveAccount = activeAccount;
-    this.basicActiveNet = activeNet;
   }
 
   @Action
@@ -126,49 +77,15 @@ class ConnectModule extends VuexModule {
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       clientId: this.clientId,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
-      // widget: false,
-      plugins: [
-        ConnectProvider,
-        ConnectOauth,
-        ConnectDocument,
-        ConnectLoginButton,
-        ConnectWallet,
-      ],
+      widget: false,
+      plugins: [ConnectOauth, ConnectDocument, ConnectLoginButton],
       ...options,
     });
 
     this.connectInstance = connect;
 
-    const connectProvider = await connect.getProvider();
-    window.web3.setProvider(connectProvider);
-
     resolver();
     this.isInited = true;
-  }
-
-  async generateWallet() {
-    const data = await this.connectInstance.generateWallet();
-    return data;
-  }
-
-  bindWidgetEvents() {
-    this.connectInstance.getWidgetNode().then(node => {
-      node.addEventListener('logout', this.onWidgetLogout);
-      node.addEventListener('update', this.onWidgetUpdate);
-    });
-  }
-
-  async mountWidget() {
-    await this.connectInstance.mountWidget();
-    this.bindWidgetEvents();
-  }
-
-  unmountWidget() {
-    this.connectInstance.getWidgetNode().then(node => {
-      node.removeEventListener('logout', this.onWidgetLogout);
-      node.removeEventListener('update', this.onWidgetUpdate);
-    });
-    this.connectInstance.unmountWidget();
   }
 
   createLoginButton(options) {

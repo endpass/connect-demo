@@ -6,15 +6,7 @@
       </v-button>
     </div>
     <div class="column">
-      <div class="tags">
-        <span
-          v-for="scopeLabel in scopeLabels"
-          :key="scopeLabel"
-          class="tag"
-        >{{
-          scopeLabel
-        }}</span>
-      </div>
+      <slot />
     </div>
   </div>
 </template>
@@ -29,10 +21,6 @@ export default {
     buttonLabel: {
       type: String,
       default: '',
-    },
-    scopeLabels: {
-      type: Array,
-      default: () => [],
     },
   },
 

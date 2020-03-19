@@ -1,8 +1,8 @@
 <template>
   <div>
     <buttons-list
-      v-if="!currentForm"
-      @accounts="onGetAccounts"
+      v-if="!currentComponent"
+      @address="onGetUserAddress"
       @email="onGetEmail"
       @documents="onGetDocuments"
     />
@@ -12,23 +12,22 @@
       @clear="onClear"
     />
     <component
-      :is="currentForm"
+      :is="currentComponent"
       :data="currentData"
     />
   </div>
 </template>
 
 <script>
-import VSpinner from '@endpass/ui/components/VSpinner';
 import ErrorNotify from '@/class/ErrorNotify';
 import { connectStore } from '@/store';
-import createOauthRequestController from './OauthRequestController';
+import ButtonsList from '@/components/screen/Oauth/Requests/ButtonList/ButtonsList';
 import OauthFooter from '@/components/screen/Oauth/Requests/OauthFooter';
-import Accounts from '@/components/screen/Oauth/Requests/Accounts';
+import UserAddresses from '@/components/screen/Oauth/Requests/UserAddresses';
 import Documents from '@/components/screen/Oauth/Requests/Documents';
 import Email from '@/components/screen/Oauth/Requests/Email';
-import ButtonSection from '@/components/screen/Oauth/Requests/ButtonList/ButtonSection';
-import ButtonsList from '@/components/screen/Oauth/Requests/ButtonList/ButtonsList';
+
+import createOauthRequestController from './OauthRequestController';
 
 export default {
   name: 'Requests',
@@ -39,7 +38,7 @@ export default {
 
   data() {
     return {
-      currentForm: null,
+      currentComponent: null,
       currentData: null,
       openModeToggle: false,
     };
@@ -47,7 +46,7 @@ export default {
 
   methods: {
     onBack() {
-      this.currentForm = null;
+      this.currentComponent = null;
       this.currentData = null;
     },
 
@@ -62,7 +61,7 @@ export default {
     startLoading() {
       this.$emit('update:is-loading', true);
       this.currentData = null;
-      this.currentForm = null;
+      this.currentComponent = null;
     },
 
     stopLoading() {
@@ -73,7 +72,7 @@ export default {
       try {
         this.startLoading();
         this.currentData = await this.$options.oauthRequestController.getUser();
-        this.currentForm = Email;
+        this.currentComponent = Email;
       } catch (e) {
         this.$options.errorNotify.showError({
           title: 'Get email error',
@@ -84,14 +83,14 @@ export default {
       }
     },
 
-    async onGetAccounts() {
+    async onGetUserAddress() {
       try {
         this.startLoading();
-        this.currentData = await this.$options.oauthRequestController.getAccountData();
-        this.currentForm = Accounts;
+        this.currentData = await this.$options.oauthRequestController.getUserAddress();
+        this.currentComponent = UserAddresses;
       } catch (e) {
         this.$options.errorNotify.showError({
-          title: 'Get accounts error',
+          title: 'Get address error',
           text: e,
         });
       } finally {
@@ -114,7 +113,7 @@ export default {
           data,
         } = await this.$options.oauthRequestController.getDocuments();
         this.currentData = data;
-        this.currentForm = Documents;
+        this.currentComponent = Documents;
       } catch (e) {
         this.$options.errorNotify.showError({
           title: 'Get documents error',
@@ -128,11 +127,6 @@ export default {
 
   components: {
     ButtonsList,
-    VSpinner,
-    ButtonSection,
-    Email,
-    Documents,
-    Accounts,
     OauthFooter,
   },
 };

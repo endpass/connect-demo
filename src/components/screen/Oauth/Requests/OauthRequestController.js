@@ -22,11 +22,11 @@ class OauthRequestController extends VuexModule {
   }
 
   @Action
-  async getAccountData() {
+  async getUserAddress() {
     const { data } = await this.connectStore.connectInstance.request({
       method: 'GET',
-      url: `${ENV.VUE_APP_OAUTH_SERVER}/accounts`,
-      scopes: ['wallet:accounts:read'],
+      url: `${ENV.VUE_APP_OAUTH_SERVER}/user/address`,
+      scopes: ['user:address:read'],
     });
     return data;
   }
