@@ -1,25 +1,28 @@
 <template>
-  <div class="v-client-id">
-    <v-input
-      v-model="clientId"
-      label="Client id of application"
-      placeholder="type client id here..."
-      class="v-client-id-input"
-    />
-    <v-button
-      is-inline
-      :disabled="disabled"
-      :is-loading="isLoading"
-      skin="ghost"
-      @click="onSet"
-    >
-      Set
-    </v-button>
+  <div>
+    <v-label label="Client id of application" />
+    <div class="v-client-id-container">
+      <v-input
+        v-model="clientId"
+        placeholder="type client id here..."
+        class="v-client-id-input"
+      />
+      <v-button
+        is-inline
+        :disabled="disabled"
+        :is-loading="isLoading"
+        skin="ghost"
+        @click="onSet"
+      >
+        Set
+      </v-button>
+    </div>
   </div>
 </template>
 
 <script>
 import VInput from '@endpass/ui/kit/VInput';
+import VLabel from '@endpass/ui/kit/VLabel';
 import VButton from '@endpass/ui/kit/VButton';
 
 import { connectStore } from '@/store';
@@ -50,6 +53,7 @@ export default {
   },
 
   components: {
+    VLabel,
     VInput,
     VButton,
   },
@@ -57,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss">
-.v-client-id {
+.v-client-id-container {
   display: flex;
 }
 

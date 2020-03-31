@@ -2,7 +2,7 @@
   <div class="home">
     <v-content>
       <form-field>
-        <v-client-id />
+        <v-header-controls />
       </form-field>
 
       <v-button
@@ -23,7 +23,7 @@
 import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 import VContent from '@/components/common/VContent';
-import VClientId from '@/components/common/VClientId';
+import VHeaderControls from '@/components/common/VHeaderControls';
 import FormField from '@/components/common/FormField';
 
 export default {
@@ -52,6 +52,11 @@ export default {
     });
   },
 
-  components: { FormField, VClientId, VContent, VButton },
+  components: {
+    FormField,
+    VHeaderControls,
+    VContent,
+    VButton,
+  },
 };
 </script>

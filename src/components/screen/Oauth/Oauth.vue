@@ -8,7 +8,7 @@
     <v-content v-if="isInited">
       <div>
         <form-field>
-          <v-client-id />
+          <v-header-controls />
         </form-field>
         <form-field>
           <div>
@@ -72,7 +72,7 @@ import Requests from '@/components/screen/Oauth/Requests';
 import { connectStore } from '@/store';
 import LoginCard from '@/components/screen/Oauth/LoginCard';
 import VContent from '@/components/common/VContent';
-import VClientId from '@/components/common/VClientId';
+import VHeaderControls from '@/components/common/VHeaderControls';
 
 const OPEN_MODES = {
   IFRAME: 'iframe',
@@ -142,7 +142,7 @@ export default {
   },
 
   components: {
-    VClientId,
+    VHeaderControls,
     VContent,
     Requests,
     VTabs,
