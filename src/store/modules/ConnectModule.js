@@ -4,6 +4,7 @@ import ConnectCompose from '@endpass/connect/compose';
 import ConnectOauth from '@endpass/connect/oauth';
 import ConnectLoginButton from '@endpass/connect/loginButton';
 import ConnectDocument from '@endpass/connect/document';
+import ConnectAuth from '@endpass/connect/auth';
 import ErrorNotify from '@/class/ErrorNotify';
 
 const CLIENT_ID_KEY = 'client-id';
@@ -25,8 +26,8 @@ class ConnectModule extends VuexModule {
   }
 
   @Action
-  async setClientId(clientId) {
-    LocalStorage.save(CLIENT_ID_KEY, clientId);
+  async setClientId(clientId = '') {
+    LocalStorage.save(CLIENT_ID_KEY, clientId.trim());
     window.location.reload();
   }
 
@@ -42,9 +43,8 @@ class ConnectModule extends VuexModule {
   async logout() {
     try {
       await this.connectInstance.logout();
-    } catch (e) {
-      this.errorNotification('Logout error', e);
-    }
+      window.location.reload();
+    } catch (e) {}
   }
 
   @Action
@@ -73,16 +73,20 @@ class ConnectModule extends VuexModule {
       resolver = resolve;
     });
 
-    const connect = new ConnectCompose({
+    this.connectInstance = new ConnectCompose({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',
       clientId: this.clientId,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       widget: false,
-      plugins: [ConnectOauth, ConnectDocument, ConnectLoginButton],
+      plugins: [
+        //
+        ConnectOauth,
+        ConnectDocument,
+        ConnectLoginButton,
+        ConnectAuth,
+      ],
       ...options,
     });
-
-    this.connectInstance = connect;
 
     resolver();
     this.isInited = true;
