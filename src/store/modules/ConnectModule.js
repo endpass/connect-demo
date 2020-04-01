@@ -26,8 +26,9 @@ class ConnectModule extends VuexModule {
   }
 
   @Action
-  async setClientId(clientId = '') {
-    LocalStorage.save(CLIENT_ID_KEY, clientId.trim());
+  async setClientId(clientId) {
+    const savedValue = clientId ? clientId.trim() : '';
+    LocalStorage.save(CLIENT_ID_KEY, savedValue);
     window.location.reload();
   }
 
@@ -78,13 +79,7 @@ class ConnectModule extends VuexModule {
       clientId: this.clientId,
       oauthServer: ENV.VUE_APP_OAUTH_SERVER,
       widget: false,
-      plugins: [
-        //
-        ConnectOauth,
-        ConnectDocument,
-        ConnectLoginButton,
-        ConnectAuth,
-      ],
+      plugins: [ConnectOauth, ConnectDocument, ConnectLoginButton, ConnectAuth],
       ...options,
     });
 
