@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import ConnectError from '@endpass/connect/error';
 import ErrorNotify from '@/class/ErrorNotify';
 import { connectStore } from '@/store';
 import ButtonsList from '@/components/screen/Oauth/Requests/ButtonList/ButtonsList';
@@ -28,6 +29,8 @@ import Documents from '@/components/screen/Oauth/Requests/Documents';
 import Email from '@/components/screen/Oauth/Requests/Email';
 
 import createOauthRequestController from './OauthRequestController';
+
+const { OAUTH_POPUP_CLOSED } = ConnectError.ERRORS;
 
 export default {
   name: 'Requests',
@@ -74,6 +77,11 @@ export default {
         this.currentData = await this.$options.oauthRequestController.getUser();
         this.currentComponent = Email;
       } catch (e) {
+        if (e.code === OAUTH_POPUP_CLOSED) {
+          this.notifyProcessCancelled();
+          return;
+        }
+
         this.$options.errorNotify.showError({
           title: 'Get email error',
           text: e,
@@ -89,6 +97,11 @@ export default {
         this.currentData = await this.$options.oauthRequestController.getUserAddress();
         this.currentComponent = UserAddresses;
       } catch (e) {
+        if (e.code === OAUTH_POPUP_CLOSED) {
+          this.notifyProcessCancelled();
+          return;
+        }
+
         this.$options.errorNotify.showError({
           title: 'Get address error',
           text: e,
@@ -115,6 +128,11 @@ export default {
         this.currentData = data;
         this.currentComponent = Documents;
       } catch (e) {
+        if (e.code === OAUTH_POPUP_CLOSED) {
+          this.notifyProcessCancelled();
+          return;
+        }
+
         this.$options.errorNotify.showError({
           title: 'Get documents error',
           text: e,
@@ -122,6 +140,13 @@ export default {
       } finally {
         this.stopLoading();
       }
+    },
+
+    notifyProcessCancelled() {
+      this.$options.errorNotify.showInfo({
+        title: 'Operation cancelled',
+        text: 'Popup was closed',
+      });
     },
   },
 
