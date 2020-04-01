@@ -137,7 +137,7 @@ export default {
   async mounted() {
     this.openModeToggle = this.isIframe;
     await this.$options.connectStore.initConnect({
-      oauthPopup: !this.isIframe,
+      isPopup: !this.isIframe,
     });
   },
 
