@@ -1,9 +1,7 @@
 <template>
-  <div class="section">
-    <div class="card">
-      <div class="card-content">
-        <slot />
-      </div>
+  <div class="card">
+    <div class="card-content">
+      <slot />
     </div>
   </div>
 </template>

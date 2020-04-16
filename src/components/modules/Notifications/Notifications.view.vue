@@ -1,3 +1,23 @@
+<template>
+  <div class="notify-container">
+    <notifications
+      :speed="500"
+      :duration="5000"
+      width="auto"
+      position="top center"
+      data-test="app-notification"
+      classes="notification app-notification"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'NotificationsView',
+};
+</script>
+
+<style lang="scss">
 // Flash notifications
 
 $notify-width: 600px;
@@ -41,7 +61,7 @@ $notify-width: 600px;
       top: 0;
       right: 0.25rem;
       margin-left: auto;
-      content: "\00d7";
+      content: '\00d7';
     }
   }
 
@@ -49,3 +69,4 @@ $notify-width: 600px;
     font-size: 1rem;
   }
 }
+</style>

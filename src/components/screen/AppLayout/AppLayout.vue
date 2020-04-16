@@ -1,41 +1,30 @@
 <template>
   <div
     :id="id"
-    class="app-container"
+    class="app-layout"
   >
-    <nav class="app-nav">
+    <header class="app-layout-header">
+      <app-header />
+    </header>
+
+    <nav class="app-layout-nav">
       <nav-sidebar />
     </nav>
 
-    <main class="app-content">
-      <div class>
-        <div class="notify-container">
-          <notifications
-            :speed="500"
-            :duration="5000"
-            width="auto"
-            position="top center"
-            data-test="app-notification"
-            classes="notification app-notification"
-          />
-        </div>
-
-        <div class="main app-content app-section">
-          <router-view />
-        </div>
-      </div>
+    <main class="app-layout-content">
+      <router-view />
     </main>
 
-    <quick-actions class="is-hidden-desktop" />
-    <app-footer class="is-hidden-touch" />
-    <slot name="modal" />
+    <footer class="app-layout-footer" />
+
+    <notifications />
   </div>
 </template>
 
 <script>
-import NavSidebar from '@/components/screen/AppLayout/NavSidebar';
-import QuickActions from '@/components/screen/AppLayout/QuickActions';
-import AppFooter from '@/components/screen/AppLayout/AppFooter';
+import Notifications from '@/components/modules/Notifications';
+import NavSidebar from '@/components/modules/NavSidebar';
+import AppHeader from './AppHeader';
 
 export default {
   name: 'AppLayout',
@@ -48,60 +37,50 @@ export default {
   },
 
   components: {
+    AppHeader,
+    Notifications,
     NavSidebar,
-    QuickActions,
-    AppFooter,
   },
 };
 </script>
 
-<style lang="scss">
-.main {
-  background: $light-grey;
-  height: 100%;
-}
-
-.app-container {
+<style lang="scss" scoped>
+.app-layout {
   height: 100vh;
   width: 100vw;
-
   display: grid;
-  // grid-template-rows: 40px 300px auto minmax(auto, 60px);
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-gap: 10px;
+  grid-template-columns: 200px auto auto;
+  grid-template-areas:
+    'header  header  header'
+    'nav content content'
+    'footer  footer  footer';
+}
 
-  grid-template-areas: 'nav header' 'nav main' 'nav footer';
+.app-layout-header {
+  grid-area: header;
+  margin: 30px;
+}
 
-  background: $light-grey;
-  overflow-x: hidden;
+.app-layout-content {
+  grid-area: content;
+}
 
-  // Direct child of app container, a major element
-  & > .app-header {
-    grid-area: header;
-  }
+.app-layout-nav {
+  grid-area: nav;
+}
 
-  & > .app-nav {
-    grid-area: nav;
-  }
-
-  & > .app-content {
-    grid-area: main;
-  }
-
-  & > .app-footer {
-    grid-area: footer;
-  }
-
-  .app-section {
-  }
+.app-layout-footer {
+  height: 50px;
+  grid-area: footer;
 }
 
 // Responsive layout on mobile/tablet
 @media screen and (max-width: 1023px) {
-  .app-container {
+  .app-layout {
     grid-template-columns: 100%;
     grid-template-rows: 2fr 2fr auto 1fr;
-    grid-template-areas: 'nav' 'header' 'main' 'footer';
+    grid-template-areas: 'header' 'nav' 'content' 'footer';
   }
 }
 </style>
