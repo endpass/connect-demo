@@ -8,6 +8,7 @@
     "dev:e2e": "vue-cli-service serve ./src/main.js --mode e2e-connect-dev",
     "build": "rimraf ./dist && vue-cli-service build ./src/main.js",
     "build:dev": "yarn build --mode development",
+    "build:staging": "NODE_ENV=production yarn build --mode staging",
     "build:e2e": "rimraf ./dist && vue-cli-service build ./src/main.js --mode e2e-connect",
     "format:prettier:vue": "prettier --write '**/*.vue'",
     "format:eslint": "eslint --ext .json,.js,.vue,.ts src/ --fix",
