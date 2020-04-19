@@ -35,7 +35,7 @@
             data-test="endpass-oauth-requests-tab"
           >
             <p class="subtitle">
-              Each button can do request to oauth server with different scopes
+              Each button can do request to oauth server
             </p>
             <requests :is-loading.sync="isLoadingRequest" />
           </v-tab>
