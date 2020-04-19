@@ -1823,10 +1823,10 @@
     web3-providers-ws "1.0.0-beta.37"
     web3-utils "1.0.0-beta.55"
 
-"@endpass/connect@^0.31.4-beta":
-  version "0.31.4-beta"
-  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.31.4-beta.tgz#dc7d7a932dde75c3c00d224240a24c13d9d55f98"
-  integrity sha512-CLuMy2rPVUflizZD9l9b/Dcir+cSqsMTz2zM6/hSis/y7KgLr66fn/lAG9sYAoKK3cq4EGfdzCitID4GTNfplg==
+"@endpass/connect@^0.32.0-beta":
+  version "0.32.0-beta"
+  resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.32.0-beta.tgz#f60a56d164511bacb5756db724e70749194062d5"
+  integrity sha512-yiPF9glSDvhkypWdk0GPtshNVsjM/fYQW/1dkYmDs0AfVei1Z8tDHwjjk75gPCJZ5uvJi+nLdfC+/ocoZ2MsYA==
   dependencies:
     "@endpass/class" "^0.19.6"
     "@endpass/utils" "^1.9.2"

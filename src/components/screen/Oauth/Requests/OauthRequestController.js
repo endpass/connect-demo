@@ -15,18 +15,10 @@ class OauthRequestController extends VuexModule {
   }
 
   @Action
-  async loginOauth(scopes) {
-    await this.connectStore.connectInstance.loginWithOauth({
-      scopes,
-    });
-  }
-
-  @Action
   async getUserAddress() {
     const { data } = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_OAUTH_SERVER}/user/address`,
-      scopes: ['user:address:read'],
     });
     return data;
   }
@@ -36,7 +28,6 @@ class OauthRequestController extends VuexModule {
     const { data } = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_OAUTH_SERVER}/user`,
-      scopes: ['user:email:read'],
     });
     return data;
   }
@@ -51,12 +42,6 @@ class OauthRequestController extends VuexModule {
     const res = await this.connectStore.connectInstance.request({
       method: 'GET',
       url: `${ENV.VUE_APP_OAUTH_SERVER}/documents`,
-      scopes: [
-        'documents:id_card:status:read',
-        'documents:passport:status:read',
-        'documents:proof_address:status:read',
-        'documents:driver_license:status:read',
-      ],
     });
     return res;
   }

@@ -10,7 +10,6 @@ export default () => {
     const { data } = await connect.request({
       method: 'GET',
       url: ENV.VUE_APP_OAUTH_SERVER + '/user',
-      scopes: ['user:email:read'],
     });
 
     changeEmail(data.email);
