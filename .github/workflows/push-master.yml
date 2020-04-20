@@ -1,4 +1,3 @@
----
 name: master build and deploy
 on:
   push:
@@ -62,7 +61,7 @@ jobs:
       continue-on-error: true
       with:
         type: ${{ job.status }}
-        job_name: 'connect-demo built and deployed '
+        job_name: 'Connect-demo built and deployed '
         username: 'GitHub Actions'
         icon_emoji: ':github:'
         url: ${{ secrets.SLACK_WEBHOOK_URL }}
