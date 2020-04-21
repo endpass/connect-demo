@@ -1,11 +1,18 @@
 <template>
-  <div>
+  <div class="content-loader">
     <slot />
-    <div v-if="isLoading" data-test="endpass-app-loader" class="content-loader">
+    <div
+      v-if="isLoading"
+      data-test="endpass-app-loader"
+      class="content-loader-overlay"
+    >
       <span class="content-loader-label">
         <slot name="label" />
       </span>
-      <v-progress-circle progress="25" line-thickness="1" />
+      <v-progress-circle
+        progress="25"
+        line-thickness="1"
+      />
     </div>
   </div>
 </template>
@@ -29,8 +36,8 @@ export default {
 };
 </script>
 
-<style>
-.content-loader {
+<style lang="scss">
+.content-loader-overlay {
   position: absolute;
   left: 0;
   top: 0;

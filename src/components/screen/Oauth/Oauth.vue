@@ -1,83 +1,32 @@
 <template>
-  <div class="home">
-    <v-spinner
-      v-if="isLoading"
-      data-test="endpass-app-loader"
-      label="Please wait, oauth usage is loading..."
-    />
-    <v-content v-if="isInited">
-      <div>
+  <content-loader :is-loading="isLoading">
+    <span slot="label">Please wait, Oauth usage is loading...</span>
+    <section v-if="isInited">
+      <v-card class="card-content">
         <form-field>
           <v-header-controls />
         </form-field>
         <form-field>
-          <div>
-            <v-toggle
-              v-model="openModeToggle"
-              data-test="endpass-oauth-switch-mode"
-              @change="onSwitchOauthPopup"
-            >
-              <div class="tags has-addons">
-                <span class="tag">OAuth open mode</span>
-                <span
-                  class="tag"
-                  :class="openModeClass"
-                >{{
-                  openModeTitle
-                }}</span>
-              </div>
-            </v-toggle>
-          </div>
+          <popup-mode-switcher
+            :value="openMode"
+            @switch="onSwitchOauthPopup"
+          />
         </form-field>
-        <v-tabs>
-          <v-tab
-            label="Requests"
-            data-test="endpass-oauth-requests-tab"
-          >
-            <p class="subtitle">
-              Each button can do request to oauth server
-            </p>
-            <requests :is-loading.sync="isLoadingRequest" />
-          </v-tab>
-          <v-tab
-            label="SignIn button"
-            data-test="endpass-oauth-signin-button-tab"
-          >
-            <div v-if="$options.connectStore.isInited">
-              <p class="subtitle">
-                This section have buttons in different styles, which can make a
-                signIn request to Endpass service
-              </p>
-              <login-card>
-                default style
-              </login-card>
-              <login-card :is-inverted-colors="true">
-                inverse style
-              </login-card>
-            </div>
-          </v-tab>
-        </v-tabs>
-      </div>
-    </v-content>
-  </div>
+        <oauth-content :is-loading.sync="isLoadingContent" />
+      </v-card>
+    </section>
+  </content-loader>
 </template>
 
 <script>
-import VTabs from '@endpass/ui/kit/VTabs';
-import VTab from '@endpass/ui/kit/VTab';
-import VToggle from '@endpass/ui/kit/VToggle';
-import VSpinner from '@endpass/ui/components/VSpinner';
+import VCard from '@endpass/ui/kit/VCard';
 import FormField from '@/components/common/FormField';
-import Requests from '@/components/screen/Oauth/Requests';
-import { connectStore } from '@/store';
-import LoginCard from '@/components/screen/Oauth/LoginCard';
-import VContent from '@/components/common/VContent';
 import VHeaderControls from '@/components/common/VHeaderControls';
-
-const OPEN_MODES = {
-  IFRAME: 'iframe',
-  POPUP: 'popup',
-};
+import ContentLoader from '@/components/modules/ContentLoader';
+import PopupModeSwitcher from './modules/PopupModeSwitcher';
+import OauthContent from './modules/OauthContent';
+import { connectStore } from '@/store';
+import { OPEN_MODES } from './Oauth.constants';
 
 export default {
   name: 'Oauth',
@@ -86,8 +35,7 @@ export default {
 
   data() {
     return {
-      isLoadingRequest: false,
-      openModeToggle: false,
+      isLoadingContent: false,
     };
   },
 
@@ -97,60 +45,39 @@ export default {
     },
 
     isLoading() {
-      return !this.isInited || this.isLoadingRequest;
-    },
-
-    openModeClass() {
-      return this.isIframe ? 'is-success' : 'is-info';
-    },
-
-    openModeTitle() {
-      return this.isIframe
-        ? 'modal (using iframe)'
-        : 'popup (using without iframe)';
+      return !this.isInited || this.isLoadingContent;
     },
 
     openMode() {
       const { openMode = OPEN_MODES.IFRAME } = this.$route.query;
       return openMode;
     },
-
-    isIframe() {
-      return this.openMode === OPEN_MODES.IFRAME;
-    },
-
-    nextMode() {
-      return this.isIframe ? OPEN_MODES.POPUP : OPEN_MODES.IFRAME;
-    },
   },
 
   methods: {
-    onSwitchOauthPopup() {
+    onSwitchOauthPopup(openMode) {
       this.$router.push({
         query: {
-          openMode: this.nextMode,
+          openMode,
         },
       });
+      window.location.reload();
     },
   },
 
   async mounted() {
-    this.openModeToggle = this.isIframe;
     await this.$options.connectStore.initConnect({
-      isPopup: !this.isIframe,
+      isPopup: this.openMode === OPEN_MODES.POPUP,
     });
   },
 
   components: {
-    VHeaderControls,
-    VContent,
-    Requests,
-    VTabs,
-    VTab,
-    VToggle,
-    LoginCard,
     FormField,
-    VSpinner,
+    OauthContent,
+    PopupModeSwitcher,
+    ContentLoader,
+    VHeaderControls,
+    VCard,
   },
 };
 </script>

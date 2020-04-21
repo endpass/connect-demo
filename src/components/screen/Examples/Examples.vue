@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section>
     <v-card class="card-content examples-showcase">
       <section>
         <v-tabs>

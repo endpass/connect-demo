@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-label label="Client id of application" />
+    <v-label label="Client ID of application" />
     <div class="v-client-id-container">
       <v-input
         v-model="clientId"

@@ -22,11 +22,11 @@
 import ConnectError from '@endpass/connect/error';
 import ErrorNotify from '@/class/ErrorNotify';
 import { connectStore } from '@/store';
-import ButtonsList from '@/components/screen/Oauth/Requests/ButtonList/ButtonsList';
-import OauthFooter from '@/components/screen/Oauth/Requests/OauthFooter';
-import UserAddresses from '@/components/screen/Oauth/Requests/UserAddresses';
-import Documents from '@/components/screen/Oauth/Requests/Documents';
-import Email from '@/components/screen/Oauth/Requests/Email';
+import ButtonsList from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/ButtonList/ButtonsList';
+import OauthFooter from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/OauthFooter';
+import UserAddresses from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/UserAddresses';
+import Documents from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/Documents';
+import Email from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/Email';
 
 import createOauthRequestController from './OauthRequestController';
 
