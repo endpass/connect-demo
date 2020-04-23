@@ -1,40 +1,30 @@
 <template>
   <div>
     <button-section
-      button-label="Get Addresses"
+      label="Get Addresses"
+      method="GET"
+      :path="`${serverUrl}/user/address`"
       data-test="endpass-oauth-get-accounts-button"
       @click="onGetAddress"
-    >
-      GET
-      <v-tag skin="green">
-        {{ `${serverUrl}/user/address` }}
-      </v-tag>
-    </button-section>
+    />
     <button-section
-      button-label="Get Email"
+      label="Get Email"
+      method="GET"
+      :path="`${serverUrl}/user`"
       data-test="endpass-oauth-get-email-button"
       @click="onGetEmail"
-    >
-      GET
-      <v-tag skin="green">
-        {{ `${serverUrl}/user` }}
-      </v-tag>
-    </button-section>
+    />
     <button-section
-      button-label="Get Documents"
+      label="Get Documents"
+      method="GET"
+      :path="`${serverUrl}/documents`"
       data-test="endpass-oauth-get-documents"
       @click="onGetDocuments"
-    >
-      GET
-      <v-tag skin="green">
-        {{ `${serverUrl}/documents` }}
-      </v-tag>
-    </button-section>
+    />
   </div>
 </template>
 
 <script>
-import VTag from '@endpass/ui/kit/VTag';
 import ButtonSection from './ButtonSection';
 
 export default {
@@ -60,7 +50,6 @@ export default {
 
   components: {
     ButtonSection,
-    VTag,
   },
 };
 </script>

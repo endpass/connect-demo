@@ -6,6 +6,7 @@
         v-model="clientId"
         placeholder="type client id here..."
         class="v-client-id-input"
+        @keydown.enter="onSet"
       />
       <v-button
         is-inline
@@ -47,6 +48,9 @@ export default {
 
   methods: {
     async onSet() {
+      if (this.disabled) {
+        return;
+      }
       this.isLoading = true;
       await this.$options.connectStore.setClientId(this.clientId);
     },

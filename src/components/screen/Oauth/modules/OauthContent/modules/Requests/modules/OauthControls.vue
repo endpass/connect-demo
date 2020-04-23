@@ -27,7 +27,7 @@ import VButton from '@endpass/ui/kit/VButton';
 import FormField from '@/components/common/FormField';
 
 export default {
-  name: 'OauthFooter',
+  name: 'OauthControls',
 
   methods: {
     onBack() {

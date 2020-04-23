@@ -4,25 +4,24 @@
       label="Requests"
       data-test="endpass-oauth-requests-tab"
     >
-      <p class="subtitle">
+      <div class="oauth-content-header">
         Each button can do request to oauth server
-      </p>
+      </div>
       <requests :is-loading.sync="isLoadingRequest" />
     </v-tab>
     <v-tab
       label="SignIn button"
       data-test="endpass-oauth-signin-button-tab"
     >
-      <p class="subtitle">
+      <div class="oauth-content-header">
         This section have buttons in different styles, which can make a signIn
         request to Endpass service
-      </p>
-      <login-card>
-        default style
-      </login-card>
-      <login-card :is-inverted-colors="true">
-        inverse style
-      </login-card>
+      </div>
+      <login-card label="default style" />
+      <login-card
+        label="inverse style"
+        :is-inverted-colors="true"
+      />
     </v-tab>
   </v-tabs>
 </template>
@@ -70,3 +69,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.oauth-content-header {
+  font-size: 14px;
+  color: var(--endpass-ui-color-grey-7);
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+</style>

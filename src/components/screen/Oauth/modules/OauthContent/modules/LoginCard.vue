@@ -4,16 +4,16 @@
     :class="{ 'app-card-inverted': isInvertedColors }"
   >
     <div>
-      <p class="subtitle">
-        <slot />
-      </p>
+      <span class="app-login-card-label">
+        {{ label }}
+      </span>
       <div
         :id="elementId"
         class="button-root"
         data-test="login-element"
       />
       <div
-        class="login-message"
+        class="app-login-card-login-message"
         data-test="login-message"
       >
         {{ message }}
@@ -29,6 +29,11 @@ export default {
   name: 'LoginCard',
 
   props: {
+    label: {
+      type: String,
+      default: '',
+    },
+
     isInvertedColors: {
       type: Boolean,
       default: false,
@@ -91,7 +96,7 @@ export default {
   padding: 20px;
 }
 
-.app-card-inverted .subtitle {
+.app-card-inverted .app-login-card-label {
   color: white;
 }
 
@@ -100,7 +105,7 @@ export default {
   display: inline-block;
 }
 
-.app-card-inverted .login-message {
+.app-card-inverted .app-login-card-login-message {
   color: white;
 }
 </style>

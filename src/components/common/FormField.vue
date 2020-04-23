@@ -1,9 +1,6 @@
 <template>
   <label class="form-field">
-    <p
-      v-if="label"
-      class="form-field__label"
-    >
+    <p v-if="label" class="form-field__label">
       {{ label }}
     </p>
     <div class="form-field__content">
@@ -39,6 +36,6 @@ export default {
   font-size: 14px;
 }
 .form-field__content {
-  margin-bottom: 16px;
+  margin-bottom: 23px;
 }
 </style>

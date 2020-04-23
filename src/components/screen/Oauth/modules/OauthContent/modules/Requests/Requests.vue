@@ -6,7 +6,7 @@
       @email="onGetEmail"
       @documents="onGetDocuments"
     />
-    <oauth-footer
+    <oauth-controls
       v-else
       @back="onBack"
       @clear="onClear"
@@ -19,31 +19,23 @@
 </template>
 
 <script>
-import ConnectError from '@endpass/connect/error';
-import ErrorNotify from '@/class/ErrorNotify';
-import { connectStore } from '@/store';
-import ButtonsList from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/ButtonList/ButtonsList';
-import OauthFooter from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/OauthFooter';
-import UserAddresses from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/UserAddresses';
-import Documents from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/Documents';
-import Email from '@/components/screen/Oauth/modules/OauthContent/modules/Requests/Email';
+import ButtonsList from './modules/ButtonsList';
+import OauthControls from './modules/OauthControls';
+import UserAddresses from './modules/UserAddresses';
+import Documents from './modules/Documents';
+import Email from './modules/Email';
 
 import createOauthRequestController from './OauthRequestController';
-
-const { OAUTH_POPUP_CLOSED } = ConnectError.ERRORS;
 
 export default {
   name: 'Requests',
 
-  connectStore,
   oauthRequestController: createOauthRequestController(),
-  errorNotify: new ErrorNotify(),
 
   data() {
     return {
       currentComponent: null,
       currentData: null,
-      openModeToggle: false,
     };
   },
 
@@ -51,14 +43,6 @@ export default {
     onBack() {
       this.currentComponent = null;
       this.currentData = null;
-    },
-
-    onSwitchOauthPopup() {
-      this.$router.push({
-        query: {
-          openMode: this.nextMode,
-        },
-      });
     },
 
     startLoading() {
@@ -76,16 +60,6 @@ export default {
         this.startLoading();
         this.currentData = await this.$options.oauthRequestController.getUser();
         this.currentComponent = Email;
-      } catch (e) {
-        if (e.code === OAUTH_POPUP_CLOSED) {
-          this.notifyProcessCancelled();
-          return;
-        }
-
-        this.$options.errorNotify.showError({
-          title: 'Get email error',
-          text: e,
-        });
       } finally {
         this.stopLoading();
       }
@@ -96,16 +70,6 @@ export default {
         this.startLoading();
         this.currentData = await this.$options.oauthRequestController.getUserAddress();
         this.currentComponent = UserAddresses;
-      } catch (e) {
-        if (e.code === OAUTH_POPUP_CLOSED) {
-          this.notifyProcessCancelled();
-          return;
-        }
-
-        this.$options.errorNotify.showError({
-          title: 'Get address error',
-          text: e,
-        });
       } finally {
         this.stopLoading();
       }
@@ -122,37 +86,17 @@ export default {
     async onGetDocuments() {
       try {
         this.startLoading();
-        const {
-          data,
-        } = await this.$options.oauthRequestController.getDocuments();
-        this.currentData = data;
+        this.currentData = await this.$options.oauthRequestController.getDocuments();
         this.currentComponent = Documents;
-      } catch (e) {
-        if (e.code === OAUTH_POPUP_CLOSED) {
-          this.notifyProcessCancelled();
-          return;
-        }
-
-        this.$options.errorNotify.showError({
-          title: 'Get documents error',
-          text: e,
-        });
       } finally {
         this.stopLoading();
       }
-    },
-
-    notifyProcessCancelled() {
-      this.$options.errorNotify.showInfo({
-        title: 'Operation cancelled',
-        text: 'Popup was closed',
-      });
     },
   },
 
   components: {
     ButtonsList,
-    OauthFooter,
+    OauthControls,
   },
 };
 </script>

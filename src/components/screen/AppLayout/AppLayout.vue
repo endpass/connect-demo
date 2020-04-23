@@ -49,12 +49,17 @@ export default {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 30px;
   grid-template-columns: 200px auto auto;
   grid-template-areas:
     'header  header  header'
     'nav content content'
     'footer  footer  footer';
+  background-color: var(--endpass-ui-color-grey-1);
+  background-image: url(../../../img/mission-block.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .app-layout-header {
@@ -64,10 +69,12 @@ export default {
 
 .app-layout-content {
   grid-area: content;
+  margin-right: 30px;
 }
 
 .app-layout-nav {
   grid-area: nav;
+  margin-left: 30px;
 }
 
 .app-layout-footer {
@@ -81,6 +88,10 @@ export default {
     grid-template-columns: 100%;
     grid-template-rows: 2fr 2fr auto 1fr;
     grid-template-areas: 'header' 'nav' 'content' 'footer';
+  }
+
+  .app-layout-content {
+    margin: 0;
   }
 }
 </style>

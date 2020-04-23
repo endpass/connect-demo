@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss">
 .content-loader-overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;
@@ -47,6 +47,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
 }
 .content-loader-label {
   color: var(--endpass-ui-color-white);
