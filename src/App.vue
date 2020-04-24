@@ -6,7 +6,7 @@
 
 <script>
 import ThemeProvider from '@endpass/ui/kit/ThemeProvider';
-import AppLayout from '@/components/screen/AppLayout';
+import AppLayout from '@/components/modules/AppLayout';
 
 export default {
   name: 'App',

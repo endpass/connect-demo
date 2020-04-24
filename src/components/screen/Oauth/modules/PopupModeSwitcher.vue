@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="popup-mode-switcher">
     <v-label label="OAuth open mode" />
     <div class="popup-mode-switcher-radio-list">
       <v-radio
@@ -49,9 +49,6 @@ export default {
 };
 </script>
 <style lang="scss">
-.popup-mode-switcher {
-}
-
 .popup-mode-switcher-radio-list {
   display: flex;
 }

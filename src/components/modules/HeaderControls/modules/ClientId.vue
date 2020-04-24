@@ -70,5 +70,6 @@ export default {
 
 .client-id-input {
   min-width: 310px;
+  flex: 0 0 auto;
 }
 </style>

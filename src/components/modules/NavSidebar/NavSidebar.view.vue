@@ -69,9 +69,6 @@ export default {
 </script>
 
 <style lang="scss">
-.nav-sidebar {
-}
-
 .nav-sidebar-list {
   list-style: none;
   margin: 0;

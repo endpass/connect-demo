@@ -25,12 +25,12 @@ export default {
   align-items: flex-end;
 }
 
-.header-controls-logout {
-  margin-left: auto;
-  flex: 0 0 auto;
+.header-controls-client-id {
+  flex: 1 1 auto;
+  margin-right: 16px;
 }
 
-.header-controls-client-id {
+.header-controls-logout {
   flex: 0 0 auto;
 }
 </style>
