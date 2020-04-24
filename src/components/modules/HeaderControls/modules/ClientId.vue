@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-label label="Client ID of application" />
-    <div class="v-client-id-container">
+    <div class="client-id-container">
       <v-input
         v-model="clientId"
         placeholder="type client id here..."
-        class="v-client-id-input"
+        class="client-id-input"
         @keydown.enter="onSet"
       />
       <v-button
@@ -28,7 +28,7 @@ import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
-  name: 'VClientId',
+  name: 'ClientId',
 
   connectStore,
 
@@ -64,11 +64,11 @@ export default {
 </script>
 
 <style lang="scss">
-.v-client-id-container {
+.client-id-container {
   display: flex;
 }
 
-.v-client-id-input {
+.client-id-input {
   min-width: 310px;
 }
 </style>

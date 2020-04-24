@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <v-content>
+    <v-card class="card-content">
       <form-field>
         <v-header-controls />
       </form-field>
@@ -13,7 +13,7 @@
         Login again
       </v-button>
       <div id="endpass-form" />
-    </v-content>
+    </v-card>
   </div>
 </template>
 
@@ -21,10 +21,10 @@
 /* eslint-disable no-console */
 
 import VButton from '@endpass/ui/kit/VButton';
+import VCard from '@endpass/ui/kit/VCard';
 import { connectStore } from '@/store';
-import VContent from '@/components/common/VContent';
-import VHeaderControls from '@/components/common/VHeaderControls';
-import FormField from '@/components/common/FormField';
+import VHeaderControls from '@/components/modules/HeaderControls';
+import FormField from '@/components/modules/FormField';
 
 export default {
   name: 'CustomElement',
@@ -55,7 +55,7 @@ export default {
   components: {
     FormField,
     VHeaderControls,
-    VContent,
+    VCard,
     VButton,
   },
 };

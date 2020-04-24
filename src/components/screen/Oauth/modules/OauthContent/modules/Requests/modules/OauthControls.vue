@@ -24,7 +24,7 @@
 
 <script>
 import VButton from '@endpass/ui/kit/VButton';
-import FormField from '@/components/common/FormField';
+import FormField from '@/components/modules/FormField';
 
 export default {
   name: 'OauthControls',

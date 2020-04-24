@@ -3,9 +3,9 @@
     <tbody>
       <row
         label="Get email"
-        description="receive user's email'"
+        description="receive user's email"
         method="GET"
-        :path="`${serverUrl}/user`"
+        :path="`${$options.serverUrl}/user`"
         data-test="endpass-oauth-get-user-details-button"
         @click="onGetUserDetails"
       />
@@ -13,7 +13,7 @@
         label="Get Documents"
         description="receive only verified documents list"
         method="GET"
-        :path="`${serverUrl}/documents`"
+        :path="`${$options.serverUrl}/documents`"
         data-test="endpass-oauth-get-documents-button"
         @click="onGetDocuments"
       />
@@ -21,7 +21,7 @@
         label="Get Addresses"
         description="receive addresses list"
         method="GET"
-        :path="`${serverUrl}/user/address`"
+        :path="`${$options.serverUrl}/user/address`"
         data-test="endpass-oauth-get-accounts-button"
         @click="onGetAddress"
       />
@@ -30,14 +30,12 @@
 </template>
 
 <script>
-import Row from './Row';
+import Row from './modules/Row';
 
 export default {
-  name: 'ButtonsList',
+  name: 'RequestButtons',
 
-  data: () => ({
-    serverUrl: ENV.VUE_APP_OAUTH_SERVER,
-  }),
+  serverUrl: ENV.VUE_APP_OAUTH_SERVER,
 
   methods: {
     async onGetUserDetails() {

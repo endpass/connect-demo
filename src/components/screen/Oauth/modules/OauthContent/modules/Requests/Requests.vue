@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import ButtonsList from './modules/ButtonsList';
+import ButtonsList from './modules/RequestButtons';
 import OauthControls from './modules/OauthControls';
 import UserAddresses from './modules/UserAddresses';
 import UserDocuments from './modules/UserDocuments';
 import UserDetails from './modules/UserDetails';
 
-import createOauthRequestController from './OauthRequestController';
+import createOauthRequestController from './Requests.controller';
 
 export default {
   name: 'Requests',

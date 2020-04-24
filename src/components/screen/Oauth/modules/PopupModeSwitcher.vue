@@ -1,13 +1,14 @@
 <template>
   <div>
     <v-label label="OAuth open mode" />
-    <div class="popup-mode-switcher-radios">
+    <div class="popup-mode-switcher-radio-list">
       <v-radio
         v-for="option in options"
         :key="option.val"
         :model-value="value"
         :value="option.val"
         :data-test-oauth-mode="option.val"
+        class="popup-mode-switcher-radio"
         @change="onModeSelect"
       >
         {{ option.text }}
@@ -51,11 +52,11 @@ export default {
 .popup-mode-switcher {
 }
 
-.popup-mode-switcher-radios {
+.popup-mode-switcher-radio-list {
   display: flex;
 }
 
-.popup-mode-switcher-radios > * {
+.popup-mode-switcher-radio {
   flex-basis: auto;
   margin-right: 20px;
 }

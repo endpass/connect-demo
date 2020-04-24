@@ -31,13 +31,4 @@ const router = new Router({
   ],
 });
 
-router.afterEach((to, from) => {
-  if (from.name) {
-    // Hack for reload page, but have flickers after change page
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 0);
-  }
-});
-
 export default router;

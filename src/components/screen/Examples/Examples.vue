@@ -25,9 +25,9 @@
 import VCard from '@endpass/ui/kit/VCard';
 import VTabs from '@endpass/ui/kit/VTabs';
 import VTab from '@endpass/ui/kit/VTab';
-import VCode from '@/components/common/VCode';
+import VCode from './modules/VCode';
+import ExampleComponent from './modules/ExampleComponent.vue';
 
-import ExampleComponent from './ExampleComponent.vue';
 /* eslint-disable */
 import VueSources from '!!raw-loader!./raws/VueSources.vue';
 import ReactSources from '!!raw-loader!./raws/ReactSources.jsx';

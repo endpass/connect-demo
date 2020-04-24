@@ -15,7 +15,7 @@ import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
-  name: 'VLogoutButton',
+  name: 'LogoutButton',
 
   connectStore,
 

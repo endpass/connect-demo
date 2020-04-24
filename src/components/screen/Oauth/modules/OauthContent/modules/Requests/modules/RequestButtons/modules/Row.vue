@@ -1,23 +1,23 @@
 <template>
-  <tr class="button-row">
+  <tr class="row">
     <td>
       <v-button @click="onClick">
         {{ label }}
       </v-button>
     </td>
     <td>
-      <span class="button-row-method">{{ method }}</span>
+      <span class="row-method">{{ method }}</span>
     </td>
     <td>
       <v-tag
         skin="green"
-        class="button-row-path"
+        class="row-path"
       >
         {{ path }}
       </v-tag>
     </td>
     <td>
-      <span class="button-row-description">{{ description }}</span>
+      <span class="row-description">{{ description }}</span>
     </td>
   </tr>
 </template>
@@ -65,29 +65,29 @@ export default {
 </script>
 
 <style lang="scss">
-.button-row {
+.row {
 }
 
-.button-row td {
+.row td {
   box-shadow: inset 0 1px 0 var(--endpass-ui-color-grey-1);
   padding: 16px 0;
   vertical-align: middle;
 }
-.button-row td + td {
+.row td + td {
   padding-left: 16px;
 }
 
-.button-row-path {
+.row-path {
   white-space: nowrap;
 }
 
-.button-row-method {
+.row-method {
   font-size: 14px;
   font-weight: bold;
   color: var(--endpass-ui-color-grey-7);
 }
 
-.button-row-description {
+.row-description {
   font-size: 12px;
   color: var(--endpass-ui-color-grey-7);
 }

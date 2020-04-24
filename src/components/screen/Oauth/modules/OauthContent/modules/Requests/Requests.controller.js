@@ -7,7 +7,7 @@ import ErrorNotify from '@/class/ErrorNotify';
 const { OAUTH_POPUP_CLOSED } = ConnectError.ERRORS;
 
 @Module({ generateMutationSetters: true })
-class OauthRequestController extends VuexModule {
+class RequestsController extends VuexModule {
   errorNotify = new ErrorNotify();
 
   constructor(props, { connectStore = connectStoreModule }) {
@@ -77,7 +77,7 @@ class OauthRequestController extends VuexModule {
   }
 
   @Action
-  async getDocuments() {
+  async getUserDocuments() {
     try {
       const { data } = await this.connectStore.connectInstance.request({
         method: 'GET',
@@ -99,4 +99,4 @@ class OauthRequestController extends VuexModule {
   }
 }
 
-export default () => createController(OauthRequestController);
+export default () => createController(RequestsController);

@@ -21,14 +21,14 @@
 
 <script>
 import VCard from '@endpass/ui/kit/VCard';
-import FormField from '@/components/common/FormField';
-import VHeaderControls from '@/components/common/VHeaderControls';
+import FormField from '@/components/modules/FormField';
+import VHeaderControls from '@/components/modules/HeaderControls';
 import ContentLoader from '@/components/modules/ContentLoader';
 import PopupModeSwitcher from './modules/PopupModeSwitcher';
 import OauthContent from './modules/OauthContent';
 import { connectStore } from '@/store';
 
-export const OPEN_MODES = {
+const OPEN_MODES = {
   IFRAME: 'iframe',
   POPUP: 'popup',
 };

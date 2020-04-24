@@ -73,22 +73,21 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.alias.set('@', path.resolve(__dirname, './src'));
 
-    config.module.rule('svg-sprite').use('svgo-loader').loader('svgo-loader');
+    config.module
+      .rule('images')
+      .test(/\.(png|jpe?g|gif|ico)(\?.*)?$/)
+      .use('url-loader')
+      .loader('url-loader')
+      .options({
+        limit: 1,
+        name: '[name].[hash:8].[ext]',
+      });
 
-    // config.module
-    //   .rule('images')
-    //   .test(/\.(png|jpe?g|gif|ico)(\?.*)?$/)
-    //   .use('url-loader')
-    //   .loader('url-loader')
-    //   .options({
-    //     limit: 1,
-    //     name: '[name].[hash:8].[ext]',
-    //   });
-    //
-    // config.module
-    //   .rule('svg-sprite')
-    //   .use('svgo-loader')
-    //   .loader('svgo-loader');
+    config.module
+      .rule('svg-sprite')
+      .use('svgo-loader')
+      .loader('svgo-loader');
+
     config.plugin('html').tap(args => {
       const options = Object.assign(args[0], {
         meta: {

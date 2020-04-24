@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import FormField from '@/components/common/FormField';
+import FormField from '@/components/modules/FormField';
 
 export default {
   name: 'UserDetails',
