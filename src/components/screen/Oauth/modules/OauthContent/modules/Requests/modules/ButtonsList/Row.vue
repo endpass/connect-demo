@@ -1,18 +1,25 @@
 <template>
-  <div class="button-section">
-    <div class="button-section-button">
+  <tr class="button-row">
+    <td>
       <v-button @click="onClick">
         {{ label }}
       </v-button>
-    </div>
-    <div class="button-section-details">
-      <strong class="button-section-details-method">{{ method }}</strong>
-      <v-tag skin="green">
+    </td>
+    <td>
+      <span class="button-row-method">{{ method }}</span>
+    </td>
+    <td>
+      <v-tag
+        skin="green"
+        class="button-row-path"
+      >
         {{ path }}
       </v-tag>
-      <span>{{ description }}</span>
-    </div>
-  </div>
+    </td>
+    <td>
+      <span class="button-row-description">{{ description }}</span>
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -58,29 +65,30 @@ export default {
 </script>
 
 <style lang="scss">
-.button-section {
+.button-row {
+}
+
+.button-row td {
   box-shadow: inset 0 1px 0 var(--endpass-ui-color-grey-1);
-  display: flex;
   padding: 16px 0;
+  vertical-align: middle;
 }
-.button-section-button {
-  width: 204px;
-  margin-right: 20px;
+.button-row td + td {
+  padding-left: 16px;
 }
-.button-section-details {
-  flex-basis: auto;
-  display: flex;
-  align-items: center;
+
+.button-row-path {
+  white-space: nowrap;
 }
-.button-section-details-method {
-  margin-right: 20px;
+
+.button-row-method {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--endpass-ui-color-grey-7);
 }
-@media screen and (max-width: 768px) {
-  .button-section {
-    display: block;
-  }
-  .button-section-details {
-    margin-top: 10px;
-  }
+
+.button-row-description {
+  font-size: 12px;
+  color: var(--endpass-ui-color-grey-7);
 }
 </style>
