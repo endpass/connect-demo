@@ -1880,10 +1880,10 @@
     eslint-plugin-prettier "^3.1.1"
     eslint-plugin-vue "^5.2.3"
 
-"@endpass/ui@^0.18.15":
-  version "0.18.15"
-  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.15.tgz#ee4d4838d7be39d1bcad67ab4d8cf96af6c25341"
-  integrity sha512-xjYABAH+wBig9LvqTCOXpA+aj5ny86z8GgRrHq/l7/qHuPdBG0Kw+lJlpyx3iGnqq40B6PYGu8Va5yIsGyawQA==
+"@endpass/ui@^0.18.18":
+  version "0.18.18"
+  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.18.tgz#d8df7e39fc914ad05519b998ba871f0f36f851e1"
+  integrity sha512-foHNFuG3hcy3+GUu7X4H2u/Ky8Wl3RYCSVlhp5T54R+QLXkUZpyEogagzYzkuqyRgecs4dcTDcnbrVvx/1Y2Vw==
   dependencies:
     dayjs "^1.8.18"
     lodash.chunk "^4.2.0"

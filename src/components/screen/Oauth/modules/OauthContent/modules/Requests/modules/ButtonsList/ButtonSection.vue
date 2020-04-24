@@ -10,6 +10,7 @@
       <v-tag skin="green">
         {{ path }}
       </v-tag>
+      <span>{{ description }}</span>
     </div>
   </div>
 </template>
@@ -25,6 +26,11 @@ export default {
     label: {
       type: String,
       required: true,
+    },
+
+    description: {
+      type: String,
+      default: '',
     },
 
     method: {

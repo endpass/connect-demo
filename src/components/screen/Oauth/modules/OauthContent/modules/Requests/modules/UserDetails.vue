@@ -13,7 +13,7 @@
 import FormField from '@/components/common/FormField';
 
 export default {
-  name: 'Email',
+  name: 'UserDetails',
   props: {
     data: {
       type: Object,

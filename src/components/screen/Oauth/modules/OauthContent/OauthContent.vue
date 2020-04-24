@@ -1,15 +1,6 @@
 <template>
   <v-tabs>
     <v-tab
-      label="Requests"
-      data-test="endpass-oauth-requests-tab"
-    >
-      <div class="oauth-content-header">
-        Each button can do request to oauth server
-      </div>
-      <requests :is-loading.sync="isLoadingRequest" />
-    </v-tab>
-    <v-tab
       label="SignIn button"
       data-test="endpass-oauth-signin-button-tab"
     >
@@ -22,6 +13,15 @@
         label="inverse style"
         :is-inverted-colors="true"
       />
+    </v-tab>
+    <v-tab
+      label="Requests"
+      data-test="endpass-oauth-requests-tab"
+    >
+      <div class="oauth-content-header">
+        Each button can do request to oauth server
+      </div>
+      <requests :is-loading.sync="isLoadingRequest" />
     </v-tab>
   </v-tabs>
 </template>

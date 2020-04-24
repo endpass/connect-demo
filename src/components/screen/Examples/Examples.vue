@@ -1,7 +1,7 @@
 <template>
   <section>
     <v-card class="card-content examples-showcase">
-      <section>
+      <section class="examples-code">
         <v-tabs>
           <v-tab label="Vanilla JS">
             <v-code :source="VanillaSources" />
@@ -14,7 +14,7 @@
           </v-tab>
         </v-tabs>
       </section>
-      <section>
+      <section class="examples-runtime">
         <example-component />
       </section>
     </v-card>
@@ -65,14 +65,15 @@ export default {
 
 .examples-showcase > section {
   flex: 0 0 auto;
-  width: calc(50% - 10px);
 }
 
-.examples-showcase > section:first-child {
-  margin-right: 20px;
+.examples-code {
+  width: calc(100% - 300px);
 }
 
-.examples-showcase > section:nth-child(2) {
-  padding-top: 92px;
+.examples-runtime {
+  width: 300px;
+  padding-top: 40px;
+  margin: 10px;
 }
 </style>

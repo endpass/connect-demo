@@ -12,7 +12,6 @@
         is-inline
         :disabled="disabled"
         :is-loading="isLoading"
-        skin="ghost"
         @click="onSet"
       >
         Set

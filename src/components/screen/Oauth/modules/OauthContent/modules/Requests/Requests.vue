@@ -3,8 +3,8 @@
     <buttons-list
       v-if="!currentComponent"
       @address="onGetUserAddress"
-      @email="onGetEmail"
-      @documents="onGetDocuments"
+      @user-details="onGetUserDetails"
+      @UserDocuments="onGetUserDocuments"
     />
     <oauth-controls
       v-else
@@ -22,8 +22,8 @@
 import ButtonsList from './modules/ButtonsList';
 import OauthControls from './modules/OauthControls';
 import UserAddresses from './modules/UserAddresses';
-import Documents from './modules/Documents';
-import Email from './modules/Email';
+import UserDocuments from './modules/UserDocuments';
+import UserDetails from './modules/UserDetails';
 
 import createOauthRequestController from './OauthRequestController';
 
@@ -55,11 +55,11 @@ export default {
       this.$emit('update:is-loading', false);
     },
 
-    async onGetEmail() {
+    async onGetUserDetails() {
       try {
         this.startLoading();
         this.currentData = await this.$options.oauthRequestController.getUser();
-        this.currentComponent = Email;
+        this.currentComponent = UserDetails;
       } finally {
         this.stopLoading();
       }
@@ -83,11 +83,11 @@ export default {
       this.stopLoading();
     },
 
-    async onGetDocuments() {
+    async onGetUserDocuments() {
       try {
         this.startLoading();
-        this.currentData = await this.$options.oauthRequestController.getDocuments();
-        this.currentComponent = Documents;
+        this.currentData = await this.$options.oauthRequestController.getUserDocuments();
+        this.currentComponent = UserDocuments;
       } finally {
         this.stopLoading();
       }

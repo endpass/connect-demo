@@ -46,7 +46,7 @@ module.exports = {
        */
       loaderOptions: {
         extract: true,
-        spriteFilename: 'img/icons.[hash:8].svg',
+        spriteFilename: 'icons.[hash:8].svg',
         // or 'img/icons.svg' if filenameHashing == false
       },
       /*

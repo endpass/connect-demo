@@ -3,20 +3,23 @@
     :id="id"
     class="app-layout"
   >
-    <header class="app-layout-header">
-      <app-header />
-    </header>
+    <div class="app-layout-bg-header" />
+    <div class="app-layout-bg-footer" />
+    <div class="app-layout-area">
+      <header class="app-layout-header">
+        <app-header />
+      </header>
 
-    <nav class="app-layout-nav">
-      <nav-sidebar />
-    </nav>
+      <nav class="app-layout-nav">
+        <nav-sidebar />
+      </nav>
 
-    <main class="app-layout-content">
-      <router-view />
-    </main>
+      <main class="app-layout-content">
+        <router-view />
+      </main>
 
-    <footer class="app-layout-footer" />
-
+      <footer class="app-layout-footer" />
+    </div>
     <notifications />
   </div>
 </template>
@@ -46,8 +49,13 @@ export default {
 
 <style lang="scss" scoped>
 .app-layout {
-  height: 100vh;
-  width: 100vw;
+  background-color: var(--endpass-ui-color-grey-1);
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-layout-area {
+  position: relative;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: 200px auto auto;
@@ -55,8 +63,27 @@ export default {
     'header  header  header'
     'nav content content'
     'footer  footer  footer';
-  background-color: var(--endpass-ui-color-grey-1);
-  background-image: url(../../../img/mission-block.svg);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.app-layout-bg-header {
+  position: absolute;
+  width: 276px;
+  height: 244px;
+  background-image: url(../../../assets/bg/bg-header.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.app-layout-bg-footer {
+  position: absolute;
+  width: 276px;
+  height: 244px;
+  bottom: 0;
+  right: 0;
+  background-image: url(../../../assets/bg/bg-footer.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -64,7 +91,8 @@ export default {
 
 .app-layout-header {
   grid-area: header;
-  margin: 30px;
+  margin-top: 30px;
+  margin-bottom: 42px;
 }
 
 .app-layout-content {
@@ -84,12 +112,13 @@ export default {
 
 // Responsive layout on mobile/tablet
 @media screen and (max-width: 1023px) {
-  .app-layout {
+  .app-layout-area {
     grid-template-columns: 100%;
     grid-template-rows: 2fr 2fr auto 1fr;
     grid-template-areas: 'header' 'nav' 'content' 'footer';
   }
 
+  .app-layout-nav,
   .app-layout-content {
     margin: 0;
   }

@@ -11,11 +11,11 @@
             :skin="getSkin(isActive)"
             @click="navigate"
           >
-            <svg-icon
+            <v-svg-icon
               slot="iconBefore"
               width="18px"
               height="18px"
-              name="oauth"
+              name="keypass"
             />
             Oauth
           </v-button>
@@ -30,11 +30,11 @@
             :skin="getSkin(isActive)"
             @click="navigate"
           >
-            <svg-icon
+            <v-svg-icon
               slot="iconBefore"
               width="18px"
               height="18px"
-              name="examples"
+              name="file-view"
             />
             Examples
           </v-button>
@@ -46,7 +46,7 @@
 
 <script>
 import VButton from '@endpass/ui/kit/VButton';
-import SvgIcon from '@/components/common/SvgIcon';
+import VSvgIcon from '@endpass/ui/kit/VSvgIcon';
 
 export default {
   name: 'NavSidebarView',
@@ -62,7 +62,7 @@ export default {
   },
 
   components: {
-    SvgIcon,
+    VSvgIcon,
     VButton,
   },
 };

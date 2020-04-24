@@ -10,7 +10,7 @@ export default {
 
 <style lang="scss">
 .app-header {
-  background-image: url('../../../img/logo.svg');
+  background-image: url('../../../assets/bg/logo.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

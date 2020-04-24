@@ -3,20 +3,14 @@
     <v-label label="OAuth open mode" />
     <div class="popup-mode-switcher-radios">
       <v-radio
+        v-for="option in options"
+        :key="option.val"
         :model-value="value"
-        :value="$options.OPEN_MODES.IFRAME"
-        data-test="endpass-oauth-mode-iframe"
+        :value="option.val"
+        :data-test-oauth-mode="option.val"
         @change="onModeSelect"
       >
-        Modal (using iframe)
-      </v-radio>
-      <v-radio
-        :model-value="value"
-        :value="$options.OPEN_MODES.POPUP"
-        data-test="endpass-oauth-mode-popup"
-        @change="onModeSelect"
-      >
-        Popup (using without iframe)
+        {{ option.text }}
       </v-radio>
     </div>
   </div>
@@ -25,17 +19,19 @@
 <script>
 import VRadio from '@endpass/ui/kit/VRadio';
 import VLabel from '@endpass/ui/kit/VLabel';
-import { OPEN_MODES } from '@/components/screen/Oauth/Oauth.constants';
 
 export default {
   name: 'PopupModeSwitcher',
-
-  OPEN_MODES,
 
   props: {
     value: {
       type: String,
       required: true,
+    },
+
+    options: {
+      type: Array,
+      default: () => [],
     },
   },
 

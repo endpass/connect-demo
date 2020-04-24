@@ -9,6 +9,7 @@
         <form-field>
           <popup-mode-switcher
             :value="openMode"
+            :options="$options.modeOptions"
             @switch="onSwitchOauthPopup"
           />
         </form-field>
@@ -26,12 +27,27 @@ import ContentLoader from '@/components/modules/ContentLoader';
 import PopupModeSwitcher from './modules/PopupModeSwitcher';
 import OauthContent from './modules/OauthContent';
 import { connectStore } from '@/store';
-import { OPEN_MODES } from './Oauth.constants';
+
+export const OPEN_MODES = {
+  IFRAME: 'iframe',
+  POPUP: 'popup',
+};
 
 export default {
   name: 'Oauth',
 
   connectStore,
+
+  modeOptions: [
+    {
+      text: 'Modal (using iframe)',
+      val: OPEN_MODES.IFRAME,
+    },
+    {
+      text: 'Popup (using without iframe)',
+      val: OPEN_MODES.POPUP,
+    },
+  ],
 
   data() {
     return {

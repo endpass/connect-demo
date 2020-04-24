@@ -1,25 +1,28 @@
 <template>
   <div>
     <button-section
+      label="Get User"
+      description="receive user details"
+      method="GET"
+      :path="`${serverUrl}/user`"
+      data-test="endpass-oauth-get-user-details-button"
+      @click="onGetUserDetails"
+    />
+    <button-section
+      label="Get Documents"
+      description="receive only verified documents list"
+      method="GET"
+      :path="`${serverUrl}/documents`"
+      data-test="endpass-oauth-get-documents-button"
+      @click="onGetDocuments"
+    />
+    <button-section
       label="Get Addresses"
+      description="receive addresses list"
       method="GET"
       :path="`${serverUrl}/user/address`"
       data-test="endpass-oauth-get-accounts-button"
       @click="onGetAddress"
-    />
-    <button-section
-      label="Get Email"
-      method="GET"
-      :path="`${serverUrl}/user`"
-      data-test="endpass-oauth-get-email-button"
-      @click="onGetEmail"
-    />
-    <button-section
-      label="Get Documents"
-      method="GET"
-      :path="`${serverUrl}/documents`"
-      data-test="endpass-oauth-get-documents"
-      @click="onGetDocuments"
     />
   </div>
 </template>
@@ -35,8 +38,8 @@ export default {
   }),
 
   methods: {
-    async onGetEmail() {
-      this.$emit('email');
+    async onGetUserDetails() {
+      this.$emit('user-details');
     },
 
     async onGetAddress() {
