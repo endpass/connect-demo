@@ -110,7 +110,6 @@ export default {
   grid-area: footer;
 }
 
-// Responsive layout on mobile/tablet
 @media screen and (max-width: 1023px) {
   .app-layout-area {
     grid-template-columns: 100%;
