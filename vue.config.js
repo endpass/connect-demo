@@ -46,7 +46,8 @@ module.exports = {
        */
       loaderOptions: {
         extract: true,
-        spriteFilename: 'icons.[hash:8].svg', // or 'img/icons.svg' if filenameHashing == false
+        spriteFilename: 'icons.[hash:8].svg',
+        // or 'img/icons.svg' if filenameHashing == false
       },
       /*
        * @see https://github.com/kisenka/svg-sprite-loader#configuration
@@ -86,6 +87,7 @@ module.exports = {
       .rule('svg-sprite')
       .use('svgo-loader')
       .loader('svgo-loader');
+
     config.plugin('html').tap(args => {
       const options = Object.assign(args[0], {
         meta: {

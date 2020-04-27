@@ -26,17 +26,6 @@ export default class ErrorNotify {
   }
 
   /**
-   * Show warning notify
-   * @param {NotificationOptions} options
-   */
-  showWarn(options) {
-    this.showNotify({
-      ...options,
-      type: 'is-warn',
-    });
-  }
-
-  /**
    * Show error notify
    * @param {NotificationOptions} options
    */

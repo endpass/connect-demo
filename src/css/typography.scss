@@ -10,18 +10,8 @@ h6 {
   font-family: $heading-font-family;
 }
 
-.title {
-  font-weight: 300;
-  font-size: 2.6rem;
-  color: $dark-grey;
-}
-
-.bold {
-  font-weight: 700;
-  font-size: 1.1em;
-}
-
 // Global styles
+pre,
 code,
 .code {
   background: $light-grey;
@@ -29,22 +19,5 @@ code,
   padding: 1em;
   white-space: normal;
   word-wrap: break-word;
-  font-family: 'Lucida Console', 'Courier New', monospace;
-}
-
-.long-number {
-  max-width: 250px;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.long-number:hover {
-  max-width: none;
-}
-
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: 'JetBrains Mono', 'Lucida Console', 'Courier New', monospace;
 }

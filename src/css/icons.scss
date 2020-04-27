@@ -19,29 +19,3 @@
     fill: currentColor;
   }
 }
-
-.control.has-icons-left,
-.control.has-icons-right {
-  .icon svg {
-    fill: #dbdbdb;
-    display: inline-block;
-    width: 1em;
-  }
-
-  .input:focus, &.select:focus {
-    &~.icon svg {
-      fill: $dark-grey;
-    }
-  }
-
-  a.icon {
-      svg {
-        fill: $dark-grey;
-      }
-    &:hover {
-      svg {
-        fill: $primary;
-      }
-    }
-  }
-}

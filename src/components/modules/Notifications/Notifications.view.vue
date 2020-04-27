@@ -1,0 +1,72 @@
+<template>
+  <div class="notify-container">
+    <notifications
+      :speed="500"
+      :duration="5000"
+      width="auto"
+      position="top center"
+      data-test="app-notification"
+      classes="notification app-notification"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'NotificationsView',
+};
+</script>
+
+<style lang="scss">
+// Flash notifications
+
+$notify-width: 600px;
+
+.notify-container {
+  position: fixed;
+  z-index: 5000;
+  top: 0;
+  left: 50%;
+  margin-left: -$notify-width / 2;
+
+  .notifications {
+    position: relative;
+    width: $notify-width;
+  }
+
+  @media screen and (max-width: 768px) {
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+    .notifications {
+      width: auto;
+    }
+  }
+}
+
+.app-notification {
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  max-width: $notify-width;
+  margin: auto;
+
+  .notification-title {
+    font-size: 1.3rem;
+
+    &:after {
+      display: inline-block;
+      position: absolute;
+      font-size: 1.5rem;
+      top: 0;
+      right: 0.25rem;
+      margin-left: auto;
+      content: '\00d7';
+    }
+  }
+
+  .notification-content {
+    font-size: 1rem;
+  }
+}
+</style>
