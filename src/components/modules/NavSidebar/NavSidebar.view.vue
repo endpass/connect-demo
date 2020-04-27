@@ -74,4 +74,8 @@ export default {
   margin: 0;
   padding: 0;
 }
+
+.nav-sidebar-list li {
+  margin-bottom: 8px;
+}
 </style>
