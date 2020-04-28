@@ -6,8 +6,15 @@
       @user-details="onGetUserDetails"
       @user-documents="onGetUserDocuments"
     />
-    <oauth-controls v-else @back="onBack" @clear="onClear" />
-    <component :is="currentComponent" :data="currentData" />
+    <oauth-controls
+      v-else
+      @back="onBack"
+      @clear="onClear"
+    />
+    <component
+      :is="currentComponent"
+      :data="currentData"
+    />
   </div>
 </template>
 
