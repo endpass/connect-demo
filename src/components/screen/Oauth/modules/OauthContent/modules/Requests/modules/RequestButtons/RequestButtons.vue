@@ -15,7 +15,7 @@
         method="GET"
         :path="`${$options.serverUrl}/documents`"
         data-test="endpass-oauth-get-documents-button"
-        @click="onGetDocuments"
+        @click="onGetUserDocuments"
       />
       <row
         label="Get Addresses"
@@ -46,8 +46,8 @@ export default {
       this.$emit('address');
     },
 
-    async onGetDocuments() {
-      this.$emit('documents');
+    async onGetUserDocuments() {
+      this.$emit('user-documents');
     },
   },
 

@@ -4,7 +4,7 @@
       v-if="!currentComponent"
       @address="onGetUserAddress"
       @user-details="onGetUserDetails"
-      @UserDocuments="onGetUserDocuments"
+      @user-documents="onGetUserDocuments"
     />
     <oauth-controls
       v-else
