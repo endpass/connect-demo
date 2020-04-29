@@ -41,7 +41,7 @@ class RequestsController extends VuexModule {
         throw e;
       }
 
-      this.$options.errorNotify.showError({
+      this.errorNotify.showError({
         title: 'Get address error',
         text: e,
       });
@@ -90,7 +90,7 @@ class RequestsController extends VuexModule {
         throw e;
       }
 
-      this.$options.errorNotify.showError({
+      this.errorNotify.showError({
         title: 'Get documents error',
         text: e,
       });
