@@ -1837,6 +1837,29 @@
     web3-providers-ws "1.0.0-beta.37"
     web3-utils "1.0.0-beta.55"
 
+"@endpass/class@^0.20.1":
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/@endpass/class/-/class-0.20.1.tgz#95d47b0921611693781f63ce2a67cc822a423276"
+  integrity sha512-+9fChw6vX4qdUN6acezra5QAtkofAjHjT7jPhCxJlzPE604fp9KNpxnUtfloDJcTJly8cqhvV3LfeXMMYqBP7A==
+  dependencies:
+    "@endpass/utils" "^1.9.2"
+    "@ledgerhq/hw-app-eth" "^4.24.0"
+    "@ledgerhq/hw-transport-u2f" "^4.24.0"
+    axios "^0.19.2"
+    bignumber.js "^7.2.1"
+    dexie "^2.0.4"
+    eth-ens-namehash "^2.0.8"
+    eth-lib "^0.2.8"
+    ethereumjs-tx "^1.3.4"
+    ethereumjs-wallet "^0.6.0"
+    lodash "^4.17.15"
+    path-to-regexp "^2.4.0"
+    trezor-connect "^6.0.0"
+    web3-providers-http "1.0.0-beta.37"
+    web3-providers-ipc "1.0.0-beta.37"
+    web3-providers-ws "1.0.0-beta.37"
+    web3-utils "1.0.0-beta.55"
+
 "@endpass/connect@^0.32.0-beta":
   version "0.32.0-beta"
   resolved "https://registry.yarnpkg.com/@endpass/connect/-/connect-0.32.0-beta.tgz#f60a56d164511bacb5756db724e70749194062d5"
@@ -1880,10 +1903,10 @@
     eslint-plugin-prettier "^3.1.1"
     eslint-plugin-vue "^5.2.3"
 
-"@endpass/ui@^0.18.18":
-  version "0.18.18"
-  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.18.tgz#d8df7e39fc914ad05519b998ba871f0f36f851e1"
-  integrity sha512-foHNFuG3hcy3+GUu7X4H2u/Ky8Wl3RYCSVlhp5T54R+QLXkUZpyEogagzYzkuqyRgecs4dcTDcnbrVvx/1Y2Vw==
+"@endpass/ui@^0.18.21":
+  version "0.18.21"
+  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.21.tgz#abe0ed92bb628849b2316d574819c3fbfb9f5902"
+  integrity sha512-8TRA/CZVG3CTvrZsQv7Ma1veIHFFqAn8LasNQIj1mFTsdKc7ZluHc3V21pj9tC8GxGy/dVKP3hTRhnlUPCcOFA==
   dependencies:
     dayjs "^1.8.18"
     lodash.chunk "^4.2.0"
@@ -3121,6 +3144,13 @@ axios@^0.19.0:
   dependencies:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
+
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
