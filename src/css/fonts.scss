@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono Regular'),
+    local('JetBrainsMono-Regular'),
     url('../assets/fonts/JetBrainsMono-Regular.woff') format('woff'),
     url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
   font-style: normal;
@@ -10,6 +11,7 @@
 @font-face {
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono Bold'),
+    local('JetBrainsMono-Bold'),
     url('../assets/fonts/JetBrainsMono-Bold.woff') format('woff'),
     url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
   font-style: normal;
