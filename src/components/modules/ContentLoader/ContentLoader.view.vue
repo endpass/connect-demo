@@ -9,10 +9,7 @@
       <span class="content-loader-label">
         <slot name="label" />
       </span>
-      <v-progress-circle
-        progress="25"
-        line-thickness="1"
-      />
+      <v-progress-circle progress="25" line-thickness="1" />
     </div>
   </div>
 </template>
@@ -24,6 +21,11 @@ export default {
   name: 'ContentLoaderView',
 
   props: {
+    label: {
+      type: String,
+      default: 'Please wait, loading...',
+    },
+
     isLoading: {
       type: Boolean,
       default: false,

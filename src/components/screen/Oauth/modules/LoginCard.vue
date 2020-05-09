@@ -4,12 +4,11 @@
     :class="{ 'app-card-inverted': isInvertedColors }"
   >
     <div>
-      <span class="app-login-card-label">
+      <div class="app-login-card-label">
         {{ label }}
-      </span>
+      </div>
       <div
         :id="elementId"
-        class="button-root"
         data-test="login-element"
       />
       <div
@@ -87,22 +86,25 @@ export default {
 </script>
 
 <style>
-.app-card-inverted {
-  background-color: #4b0472;
+.app-login-card {
+  background-color: #f8f9fb;
+  padding: 20px;
+  display: flex;
+  flex: 1;
 }
 
-.app-login-card {
-  margin-bottom: 20px;
-  padding: 20px;
+.app-card-inverted {
+  background-color: #6e32c9;
+}
+
+.app-login-card-label {
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .app-card-inverted .app-login-card-label {
   color: white;
-}
-
-.button-root {
-  margin-left: 15px;
-  display: inline-block;
 }
 
 .app-card-inverted .app-login-card-login-message {

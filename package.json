@@ -41,10 +41,10 @@
     }
   },
   "dependencies": {
-    "@endpass/class": "^0.19.6",
+    "@endpass/class": "^0.20.1",
     "@endpass/connect": "^0.32.0-beta",
     "@endpass/e2e-utils": "^0.6.0",
-    "@endpass/ui": "^0.18.18",
+    "@endpass/ui": "^0.18.21",
     "@endpass/utils": "^1.9.2",
     "bulma": "^0.8.2",
     "prismjs": "^1.20.0",

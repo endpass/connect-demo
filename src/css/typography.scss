@@ -10,6 +10,13 @@ h6 {
   font-family: $heading-font-family;
 }
 
+body,
+textarea,
+select,
+input {
+  font-family: 'BrutalType';
+}
+
 // Global styles
 pre,
 code,
