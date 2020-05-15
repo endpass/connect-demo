@@ -1,6 +1,6 @@
 <template>
   <div class="popup-mode-switcher">
-    <v-label label="OAuth open mode" />
+    <v-label label="Choose how you would like the workflow to appear" />
     <div class="popup-mode-switcher-radio-list">
       <v-radio
         v-for="option in options"

@@ -22,8 +22,9 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <div class="oauth-content-header">
-            Here are a few examples of how the "Sign In with Endpass" button
-            would look to a user inside your application
+            Here are a few examples of how our Sign In button would look to a
+            user inside your application, when beginning the Identity
+            Verification process:
           </div>
           <div class="oauth-content-login-cards-list">
             <login-card label="Default style" />
@@ -37,7 +38,8 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <div class="oauth-content-header">
-            Each button can do request to OAuth server
+            The following buttons are examples of workflows to get various
+            identity details from a user:
           </div>
           <requests :is-loading.sync="isLoadingContent" />
         </v-card>
@@ -73,7 +75,7 @@ export default {
       val: OPEN_MODES.IFRAME,
     },
     {
-      text: 'Popup (using without iframe)',
+      text: 'Popup (open a new window)',
       val: OPEN_MODES.POPUP,
     },
   ],

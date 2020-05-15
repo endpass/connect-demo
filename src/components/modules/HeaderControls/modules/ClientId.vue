@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-label label="Client ID of application" />
+    <v-label
+      label="Paste in your application's Client ID to get started with the demo"
+    />
     <div class="client-id-container">
       <v-input
         v-model="clientId"
