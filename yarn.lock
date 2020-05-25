@@ -1903,14 +1903,14 @@
     eslint-plugin-prettier "^3.1.1"
     eslint-plugin-vue "^5.2.3"
 
-"@endpass/ui@^0.18.21":
-  version "0.18.21"
-  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.21.tgz#abe0ed92bb628849b2316d574819c3fbfb9f5902"
-  integrity sha512-8TRA/CZVG3CTvrZsQv7Ma1veIHFFqAn8LasNQIj1mFTsdKc7ZluHc3V21pj9tC8GxGy/dVKP3hTRhnlUPCcOFA==
+"@endpass/ui@^0.18.23":
+  version "0.18.23"
+  resolved "https://registry.yarnpkg.com/@endpass/ui/-/ui-0.18.23.tgz#d2c27fb8914b4247f372058b455996adb9d415ce"
+  integrity sha512-KyXd5uYFTnNIv9ecwjhIfe7IpfhRbLGJkjlpPepcojNTq5KS459sv2puyE8Ui3kFMtgRV+L3aB1K0bANZ879Zw==
   dependencies:
-    dayjs "^1.8.18"
+    dayjs "^1.8.27"
     lodash.chunk "^4.2.0"
-    vue "^2.5.21"
+    vue "^2.6.11"
 
 "@endpass/utils@^1.8.3":
   version "1.8.3"
@@ -5305,10 +5305,10 @@ dayjs@^1.8.16:
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.16.tgz#2a3771de537255191b947957af2fd90012e71e64"
   integrity sha512-XPmqzWz/EJiaRHjBqSJ2s6hE/BUoCIHKgdS2QPtTQtKcS9E4/Qn0WomoH1lXanWCzri+g7zPcuNV4aTZ8PMORQ==
 
-dayjs@^1.8.18:
-  version "1.8.18"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.18.tgz#c9b3fcd5a8eca96ed20a907f4491516d6eda15c9"
-  integrity sha512-JBMJZghNK8TtuoPnKNIzW9xavVVigld/zmZNpZSyQbkb2Opp55YIfZUpE4OEqPF/iyUVQTKcn1bC2HtC8B7s3g==
+dayjs@^1.8.27:
+  version "1.8.27"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.27.tgz#a8ae63ee990af28c05c430f0e160ae835a0fbbf8"
+  integrity sha512-Jpa2acjWIeOkg8KURUHICk0EqnEFSSF5eMEscsOgyJ92ZukXwmpmRkPSUka7KHSfbj5eKH30ieosYip+ky9emQ==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -14445,11 +14445,6 @@ vue-template-es2015-compiler@^1.6.0, vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
-
-vue@^2.5.21:
-  version "2.6.10"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vue@^2.6.11:
   version "2.6.11"
