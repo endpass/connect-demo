@@ -9,10 +9,10 @@ import e2eSetup from '@/utils/e2eSetup';
 import 'prismjs/themes/prism.css';
 import '@endpass/ui/kit/kit.theme-default.css';
 
+import './css/main.scss';
+
 Vue.use(Notifications);
 Vue.use(UIComponents);
-
-require('./css/main.scss');
 
 Vue.config.productionTip = false;
 

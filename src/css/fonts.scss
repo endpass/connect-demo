@@ -1,32 +1,11 @@
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: local('JetBrains Mono Regular'),
-    local('JetBrainsMono-Regular'),
-    url('../assets/fonts/JetBrainsMono-Regular.woff') format('woff'),
-    url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  src: local('JetBrains Mono Bold'),
-    local('JetBrainsMono-Bold'),
-    url('../assets/fonts/JetBrainsMono-Bold.woff') format('woff'),
-    url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 700;
-}
-
-@font-face {
   font-family: 'Brutal Type';
-  src: local('Brutal Type'),
-    url('../assets/fonts/BrutalType/brutal-type-regular.eot?#iefix')
+  src: url('~@/assets/fonts/BrutalType/brutal-type-regular.eot?#iefix')
       format('embedded-opentype'),
-    url('../assets/fonts/BrutalType/brutal-type-regular.woff2') format('woff2'),
-    url('../assets/fonts/BrutalType/brutal-type-regular.woff') format('woff'),
-    url('../assets/fonts/BrutalType/brutal-type-regular.ttf') format('truetype'),
-    url('../assets/fonts/BrutalType/brutal-type-regular.svg') format('svg');
+    url('~@/assets/fonts/BrutalType/brutal-type-regular.woff2') format('woff2'),
+    url('~@/assets/fonts/BrutalType/brutal-type-regular.woff') format('woff'),
+    url('~@/assets/fonts/BrutalType/brutal-type-regular.ttf') format('truetype'),
+    url('~@/assets/fonts/BrutalType/brutal-type-regular.svg') format('svg');
 
   font-style: normal;
   font-weight: 400;
@@ -35,12 +14,12 @@
 @font-face {
   font-family: 'Brutal Type';
   src: local('Brutal Type'),
-    url('../assets/fonts/BrutalType/brutal-type-medium.eot?#iefix')
+    url('~@/assets/fonts/BrutalType/brutal-type-medium.eot?#iefix')
       format('embedded-opentype'),
-    url('../assets/fonts/BrutalType/brutal-type-medium.woff2') format('woff2'),
-    url('../assets/fonts/BrutalType/brutal-type-medium.woff') format('woff'),
-    url('../assets/fonts/BrutalType/brutal-type-medium.ttf') format('truetype'),
-    url('../assets/fonts/BrutalType/brutal-type-medium.svg') format('svg');
+    url('~@/assets/fonts/BrutalType/brutal-type-medium.woff2') format('woff2'),
+    url('~@/assets/fonts/BrutalType/brutal-type-medium.woff') format('woff'),
+    url('~@/assets/fonts/BrutalType/brutal-type-medium.ttf') format('truetype'),
+    url('~@/assets/fonts/BrutalType/brutal-type-medium.svg') format('svg');
 
   font-style: normal;
   font-weight: 500;
@@ -49,12 +28,12 @@
 @font-face {
   font-family: 'Brutal Type';
   src: local('Brutal Type'),
-    url('../assets/fonts/BrutalType/brutal-type-bold.eot?#iefix')
+    url('~@/assets/fonts/BrutalType/brutal-type-bold.eot?#iefix')
       format('embedded-opentype'),
-    url('../assets/fonts/BrutalType/brutal-type-bold.woff2') format('woff2'),
-    url('../assets/fonts/BrutalType/brutal-type-bold.woff') format('woff'),
-    url('../assets/fonts/BrutalType/brutal-type-bold.ttf') format('truetype'),
-    url('../assets/fonts/BrutalType/brutal-type-bold.svg') format('svg');
+    url('~@/assets/fonts/BrutalType/brutal-type-bold.woff2') format('woff2'),
+    url('~@/assets/fonts/BrutalType/brutal-type-bold.woff') format('woff'),
+    url('~@/assets/fonts/BrutalType/brutal-type-bold.ttf') format('truetype'),
+    url('~@/assets/fonts/BrutalType/brutal-type-bold.svg') format('svg');
 
   font-style: normal;
   font-weight: 700;
