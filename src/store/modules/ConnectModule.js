@@ -25,6 +25,10 @@ class ConnectModule extends VuexModule {
     return clientId;
   }
 
+  get server() {
+    return ENV.VUE_APP_OAUTH_SERVER;
+  }
+
   @Action
   async setClientId(clientId) {
     const savedValue = clientId ? clientId.trim() : '';

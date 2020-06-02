@@ -4,7 +4,7 @@
       <li>
         <router-link
           v-slot="{ isActive, navigate }"
-          :to="{ name: 'Oauth' }"
+          :to="{ name: 'Oauth', query: queryWithClientId }"
           exact
         >
           <v-button
@@ -24,7 +24,7 @@
       <li>
         <router-link
           v-slot="{ isActive, href, navigate }"
-          :to="{ name: 'Examples' }"
+          :to="{ name: 'Examples', query: queryWithClientId }"
         >
           <v-button
             :skin="getSkin(isActive)"
@@ -54,6 +54,18 @@ export default {
   data: () => ({
     navMenuActive: false,
   }),
+
+  computed: {
+    queryWithClientId() {
+      const { clientid } = this.$route.query;
+
+      if (clientid) {
+        return { clientid };
+      }
+
+      return {};
+    },
+  },
 
   methods: {
     getSkin(isActive) {

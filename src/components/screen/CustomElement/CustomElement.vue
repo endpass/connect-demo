@@ -1,8 +1,9 @@
 <template>
-  <div class="home">
-    <v-card class="card-content">
+  <div class="custom-element">
+    <v-card class="custom-element-content">
       <form-field>
-        <v-header-controls />
+        <client-id class="custom-element-client-id" />
+        <logout-button class="header-controls-logout" />
       </form-field>
 
       <v-button
@@ -23,8 +24,8 @@
 import VButton from '@endpass/ui/kit/VButton';
 import VCard from '@endpass/ui/kit/VCard';
 import { connectStore } from '@/store';
-import VHeaderControls from '@/components/modules/HeaderControls';
 import FormField from '@/components/modules/FormField';
+import LogoutButton from '@/components/modules/LogoutButton';
 
 export default {
   name: 'CustomElement',
@@ -54,9 +55,15 @@ export default {
 
   components: {
     FormField,
-    VHeaderControls,
     VCard,
     VButton,
+    LogoutButton,
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.custom-element {
+  position: relative;
+}
+</style>

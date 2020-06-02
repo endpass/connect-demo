@@ -36,14 +36,14 @@ export default {
 
   data() {
     return {
-      clientId: this.$options.connectStore.clientId,
+      clientId: this.$route.query.clientid,
       isLoading: false,
     };
   },
 
   computed: {
     disabled() {
-      return this.clientId === this.$options.connectStore.clientId;
+      return this.clientId === this.$route.query.clientId;
     },
   },
 

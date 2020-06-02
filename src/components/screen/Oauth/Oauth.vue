@@ -8,7 +8,14 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <form-field>
-            <v-header-controls />
+            <server-switcher
+              :options="availableServers"
+              @switch="onServerSwitch"
+            />
+            <logout-button class="header-controls-logout" />
+          </form-field>
+          <form-field>
+            <client-id class="header-controls-client-id" />
           </form-field>
           <form-field>
             <popup-mode-switcher
@@ -51,11 +58,14 @@
 <script>
 import VCard from '@endpass/ui/kit/VCard';
 import FormField from '@/components/modules/FormField';
-import VHeaderControls from '@/components/modules/HeaderControls';
 import ContentLoader from '@/components/modules/ContentLoader';
 import PopupModeSwitcher from './modules/PopupModeSwitcher';
+import ServerSwitcher from './modules/ServerSwitcher';
 import Requests from './modules/Requests';
 import LoginCard from './modules/LoginCard';
+
+import ClientId from './modules/ClientId';
+import LogoutButton from '@/components/modules/LogoutButton';
 
 import { connectStore } from '@/store';
 
@@ -63,6 +73,21 @@ const OPEN_MODES = {
   IFRAME: 'iframe',
   POPUP: 'popup',
 };
+
+const AVAILABLE_SERVERS = [
+  {
+    text: 'https://connect-demo-dev.endpass.com',
+    val: 'https://connect-demo-dev.endpass.com',
+  },
+  {
+    text: 'https://connect-demo-staging.endpass.com',
+    val: 'https://connect-demo-staging.endpass.com',
+  },
+  {
+    text: 'https://endpass.github.io/connect-demo',
+    val: 'https://endpass.github.io/connect-demo',
+  },
+];
 
 export default {
   name: 'Oauth',
@@ -80,11 +105,9 @@ export default {
     },
   ],
 
-  data() {
-    return {
-      isLoadingContent: false,
-    };
-  },
+  data: () => ({
+    isLoadingContent: false,
+  }),
 
   computed: {
     isInited() {
@@ -99,6 +122,10 @@ export default {
       const { openMode = OPEN_MODES.IFRAME } = this.$route.query;
       return openMode;
     },
+
+    availableServers() {
+      return AVAILABLE_SERVERS;
+    },
   },
 
   methods: {
@@ -109,6 +136,10 @@ export default {
         },
       });
       window.location.reload();
+    },
+
+    onServerSwitch(server) {
+      window.location.href = server;
     },
   },
 
@@ -124,8 +155,10 @@ export default {
     Requests,
     PopupModeSwitcher,
     ContentLoader,
-    VHeaderControls,
     VCard,
+    ServerSwitcher,
+    ClientId,
+    LogoutButton,
   },
 };
 </script>
@@ -139,5 +172,8 @@ export default {
 }
 .oauth-container {
   margin-bottom: 16px;
+}
+.oauth-section {
+  position: relative;
 }
 </style>
