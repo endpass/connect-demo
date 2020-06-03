@@ -8,14 +8,11 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <form-field>
-            <server-switcher
-              :options="availableServers"
-              @switch="onServerSwitch"
-            />
-            <logout-button class="header-controls-logout" />
+            <server-switcher @switch="onServerSwitch" />
+            <logout-button class="oauth-logout" />
           </form-field>
           <form-field>
-            <client-id class="header-controls-client-id" />
+            <client-id />
           </form-field>
           <form-field>
             <popup-mode-switcher
@@ -59,13 +56,12 @@
 import VCard from '@endpass/ui/kit/VCard';
 import FormField from '@/components/modules/FormField';
 import ContentLoader from '@/components/modules/ContentLoader';
+import ClientId from '@/components/modules/ClientId';
+import LogoutButton from '@/components/modules/LogoutButton';
 import PopupModeSwitcher from './modules/PopupModeSwitcher';
 import ServerSwitcher from './modules/ServerSwitcher';
 import Requests from './modules/Requests';
 import LoginCard from './modules/LoginCard';
-
-import ClientId from './modules/ClientId';
-import LogoutButton from '@/components/modules/LogoutButton';
 
 import { connectStore } from '@/store';
 
@@ -73,21 +69,6 @@ const OPEN_MODES = {
   IFRAME: 'iframe',
   POPUP: 'popup',
 };
-
-const AVAILABLE_SERVERS = [
-  {
-    text: 'https://connect-demo-dev.endpass.com',
-    val: 'https://connect-demo-dev.endpass.com',
-  },
-  {
-    text: 'https://connect-demo-staging.endpass.com',
-    val: 'https://connect-demo-staging.endpass.com',
-  },
-  {
-    text: 'https://endpass.github.io/connect-demo',
-    val: 'https://endpass.github.io/connect-demo',
-  },
-];
 
 export default {
   name: 'Oauth',
@@ -122,10 +103,6 @@ export default {
       const { openMode = OPEN_MODES.IFRAME } = this.$route.query;
       return openMode;
     },
-
-    availableServers() {
-      return AVAILABLE_SERVERS;
-    },
   },
 
   methods: {
@@ -139,7 +116,7 @@ export default {
     },
 
     onServerSwitch(server) {
-      window.location.href = server;
+      window.location.replace(server);
     },
   },
 
@@ -175,5 +152,10 @@ export default {
 }
 .oauth-section {
   position: relative;
+}
+.oauth-logout {
+  position: absolute;
+  right: 25px;
+  top: 48px;
 }
 </style>

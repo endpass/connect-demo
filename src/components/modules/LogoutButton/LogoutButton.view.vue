@@ -31,11 +31,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.logout-button {
-  position: absolute;
-  right: 25px;
-  top: 48px;
-}
-</style>

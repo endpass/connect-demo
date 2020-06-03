@@ -30,7 +30,7 @@ import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
-  name: 'ClientId',
+  name: 'ClientIdView',
 
   connectStore,
 

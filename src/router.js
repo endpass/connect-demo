@@ -34,13 +34,21 @@ const router = new Router({
 });
 
 const clientIdGuard = async (to, from, next) => {
-  if (!to.query.clientid) {
+  const { clientid } = to.query;
+
+  if (!clientid) {
     return next({
       name: to.name,
       query: {
         clientid: connectStore.clientId,
       },
     });
+  }
+
+  if (clientid && clientid !== connectStore.clientId) {
+    await connectStore.setClientId(clientid);
+
+    return next(false);
   }
 
   return next();

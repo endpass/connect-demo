@@ -4,7 +4,7 @@
     <div class="server-switcher-container">
       <v-select
         v-model="currentServer"
-        :options="options"
+        :options="availableServers"
         class="server-switcher-selector"
       />
       <v-button
@@ -27,34 +27,50 @@ import VButton from '@endpass/ui/kit/VButton';
 
 import { connectStore } from '@/store';
 
+const AVAILABLE_SERVERS = [
+  {
+    text: 'https://connect-demo-dev.endpass.com',
+    val: 'https://connect-demo-dev.endpass.com',
+  },
+  {
+    text: 'https://connect-demo-staging.endpass.com',
+    val: 'https://connect-demo-staging.endpass.com',
+  },
+  {
+    text: 'https://endpass.github.io/connect-demo',
+    val: 'https://endpass.github.io/connect-demo',
+  },
+];
+
 export default {
-  name: 'PopupModeSwitcher',
+  name: 'ServerSwitcher',
 
   connectStore,
 
-  props: {
-    options: {
-      type: Array,
-      default: () => [],
-    },
-  },
-
   data() {
     return {
-      currentServer: this.$options.connectStore.server,
+      currentServer: this.getCurrentServer(),
       isLoading: false,
     };
   },
 
   computed: {
     disabled() {
-      return this.currentServer === this.$options.connectStore.server;
+      return this.currentServer === this.getCurrentServer();
+    },
+
+    availableServers() {
+      return AVAILABLE_SERVERS;
     },
   },
 
   methods: {
     onServerSwitch() {
       this.$emit('switch', this.currentServer);
+    },
+
+    getCurrentServer() {
+      return window.location.href.split('?')[0].replace(/\/$/, '');
     },
   },
 
@@ -67,12 +83,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.server-switcher {
-  // display: flex;
-}
-
 .server-switcher-container {
   display: flex;
+  align-items: flex-start;
 }
 
 .server-switcher-selector {
