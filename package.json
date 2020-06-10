@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "SET PORT=4000 && vue-cli-service serve ./src/main.js",
+    "dev": "SOURCE_MAP=true PORT=4000 vue-cli-service serve ./src/main.js",
     "dev:e2e": "vue-cli-service serve ./src/main.js --mode e2e-connect-dev",
     "build": "rimraf ./dist && vue-cli-service build ./src/main.js",
     "build:dev": "yarn build --mode development",
