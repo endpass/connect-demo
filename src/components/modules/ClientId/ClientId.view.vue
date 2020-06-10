@@ -53,6 +53,14 @@ export default {
         return;
       }
       this.isLoading = true;
+
+      this.$router.push({
+        name: this.$route.name,
+        query: {
+          clientid: this.clientId,
+        },
+      });
+
       await this.$options.connectStore.setClientId(this.clientId);
     },
   },

@@ -47,8 +47,6 @@ const clientIdGuard = async (to, from, next) => {
 
   if (clientid && clientid !== connectStore.clientId) {
     await connectStore.setClientId(clientid);
-
-    return next(false);
   }
 
   return next();
