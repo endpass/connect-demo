@@ -109,6 +109,7 @@ export default {
     onSwitchOauthPopup(openMode) {
       this.$router.push({
         query: {
+          ...this.$route.query,
           openMode,
         },
       });

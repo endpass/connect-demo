@@ -57,6 +57,7 @@ export default {
       this.$router.push({
         name: this.$route.name,
         query: {
+          ...this.$route.query,
           clientid: this.clientId,
         },
       });
