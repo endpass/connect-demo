@@ -8,7 +8,11 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <form-field>
-            <v-header-controls />
+            <server-switcher @switch="onServerSwitch" />
+            <logout-button class="oauth-logout" />
+          </form-field>
+          <form-field>
+            <client-id />
           </form-field>
           <form-field>
             <popup-mode-switcher
@@ -51,9 +55,11 @@
 <script>
 import VCard from '@endpass/ui/kit/VCard';
 import FormField from '@/components/modules/FormField';
-import VHeaderControls from '@/components/modules/HeaderControls';
 import ContentLoader from '@/components/modules/ContentLoader';
+import ClientId from '@/components/modules/ClientId';
+import LogoutButton from '@/components/modules/LogoutButton';
 import PopupModeSwitcher from './modules/PopupModeSwitcher';
+import ServerSwitcher from './modules/ServerSwitcher';
 import Requests from './modules/Requests';
 import LoginCard from './modules/LoginCard';
 
@@ -80,11 +86,9 @@ export default {
     },
   ],
 
-  data() {
-    return {
-      isLoadingContent: false,
-    };
-  },
+  data: () => ({
+    isLoadingContent: false,
+  }),
 
   computed: {
     isInited() {
@@ -110,6 +114,10 @@ export default {
       });
       window.location.reload();
     },
+
+    onServerSwitch(server) {
+      window.location.replace(server);
+    },
   },
 
   async mounted() {
@@ -124,8 +132,10 @@ export default {
     Requests,
     PopupModeSwitcher,
     ContentLoader,
-    VHeaderControls,
     VCard,
+    ServerSwitcher,
+    ClientId,
+    LogoutButton,
   },
 };
 </script>
@@ -139,5 +149,13 @@ export default {
 }
 .oauth-container {
   margin-bottom: 16px;
+}
+.oauth-section {
+  position: relative;
+}
+.oauth-logout {
+  position: absolute;
+  right: 25px;
+  top: 48px;
 }
 </style>

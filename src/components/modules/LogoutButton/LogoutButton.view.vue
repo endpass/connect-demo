@@ -1,6 +1,6 @@
 <template>
   <v-button
-    class="v-logout-button"
+    class="logout-button"
     skin="ghost-error"
     is-inline
     @click="onLogout"
@@ -15,7 +15,7 @@ import VButton from '@endpass/ui/kit/VButton';
 import { connectStore } from '@/store';
 
 export default {
-  name: 'LogoutButton',
+  name: 'LogoutButtonView',
 
   connectStore,
 

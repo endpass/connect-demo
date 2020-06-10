@@ -9,7 +9,10 @@
       <span class="content-loader-label">
         <slot name="label" />
       </span>
-      <v-progress-circle progress="25" line-thickness="1" />
+      <v-progress-circle
+        progress="25"
+        line-thickness="1"
+      />
     </div>
   </div>
 </template>

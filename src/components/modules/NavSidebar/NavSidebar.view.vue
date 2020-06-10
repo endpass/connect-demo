@@ -4,7 +4,7 @@
       <li>
         <router-link
           v-slot="{ isActive, navigate }"
-          :to="{ name: 'Oauth' }"
+          :to="{ name: 'Oauth', query: $route.query }"
           exact
         >
           <v-button
@@ -24,7 +24,7 @@
       <li>
         <router-link
           v-slot="{ isActive, href, navigate }"
-          :to="{ name: 'Examples' }"
+          :to="{ name: 'Examples', query: $route.query }"
         >
           <v-button
             :skin="getSkin(isActive)"

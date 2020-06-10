@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
-    <v-card class="card-content">
+  <div class="custom-element">
+    <v-card class="custom-element-content">
       <form-field>
-        <v-header-controls />
+        <client-id class="custom-element-client-id" />
+        <logout-button class="custom-element-logout" />
       </form-field>
-
       <v-button
         is-inline
         data-test="endpass-sign-in-button"
@@ -23,8 +23,9 @@
 import VButton from '@endpass/ui/kit/VButton';
 import VCard from '@endpass/ui/kit/VCard';
 import { connectStore } from '@/store';
-import VHeaderControls from '@/components/modules/HeaderControls';
 import FormField from '@/components/modules/FormField';
+import LogoutButton from '@/components/modules/LogoutButton';
+import ClientId from '@/components/modules/ClientId';
 
 export default {
   name: 'CustomElement',
@@ -54,9 +55,21 @@ export default {
 
   components: {
     FormField,
-    VHeaderControls,
     VCard,
     VButton,
+    LogoutButton,
+    ClientId,
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.custom-element {
+  position: relative;
+}
+.custom-element-logout {
+  position: absolute;
+  right: 25px;
+  top: 48px;
+}
+</style>

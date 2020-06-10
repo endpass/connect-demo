@@ -2,6 +2,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import { connectStore } from '@/store';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -30,5 +32,28 @@ const router = new Router({
     },
   ],
 });
+
+const clientIdGuard = async (to, from, next) => {
+  const { clientid } = to.query;
+
+  if (!clientid) {
+    return next({
+      name: to.name,
+      query: {
+        clientid: connectStore.clientId,
+      },
+    });
+  }
+
+  if (clientid && clientid !== connectStore.clientId) {
+    await connectStore.setClientId(clientid);
+
+    return next(false);
+  }
+
+  return next();
+};
+
+router.beforeEach(clientIdGuard);
 
 export default router;
