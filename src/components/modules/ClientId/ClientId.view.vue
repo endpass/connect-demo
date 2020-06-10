@@ -36,7 +36,7 @@ export default {
 
   data() {
     return {
-      clientId: this.$route.query.clientid,
+      clientId: this.$options.connectStore.clientId,
       isLoading: false,
     };
   },
@@ -53,7 +53,28 @@ export default {
         return;
       }
       this.isLoading = true;
-      await this.$options.connectStore.setClientId(this.clientId);
+      const { clientId = '' } = this;
+
+      await this.$options.connectStore.setClientId(clientId);
+
+      const query = {
+        ...this.$route.query,
+        clientid: clientId,
+      };
+
+      if (!clientId) {
+        delete query.clientid;
+      }
+
+      try {
+        await this.$router.push({
+          query,
+        });
+      } catch (e) {}
+
+      this.$nextTick(async () => {
+        await this.$options.connectStore.reload(clientId);
+      });
     },
   },
 

@@ -29,6 +29,10 @@ class ConnectModule extends VuexModule {
   async setClientId(clientId) {
     const savedValue = clientId ? clientId.trim() : '';
     LocalStorage.save(CLIENT_ID_KEY, savedValue);
+  }
+
+  @Action
+  async reload() {
     window.location.reload();
   }
 
