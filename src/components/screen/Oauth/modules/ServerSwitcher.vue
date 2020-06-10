@@ -70,7 +70,10 @@ export default {
     },
 
     getCurrentServer() {
-      return window.location.href.split('?')[0].replace(/\/$/, '');
+      return `${window.location.origin}${window.location.pathname}`.replace(
+        /\/$/,
+        '',
+      );
     },
   },
 
