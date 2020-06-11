@@ -1,4 +1,3 @@
-import LocalStorage from '@endpass/class/LocalStorage';
 import { VuexModule, Module, Action } from 'vuex-class-modules';
 import ConnectCompose from '@endpass/connect/compose';
 import ConnectOauth from '@endpass/connect/oauth';
@@ -7,7 +6,7 @@ import ConnectDocument from '@endpass/connect/document';
 import ConnectAuth from '@endpass/connect/auth';
 import ErrorNotify from '@/class/ErrorNotify';
 
-const CLIENT_ID_KEY = 'client-id';
+const DEFAULT_CLIENT_ID = ENV.VUE_APP_OAUTH_CLIENT_ID;
 
 @Module({ generateMutationSetters: true })
 class ConnectModule extends VuexModule {
@@ -17,23 +16,14 @@ class ConnectModule extends VuexModule {
 
   initialPromise = null;
 
-  errorNotify = new ErrorNotify();
+  clientId = DEFAULT_CLIENT_ID;
 
-  get clientId() {
-    const clientId =
-      LocalStorage.load(CLIENT_ID_KEY) || ENV.VUE_APP_OAUTH_CLIENT_ID;
-    return clientId;
-  }
+  errorNotify = new ErrorNotify();
 
   @Action
   async setClientId(clientId) {
     const savedValue = clientId ? clientId.trim() : '';
-    LocalStorage.save(CLIENT_ID_KEY, savedValue);
-  }
-
-  @Action
-  async reload() {
-    window.location.reload();
+    this.clientId = savedValue || DEFAULT_CLIENT_ID;
   }
 
   @Action
@@ -77,6 +67,9 @@ class ConnectModule extends VuexModule {
     this.initialPromise = new Promise(resolve => {
       resolver = resolve;
     });
+
+    // eslint-disable-next-line no-console
+    console.log(`using clientId as: ${this.clientId}`);
 
     this.connectInstance = new ConnectCompose({
       authUrl: ENV.VUE_APP_AUTH_URL || 'https://auth.endpass.com',

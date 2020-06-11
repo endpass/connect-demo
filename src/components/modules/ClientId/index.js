@@ -1,1 +1,1 @@
-export { default } from './ClientId.view';
+export { default } from './ClientId.interface';

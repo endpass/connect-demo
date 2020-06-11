@@ -106,13 +106,19 @@ export default {
   },
 
   methods: {
-    onSwitchOauthPopup(openMode) {
-      this.$router.push({
-        query: {
-          openMode,
-        },
+    async onSwitchOauthPopup(openMode) {
+      const query = {
+        ...this.$route.query,
+        openMode,
+      };
+
+      await this.$router.push({
+        query,
       });
-      window.location.reload();
+
+      this.$nextTick(() => {
+        window.location.reload();
+      });
     },
 
     onServerSwitch(server) {
