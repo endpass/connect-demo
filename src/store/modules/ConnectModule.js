@@ -68,6 +68,7 @@ class ConnectModule extends VuexModule {
       resolver = resolve;
     });
 
+    // we should be sure that clientId from query and connect lib is equal
     // eslint-disable-next-line no-console
     console.log(`using clientId as: ${this.clientId}`);
 

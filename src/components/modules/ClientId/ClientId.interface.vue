@@ -1,47 +1,18 @@
 <template>
-  <client-id-interactor #default="{ onConfirm }">
-    <client-id-view
-      :client-id="clientId"
-      @confirm="onConfirm"
-    />
-  </client-id-interactor>
+  <client-id-view
+    :client-id="clientId"
+    @confirm="onConfirm"
+  />
 </template>
 
 <script>
 import { connectStore } from '@/store';
 import ClientIdView from './ClientId.view';
-import ClientIdInteractor from './ClientId.interactor';
 
 export default {
   name: 'ClientIdInterface',
 
   connectStore,
-
-  provide() {
-    const self = this;
-    return {
-      gateway: {
-        async setClientId(clientId) {
-          const query = {
-            ...self.$route.query,
-            clientId,
-          };
-
-          if (!clientId) delete query.clientId;
-
-          try {
-            await self.$router.push({
-              query,
-            });
-          } catch (e) {}
-
-          self.$nextTick(async () => {
-            window.location.reload();
-          });
-        },
-      },
-    };
-  },
 
   computed: {
     clientId() {
@@ -49,8 +20,24 @@ export default {
     },
   },
 
+  methods: {
+    async onConfirm(clientId) {
+      const query = {
+        ...this.$route.query,
+        clientId,
+      };
+
+      if (!clientId) delete query.clientId;
+
+      await this.$router.push({ query }).catch(() => {});
+
+      this.$nextTick(async () => {
+        window.location.reload();
+      });
+    },
+  },
+
   components: {
-    ClientIdInteractor,
     ClientIdView,
   },
 };
