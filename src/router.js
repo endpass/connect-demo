@@ -33,7 +33,7 @@ const router = new Router({
   ],
 });
 
-const clientIdGuard = async (to, from, next) => {
+const beforeEachRouter = async (to, from, next) => {
   const { clientId } = to.query;
 
   const isClientIdMismatch = clientId !== connectStore.clientId;
@@ -41,13 +41,19 @@ const clientIdGuard = async (to, from, next) => {
     await connectStore.setClientId(clientId);
   }
 
-  if (from.name && isClientIdMismatch) {
-    window.location.reload();
-  }
-
   return next();
 };
 
-router.beforeEach(clientIdGuard);
+const afterEachRouter = (to, from) => {
+  const { clientId } = to.query;
+  const isClientIdMismatch = clientId !== connectStore.clientId;
+
+  if (from.name && isClientIdMismatch) {
+    window.location.reload();
+  }
+};
+
+router.beforeEach(beforeEachRouter);
+router.afterEach(afterEachRouter);
 
 export default router;
