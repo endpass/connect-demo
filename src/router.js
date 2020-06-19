@@ -48,7 +48,7 @@ const afterEachRouter = (to, from) => {
   const { clientId } = to.query;
   const isClientIdMismatch = clientId !== connectStore.clientId;
 
-  if (from.name && isClientIdMismatch) {
+  if (from.name && isClientIdMismatch && clientId) {
     window.location.reload();
   }
 };
