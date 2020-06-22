@@ -1,15 +1,18 @@
 <template>
-  <oauth-view
-    :is-inited="isInited"
-    :is-loading-documents="isLoadingDocuments"
-    :open-mode="openMode"
-    :open-mode-options="$options.MODE_OPTIONS"
-    :user-documents="userDocuments"
-    @clear-token="onClearToken"
-    @login-end="loadUserDocuments"
-    @switch-open-mode="onSwitchOpenMode"
-    @switch-host="onSwitchHost"
-  />
+  <div>
+    <oauth-view
+      :is-inited="isInited"
+      :is-loading-documents="isLoadingDocuments"
+      :open-mode="openMode"
+      :open-mode-options="$options.MODE_OPTIONS"
+      :user-documents="userDocuments"
+      @clear-token="onClearToken"
+      @login-end="loadUserDocuments"
+      @switch-open-mode="onSwitchOpenMode"
+      @switch-host="onSwitchHost"
+    />
+    <div class="oauth-focus-element" />
+  </div>
 </template>
 
 <script>
@@ -70,6 +73,14 @@ export default {
       } finally {
         this.isLoadingDocuments = false;
       }
+
+      if (this.userDocuments.length === 0) return;
+
+      const focusedElement = document.querySelector('.oauth-focus-element');
+      if (!focusedElement) return;
+      focusedElement.scrollIntoView({
+        behavior: 'smooth',
+      });
     },
 
     async onSwitchOpenMode(openMode) {
