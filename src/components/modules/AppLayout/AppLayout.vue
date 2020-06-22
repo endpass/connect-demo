@@ -1,5 +1,8 @@
 <template>
-  <div :id="id" class="app-layout">
+  <div
+    :id="id"
+    class="app-layout"
+  >
     <div class="app-layout-bg-header" />
     <div class="app-layout-bg-footer" />
     <div class="app-layout-area">
