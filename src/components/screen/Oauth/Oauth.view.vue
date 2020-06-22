@@ -125,8 +125,8 @@ export default {
     },
 
     onLoginEnd() {
-      this.$emit('login-end');
       this.isLoginning = false;
+      this.$emit('login-end');
     },
 
     async onSwitchOpenMode(openMode) {

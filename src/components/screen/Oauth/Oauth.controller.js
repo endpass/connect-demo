@@ -4,7 +4,7 @@ import { connectStore as connectStoreModule } from '@/store';
 import createController from '@/controllers/createController';
 import ErrorNotify from '@/class/ErrorNotify';
 
-const { OAUTH_POPUP_CLOSED, CREATE_DOCUMENT } = ConnectError.ERRORS;
+const { OAUTH_POPUP_CLOSED } = ConnectError.ERRORS;
 
 @Module({ generateMutationSetters: true })
 class RequestsController extends VuexModule {
