@@ -2,15 +2,6 @@
   <div>
     <form-field>
       <v-button
-        is-inline
-        data-test="endpass-oauth-back-button"
-        @click="onBack"
-      >
-        Back
-      </v-button>
-    </form-field>
-    <form-field>
-      <v-button
         skin="error"
         is-inline
         data-test="endpass-oauth-clear-token-button"
@@ -27,13 +18,9 @@ import VButton from '@endpass/ui/kit/VButton';
 import FormField from '@/components/modules/FormField';
 
 export default {
-  name: 'OauthControls',
+  name: 'DataControlsView',
 
   methods: {
-    onBack() {
-      this.$emit('back');
-    },
-
     onClear() {
       // eslint-disable-next-line no-alert
       const res = window.confirm('Are you sure want to clear token?');

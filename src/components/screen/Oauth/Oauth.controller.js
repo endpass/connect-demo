@@ -35,6 +35,7 @@ class RequestsController extends VuexModule {
 
   @Action
   async logout() {
+    this.userDocuments = [];
     await this.connectStore.connectInstance.logoutFromOauth();
   }
 

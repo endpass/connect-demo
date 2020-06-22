@@ -5,6 +5,7 @@
     :open-mode="openMode"
     :open-mode-options="$options.MODE_OPTIONS"
     :user-documents="userDocuments"
+    @clear-token="onClearToken"
     @login-end="loadUserDocuments"
     @switch-open-mode="onSwitchOpenMode"
     @switch-host="onSwitchHost"
@@ -58,6 +59,10 @@ export default {
   },
 
   methods: {
+    async onClearToken() {
+      await this.$options.oauthController.logout();
+    },
+
     async loadUserDocuments() {
       try {
         this.isLoadingDocuments = true;
@@ -68,13 +73,11 @@ export default {
     },
 
     async onSwitchOpenMode(openMode) {
-      const query = {
-        ...this.$route.query,
-        openMode,
-      };
-
       await this.$router.push({
-        query,
+        query: {
+          ...this.$route.query,
+          openMode,
+        },
       });
 
       this.$nextTick(() => {

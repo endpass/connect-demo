@@ -45,13 +45,13 @@
           </div>
         </v-card>
       </section>
-      <section class="oauth-section">
+      <section
+        v-if="isDocumentsListVisible"
+        class="oauth-section"
+      >
         <v-card class="card-content">
-          <div class="oauth-content-header">
-            The following buttons are examples of workflows to get various
-            identity details from a user:
-          </div>
-          <requests :is-loading.sync="isLoadingDocuments" />
+          <data-controls @clear="onClearToken" />
+          <documents-list :documents-list="userDocuments" />
         </v-card>
       </section>
     </div>
@@ -66,8 +66,9 @@ import ClientId from '@/components/modules/ClientId';
 import LogoutButton from '@/components/modules/LogoutButton';
 import OpenModeSwitcher from './modules/OpenModeSwitcher';
 import HostSwitcher from './modules/HostSwitcher';
-import Requests from './modules/Requests';
 import LoginCard from './modules/LoginCard';
+import DataControls from './modules/DataControls';
+import DocumentsList from './modules/DocumentsList';
 
 export default {
   name: 'OauthView',
@@ -107,9 +108,17 @@ export default {
     isLoading() {
       return !this.isInited || this.isLoadingDocuments || this.isLoginning;
     },
+
+    isDocumentsListVisible() {
+      return this.userDocuments.length !== 0;
+    },
   },
 
   methods: {
+    onClearToken() {
+      this.$emit('clear-token');
+    },
+
     onLoginStart() {
       this.isLoginning = true;
       this.$emit('login-start');
@@ -130,9 +139,10 @@ export default {
   },
 
   components: {
+    DocumentsList,
+    DataControls,
     FormField,
     LoginCard,
-    Requests,
     OpenModeSwitcher,
     ContentLoader,
     VCard,
