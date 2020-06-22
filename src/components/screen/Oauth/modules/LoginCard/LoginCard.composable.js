@@ -1,6 +1,6 @@
 // @ts-check
 
-import { ref } from '@vue/composition-api';
+import { ref, onMounted } from '@vue/composition-api';
 import { connectStore } from '@/store';
 
 /**
@@ -11,13 +11,27 @@ import { connectStore } from '@/store';
 /**
  * @param {object} params
  * @param {boolean} params.isInvertedColors
- * @returns {{elementId: (string), onMounted: onMounted, message: Ref}}
+ * @param {function} params.onLogin
+ * @returns {{elementId: (string), message: Ref}}
  */
-export default function useLoginCard({ isInvertedColors }) {
+export default function useLoginCard({ isInvertedColors, onLogin }) {
   let loginButtonInstance = /** @type {LoginButton|null} */ (null);
   const message = ref('');
 
   const elementId = isInvertedColors ? 'button-root-inverted' : 'button-root';
+
+  const elementSelector = `#${elementId}`;
+
+  const onLoginEnd = () => {
+    // hacky solution for return enable state for button
+    setTimeout(() => {
+      const button = document.querySelector(`${elementSelector} button`);
+      if (!button) return;
+      button.removeAttribute('disabled');
+    }, 10);
+
+    onLogin();
+  };
 
   /**
    *
@@ -29,26 +43,24 @@ export default function useLoginCard({ isInvertedColors }) {
       isLight: isInvertedColors,
       /**
        * @param {Error} err
-       * @param {{email: string}} res
        */
-      onLogin: (err, res) => {
+      onLogin: err => {
         if (err) {
           message.value = err.message;
           return;
         }
-        message.value = res.email;
+        onLoginEnd();
       },
     });
   };
 
-  const onMounted = () => {
+  onMounted(() => {
     loginButtonInstance = createButton();
     loginButtonInstance.mount();
-  };
+  });
 
   return {
     elementId,
     message,
-    onMounted,
   };
 }

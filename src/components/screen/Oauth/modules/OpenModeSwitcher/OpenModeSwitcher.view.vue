@@ -1,14 +1,14 @@
 <template>
-  <div class="popup-mode-switcher">
+  <div class="open-mode-switcher">
     <v-label label="Choose how you would like the workflow to appear" />
-    <div class="popup-mode-switcher-radio-list">
+    <div class="open-mode-switcher-radio-list">
       <v-radio
         v-for="option in options"
         :key="option.val"
         :model-value="value"
         :value="option.val"
         :data-test-oauth-mode="option.val"
-        class="popup-mode-switcher-radio"
+        class="open-mode-switcher-radio"
         @change="onModeSelect"
       >
         {{ option.text }}
@@ -22,7 +22,7 @@ import VRadio from '@endpass/ui/kit/VRadio';
 import VLabel from '@endpass/ui/kit/VLabel';
 
 export default {
-  name: 'PopupModeSwitcher',
+  name: 'OpenModeSwitcher',
 
   props: {
     value: {
@@ -49,11 +49,11 @@ export default {
 };
 </script>
 <style lang="scss">
-.popup-mode-switcher-radio-list {
+.open-mode-switcher-radio-list {
   display: flex;
 }
 
-.popup-mode-switcher-radio {
+.open-mode-switcher-radio {
   flex-basis: auto;
   margin-right: 20px;
 }

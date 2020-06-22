@@ -1,1 +1,1 @@
-export { default } from './Oauth';
+export { default } from './Oauth.interface';

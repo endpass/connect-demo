@@ -8,17 +8,17 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <form-field>
-            <server-switcher @switch="onServerSwitch" />
+            <host-switcher @switch="onHostSwitch" />
             <logout-button class="oauth-logout" />
           </form-field>
           <form-field>
             <client-id />
           </form-field>
           <form-field>
-            <popup-mode-switcher
+            <open-mode-switcher
               :value="openMode"
-              :options="$options.modeOptions"
-              @switch="onSwitchOauthPopup"
+              :options="openModeOptions"
+              @switch="onSwitchOpenMode"
             />
           </form-field>
         </v-card>
@@ -31,10 +31,16 @@
             Verification process:
           </div>
           <div class="oauth-content-login-cards-list">
-            <login-card label="Default style" />
+            <login-card
+              label="Default style"
+              @login-start="onLoginStart"
+              @login-end="onLoginEnd"
+            />
             <login-card
               label="Inverse style"
               :is-inverted-colors="true"
+              @login-start="onLoginStart"
+              @login-end="onLoginEnd"
             />
           </div>
         </v-card>
@@ -45,7 +51,7 @@
             The following buttons are examples of workflows to get various
             identity details from a user:
           </div>
-          <requests :is-loading.sync="isLoadingContent" />
+          <requests :is-loading.sync="isLoadingDocuments" />
         </v-card>
       </section>
     </div>
@@ -58,88 +64,79 @@ import FormField from '@/components/modules/FormField';
 import ContentLoader from '@/components/modules/ContentLoader';
 import ClientId from '@/components/modules/ClientId';
 import LogoutButton from '@/components/modules/LogoutButton';
-import PopupModeSwitcher from './modules/PopupModeSwitcher';
-import ServerSwitcher from './modules/ServerSwitcher';
+import OpenModeSwitcher from './modules/OpenModeSwitcher';
+import HostSwitcher from './modules/HostSwitcher';
 import Requests from './modules/Requests';
 import LoginCard from './modules/LoginCard';
 
-import { connectStore } from '@/store';
-
-const OPEN_MODES = {
-  IFRAME: 'iframe',
-  POPUP: 'popup',
-};
-
 export default {
-  name: 'Oauth',
+  name: 'OauthView',
 
-  connectStore,
+  props: {
+    isInited: {
+      type: Boolean,
+      required: true,
+    },
 
-  modeOptions: [
-    {
-      text: 'Modal (using iframe)',
-      val: OPEN_MODES.IFRAME,
+    openMode: {
+      type: String,
+      required: true,
     },
-    {
-      text: 'Popup (open a new window)',
-      val: OPEN_MODES.POPUP,
+
+    openModeOptions: {
+      type: Array,
+      required: true,
     },
-  ],
+
+    userDocuments: {
+      type: Array,
+      required: true,
+    },
+
+    isLoadingDocuments: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   data: () => ({
-    isLoadingContent: false,
+    isLoginning: false,
   }),
 
   computed: {
-    isInited() {
-      return this.$options.connectStore.isInited;
-    },
-
     isLoading() {
-      return !this.isInited || this.isLoadingContent;
-    },
-
-    openMode() {
-      const { openMode = OPEN_MODES.IFRAME } = this.$route.query;
-      return openMode;
+      return !this.isInited || this.isLoadingDocuments || this.isLoginning;
     },
   },
 
   methods: {
-    async onSwitchOauthPopup(openMode) {
-      const query = {
-        ...this.$route.query,
-        openMode,
-      };
-
-      await this.$router.push({
-        query,
-      });
-
-      this.$nextTick(() => {
-        window.location.reload();
-      });
+    onLoginStart() {
+      this.isLoginning = true;
+      this.$emit('login-start');
     },
 
-    onServerSwitch(server) {
-      window.location.replace(server);
+    onLoginEnd() {
+      this.$emit('login-end');
+      this.isLoginning = false;
     },
-  },
 
-  async mounted() {
-    await this.$options.connectStore.initConnect({
-      isPopup: this.openMode === OPEN_MODES.POPUP,
-    });
+    async onSwitchOpenMode(openMode) {
+      this.$emit('switch-open-mode', openMode);
+    },
+
+    onHostSwitch(host) {
+      this.$emit('switch-host', host);
+    },
   },
 
   components: {
     FormField,
     LoginCard,
     Requests,
-    PopupModeSwitcher,
+    OpenModeSwitcher,
     ContentLoader,
     VCard,
-    ServerSwitcher,
+    HostSwitcher,
     ClientId,
     LogoutButton,
   },

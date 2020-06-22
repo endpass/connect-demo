@@ -10,6 +10,7 @@
       <div
         :id="elementId"
         data-test="login-element"
+        @click="onLoginStart"
       />
       <div
         class="app-login-card-login-message"
@@ -39,15 +40,20 @@ export default {
     },
   },
 
-  setup(props) {
-    const { elementId, message, onMounted } = useLoginCard({
+  setup(props, context) {
+    const { elementId, message } = useLoginCard({
       isInvertedColors: props.isInvertedColors,
+      onLogin: () => {
+        context.emit('login-end');
+      },
     });
 
     return {
       message,
       elementId,
-      onMounted,
+      onLoginStart() {
+        context.emit('login-start');
+      },
     };
   },
 };
