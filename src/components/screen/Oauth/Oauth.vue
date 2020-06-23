@@ -8,11 +8,8 @@
       <section class="oauth-section">
         <v-card class="card-content">
           <logout-button class="oauth-logout" />
-          <form-field>
-            <server-switcher
-              v-if="isServerSwitcherVisible"
-              @switch="onServerSwitch"
-            />
+          <form-field v-if="isServerSwitcherVisible">
+            <server-switcher @switch="onServerSwitch" />
           </form-field>
           <form-field>
             <client-id />
