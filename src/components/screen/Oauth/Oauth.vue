@@ -7,9 +7,9 @@
     <div v-if="isInited">
       <section class="oauth-section">
         <v-card class="card-content">
-          <form-field>
+          <logout-button class="oauth-logout" />
+          <form-field v-if="isServerSwitcherVisible">
             <server-switcher @switch="onServerSwitch" />
-            <logout-button class="oauth-logout" />
           </form-field>
           <form-field>
             <client-id />
@@ -97,6 +97,10 @@ export default {
 
     isLoading() {
       return !this.isInited || this.isLoadingContent;
+    },
+
+    isServerSwitcherVisible() {
+      return !ENV.VUE_APP_IS_PRODUCTION;
     },
 
     openMode() {
