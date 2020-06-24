@@ -45,13 +45,19 @@
           </div>
         </v-card>
       </section>
-      <section v-if="isDocumentsListVisible" class="oauth-section">
+      <section
+        v-if="isDocumentsListVisible"
+        class="oauth-section"
+      >
         <v-card class="card-content">
           <data-controls @clear="onClearToken" />
           <documents-list :documents-list="userDocuments" />
         </v-card>
       </section>
-      <section v-if="isTestingVisible" class="oauth-section">
+      <section
+        v-if="isTestingVisible"
+        class="oauth-section"
+      >
         <v-card class="card-content">
           <div class="oauth-content-header">
             The following buttons are examples of workflows to get various
