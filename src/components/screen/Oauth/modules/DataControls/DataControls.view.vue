@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form-field>
+    <form-field v-if="isBackAvailable">
       <v-button
         is-inline
         data-test="endpass-oauth-back-button"
@@ -27,7 +27,14 @@ import VButton from '@endpass/ui/kit/VButton';
 import FormField from '@/components/modules/FormField';
 
 export default {
-  name: 'OauthControls',
+  name: 'DataControlsView',
+
+  props: {
+    isBackAvailable: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   methods: {
     onBack() {

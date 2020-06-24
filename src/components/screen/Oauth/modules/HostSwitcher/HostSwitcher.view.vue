@@ -1,18 +1,18 @@
 <template>
-  <div class="server-switcher">
+  <div class="host-switcher">
     <v-label label="Choose a server" />
-    <div class="server-switcher-container">
+    <div class="host-switcher-container">
       <v-select
-        v-model="currentServer"
-        :options="availableServers"
-        class="server-switcher-selector"
+        v-model="currentHost"
+        :options="availableHostList"
+        class="host-switcher-selector"
       />
       <v-button
         is-inline
         :disabled="disabled"
         :is-loading="isLoading"
-        class="server-switcher-button"
-        @click="onServerSwitch"
+        class="host-switcher-button"
+        @click="onSwitch"
       >
         Set
       </v-button>
@@ -25,9 +25,7 @@ import VSelect from '@endpass/ui/kit/VSelect';
 import VLabel from '@endpass/ui/kit/VLabel';
 import VButton from '@endpass/ui/kit/VButton';
 
-import { connectStore } from '@/store';
-
-const AVAILABLE_SERVERS = [
+const AVAILABLE_HOST_LIST = [
   {
     text: 'https://connect-demo-dev.endpass.com',
     val: 'https://connect-demo-dev.endpass.com',
@@ -43,33 +41,31 @@ const AVAILABLE_SERVERS = [
 ];
 
 export default {
-  name: 'ServerSwitcher',
-
-  connectStore,
+  name: 'HostSwitcherView',
 
   data() {
     return {
-      currentServer: this.getCurrentServer(),
+      currentHost: this.getCurrentHost(),
       isLoading: false,
     };
   },
 
   computed: {
     disabled() {
-      return this.currentServer === this.getCurrentServer();
+      return this.currentHost === this.getCurrentHost();
     },
 
-    availableServers() {
-      return AVAILABLE_SERVERS;
+    availableHostList() {
+      return AVAILABLE_HOST_LIST;
     },
   },
 
   methods: {
-    onServerSwitch() {
-      this.$emit('switch', this.currentServer);
+    onSwitch() {
+      this.$emit('switch', this.currentHost);
     },
 
-    getCurrentServer() {
+    getCurrentHost() {
       return `${window.location.origin}${window.location.pathname}`.replace(
         /\/$/,
         '',
@@ -86,12 +82,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.server-switcher-container {
+.host-switcher-container {
   display: flex;
   align-items: flex-start;
 }
 
-.server-switcher-selector {
+.host-switcher-selector {
   flex-basis: auto;
   margin-right: 0;
 }

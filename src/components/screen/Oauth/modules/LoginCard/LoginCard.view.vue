@@ -10,6 +10,7 @@
       <div
         :id="elementId"
         data-test="login-element"
+        @click="onLoginStart"
       />
       <div
         class="app-login-card-login-message"
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { connectStore } from '@/store';
+import useLoginCard from './LoginCard.composable';
 
 export default {
   name: 'LoginCard',
@@ -39,48 +40,21 @@ export default {
     },
   },
 
-  data() {
+  setup(props, context) {
+    const { elementId, message } = useLoginCard({
+      isInvertedColors: props.isInvertedColors,
+      onLogin: () => {
+        context.emit('login-end');
+      },
+    });
+
     return {
-      loginButton: null,
-      message: null,
+      message,
+      elementId,
+      onLoginStart() {
+        context.emit('login-start');
+      },
     };
-  },
-
-  computed: {
-    elementId() {
-      return this.isInvertedColors ? 'button-root-inverted' : 'button-root';
-    },
-  },
-
-  methods: {
-    toggleButton() {
-      if (this.loginButton) {
-        this.loginButton.unmount();
-        this.loginButton = null;
-        this.message = null;
-        return;
-      }
-      this.loginButton = this.createButton();
-      this.loginButton.mount();
-    },
-
-    createButton() {
-      return connectStore.createLoginButton({
-        element: `#${this.elementId}`,
-        isLight: this.isInvertedColors,
-        onLogin: (err, res) => {
-          if (err) {
-            this.message = err.message;
-            return;
-          }
-          this.message = res.email;
-        },
-      });
-    },
-  },
-
-  mounted() {
-    this.toggleButton();
   },
 };
 </script>

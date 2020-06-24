@@ -83,10 +83,7 @@ module.exports = {
         name: '[name].[hash:8].[ext]',
       });
 
-    config.module
-      .rule('svg-sprite')
-      .use('svgo-loader')
-      .loader('svgo-loader');
+    config.module.rule('svg-sprite').use('svgo-loader').loader('svgo-loader');
 
     config.plugin('html').tap(args => {
       const options = Object.assign(args[0], {

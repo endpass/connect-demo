@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import UIComponents from '@endpass/ui';
 import Notifications from 'vue-notification';
+import VueCompositionApi from '@vue/composition-api';
 
 import App from './App.vue';
 import router from './router';
@@ -13,6 +14,7 @@ import './css/main.scss';
 
 Vue.use(Notifications);
 Vue.use(UIComponents);
+Vue.use(VueCompositionApi);
 
 Vue.config.productionTip = false;
 

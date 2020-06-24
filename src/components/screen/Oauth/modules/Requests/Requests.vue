@@ -6,8 +6,9 @@
       @user-details="onGetUserDetails"
       @user-documents="onGetUserDocuments"
     />
-    <oauth-controls
+    <data-controls
       v-else
+      is-back-available
       @back="onBack"
       @clear="onClear"
     />
@@ -20,7 +21,7 @@
 
 <script>
 import ButtonsList from './modules/RequestButtons';
-import OauthControls from './modules/OauthControls';
+import DataControls from '../DataControls';
 import UserAddresses from './modules/UserAddresses';
 import UserDocuments from './modules/UserDocuments';
 import UserDetails from './modules/UserDetails';
@@ -96,7 +97,7 @@ export default {
 
   components: {
     ButtonsList,
-    OauthControls,
+    DataControls,
   },
 };
 </script>

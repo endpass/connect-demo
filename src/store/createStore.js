@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-export default function() {
+export default function () {
   const store = new Vuex.Store({
     // @ts-ignore
     strict: !JSON.parse(ENV.VUE_APP_IS_STRICT),

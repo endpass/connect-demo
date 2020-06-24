@@ -10,7 +10,7 @@
  * @param {string} name Module name
  * @returns {T} Vuex class module registered in the store
  */
-export default function(store, Module, name) {
+export default function (store, Module, name) {
   return new Module({
     store,
     name,
