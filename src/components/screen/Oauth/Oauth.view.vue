@@ -7,9 +7,9 @@
     <div v-if="isInited">
       <section class="oauth-section">
         <v-card class="card-content">
-          <form-field>
+          <logout-button class="oauth-logout" />
+          <form-field v-if="isHostSwitcherVisible">
             <host-switcher @switch="onHostSwitch" />
-            <logout-button class="oauth-logout" />
           </form-field>
           <form-field>
             <client-id />
@@ -107,6 +107,10 @@ export default {
   computed: {
     isLoading() {
       return !this.isInited || this.isLoadingDocuments || this.isLoginning;
+    },
+
+    isHostSwitcherVisible() {
+      return !ENV.VUE_APP_IS_PRODUCTION;
     },
 
     isDocumentsListVisible() {
