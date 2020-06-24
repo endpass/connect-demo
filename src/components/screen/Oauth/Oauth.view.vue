@@ -45,13 +45,19 @@
           </div>
         </v-card>
       </section>
-      <section
-        v-if="isDocumentsListVisible"
-        class="oauth-section"
-      >
+      <section v-if="isDocumentsListVisible" class="oauth-section">
         <v-card class="card-content">
           <data-controls @clear="onClearToken" />
           <documents-list :documents-list="userDocuments" />
+        </v-card>
+      </section>
+      <section v-if="isTestingVisible" class="oauth-section">
+        <v-card class="card-content">
+          <div class="oauth-content-header">
+            The following buttons are examples of workflows to get various
+            identity details from a user:
+          </div>
+          <requests :is-loading.sync="isRequestsLoading" />
         </v-card>
       </section>
     </div>
@@ -69,6 +75,7 @@ import HostSwitcher from './modules/HostSwitcher';
 import LoginCard from './modules/LoginCard';
 import DataControls from './modules/DataControls';
 import DocumentsList from './modules/DocumentsList';
+import Requests from '@/components/screen/Oauth/modules/Requests/Requests';
 
 export default {
   name: 'OauthView',
@@ -102,11 +109,17 @@ export default {
 
   data: () => ({
     isLoginning: false,
+    isRequestsLoading: false,
   }),
 
   computed: {
     isLoading() {
-      return !this.isInited || this.isLoadingDocuments || this.isLoginning;
+      return (
+        !this.isInited ||
+        this.isLoadingDocuments ||
+        this.isLoginning ||
+        this.isRequestsLoading
+      );
     },
 
     isHostSwitcherVisible() {
@@ -115,6 +128,10 @@ export default {
 
     isDocumentsListVisible() {
       return this.userDocuments.length !== 0;
+    },
+
+    isTestingVisible() {
+      return !!this.$route.query.testing;
     },
   },
 
@@ -143,6 +160,7 @@ export default {
   },
 
   components: {
+    Requests,
     DocumentsList,
     DataControls,
     FormField,

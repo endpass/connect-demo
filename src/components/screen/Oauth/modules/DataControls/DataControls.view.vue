@@ -1,5 +1,14 @@
 <template>
   <div>
+    <form-field v-if="isBackAvailable">
+      <v-button
+        is-inline
+        data-test="endpass-oauth-back-button"
+        @click="onBack"
+      >
+        Back
+      </v-button>
+    </form-field>
     <form-field>
       <v-button
         skin="error"
@@ -20,7 +29,18 @@ import FormField from '@/components/modules/FormField';
 export default {
   name: 'DataControlsView',
 
+  props: {
+    isBackAvailable: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   methods: {
+    onBack() {
+      this.$emit('back');
+    },
+
     onClear() {
       // eslint-disable-next-line no-alert
       const res = window.confirm('Are you sure want to clear token?');
