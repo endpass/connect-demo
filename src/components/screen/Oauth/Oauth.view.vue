@@ -35,12 +35,14 @@
               label="Default style"
               @login-start="onLoginStart"
               @login-end="onLoginEnd"
+              @error="onError"
             />
             <login-card
               label="Inverse style"
               :is-inverted-colors="true"
               @login-start="onLoginStart"
               @login-end="onLoginEnd"
+              @error="onError"
             />
           </div>
         </v-card>
@@ -154,6 +156,10 @@ export default {
     onLoginEnd() {
       this.isLoginning = false;
       this.$emit('login-end');
+    },
+
+    onError() {
+      this.isLoginning = false;
     },
 
     async onSwitchOpenMode(openMode) {

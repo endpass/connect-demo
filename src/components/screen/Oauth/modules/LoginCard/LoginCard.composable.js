@@ -12,9 +12,10 @@ import { connectStore } from '@/store';
  * @param {object} params
  * @param {boolean} params.isInvertedColors
  * @param {function} params.onLogin
+ * @param {function} params.onError
  * @returns {{elementId: (string), message: Ref}}
  */
-export default function useLoginCard({ isInvertedColors, onLogin }) {
+export default function useLoginCard({ isInvertedColors, onLogin, onError }) {
   let loginButtonInstance = /** @type {LoginButton|null} */ (null);
   const message = ref('');
 
@@ -47,6 +48,7 @@ export default function useLoginCard({ isInvertedColors, onLogin }) {
       onLogin: err => {
         if (err) {
           message.value = err.message;
+          onError(err);
           return;
         }
         onLoginEnd();

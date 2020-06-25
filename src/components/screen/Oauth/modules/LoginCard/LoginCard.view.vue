@@ -46,6 +46,9 @@ export default {
       onLogin: () => {
         context.emit('login-end');
       },
+      onError: () => {
+        context.emit('error');
+      },
     });
 
     return {

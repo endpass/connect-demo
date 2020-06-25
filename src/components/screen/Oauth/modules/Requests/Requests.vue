@@ -23,7 +23,7 @@
 import ButtonsList from './modules/RequestButtons';
 import DataControls from '../DataControls';
 import UserAddresses from './modules/UserAddresses';
-import UserDocuments from './modules/UserDocuments';
+import DocumentsList from '@/components/screen/Oauth/modules/DocumentsList';
 import UserDetails from './modules/UserDetails';
 
 import createOauthRequestController from './Requests.controller';
@@ -88,7 +88,7 @@ export default {
       try {
         this.startLoading();
         this.currentData = await this.$options.oauthRequestController.getUserDocuments();
-        this.currentComponent = UserDocuments;
+        this.currentComponent = DocumentsList;
       } finally {
         this.stopLoading();
       }
