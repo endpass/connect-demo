@@ -42,6 +42,7 @@ class RequestsController extends VuexModule {
   @Action
   async loadUserDocuments() {
     try {
+      this.userDocuments = [];
       const { data } = await this.connectStore.connectInstance.request({
         method: 'GET',
         url: `${ENV.VUE_APP_OAUTH_SERVER}/documents`,
