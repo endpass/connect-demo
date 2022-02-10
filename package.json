@@ -79,7 +79,7 @@
     "gh-pages": "^3.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prettier": "^2.0.5",
     "raw-loader": "^4.0.1",
     "rimraf": "^3.0.2",
